@@ -58,6 +58,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .screen.active{display:block;}
 #start-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
 #start-screen.active{display:flex;}
+#config-screen.active{display:flex;}
 .logo-hex{
   width:100px;height:100px;
   background:conic-gradient(var(--dorado) 0deg,#6a4a10 180deg,var(--dorado) 360deg);
@@ -315,11 +316,12 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 </div>
 
 <!-- ══ START SCREEN ══ -->
+<!-- ══ PANTALLA DE BIENVENIDA ══ -->
 <div id="start-screen" class="screen">
   <div class="logo-hex"><span>SDN</span></div>
   <p style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:5px;color:var(--dorado);margin-bottom:10px">SISTEMA ADAPTATIVO</p>
   <h1>Examen <span>Integrado</span></h1>
-  <p class="start-sub">MALOMI · Actividades Administrativas · Seguridad MOM</p>
+  <p class="start-sub">MALOMI · Actividades Administrativas · Seguridad · Operaciones · Maniobra</p>
 
   <div class="stat-row">
     <div class="stat-card"><span class="sv">418</span><span class="sl">Total preguntas</span></div>
@@ -328,34 +330,46 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
     <div class="stat-card"><span class="sv" id="sc-avg">—</span><span class="sl">Promedio</span></div>
   </div>
 
-  <p class="mode-lbl">Modo de selección</p>
-  <div class="mode-grid">
-    <button class="mode-btn" id="mode-adapt" onclick="setMode('adapt')"><span class="mi">🎯</span>Adaptativo</button>
-    <button class="mode-btn active" id="mode-all" onclick="setMode('all')"><span class="mi">🔀</span>Aleatorio</button>
-    <button class="mode-btn" id="mode-wrong" onclick="setMode('wrong')"><span class="mi">⚠️</span>Solo errores</button>
-  </div>
-  <p class="mode-hint" id="mode-hint">Preguntas al azar del banco completo.</p>
-
-  <div class="adaptive-bar" id="adaptive-bar">
-    <div class="ab-title">Preguntas con más fallos</div>
-    <div class="ab-items" id="ab-items"></div>
-  </div>
-
-  <div class="qty-row">
-    <label>Preguntas:</label>
-    <select id="qty-sel">
-      <option value="10">10</option>
-      <option value="20" selected>20</option>
-      <option value="30">30</option>
-      <option value="50">50</option>
-      <option value="9999">Todas</option>
-    </select>
-  </div>
-
-  <button class="btn-go" onclick="startExam()">▶ INICIAR</button>
-  <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+  <button class="btn-go" onclick="showConfig()" style="margin-bottom:16px">▶ NUEVO EXAMEN</button>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
     <button class="btn-nav-sm" onclick="showStats()">📊 Estadísticas</button>
     <button class="btn-nav-sm" onclick="openManager()">⚙ Gestionar errores</button>
+  </div>
+</div>
+
+<!-- ══ PANTALLA DE CONFIGURACIÓN ══ -->
+<div id="config-screen" class="screen">
+  <div style="max-width:520px;margin:0 auto;padding:40px 20px;text-align:center;">
+    <p style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:5px;color:var(--dorado);margin-bottom:16px">CONFIGURAR EXAMEN</p>
+
+    <p class="mode-lbl">Modo de selección</p>
+    <div class="mode-grid">
+      <button class="mode-btn" id="mode-adapt" onclick="setMode('adapt')"><span class="mi">🎯</span>Adaptativo</button>
+      <button class="mode-btn active" id="mode-all" onclick="setMode('all')"><span class="mi">🔀</span>Aleatorio</button>
+      <button class="mode-btn" id="mode-wrong" onclick="setMode('wrong')"><span class="mi">⚠️</span>Solo errores</button>
+    </div>
+    <p class="mode-hint" id="mode-hint">Preguntas al azar del banco completo.</p>
+
+    <div class="adaptive-bar" id="adaptive-bar">
+      <div class="ab-title">Preguntas con más fallos</div>
+      <div class="ab-items" id="ab-items"></div>
+    </div>
+
+    <div class="qty-row">
+      <label>Número de preguntas:</label>
+      <select id="qty-sel">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="30">30</option>
+        <option value="50">50</option>
+        <option value="9999">Todas</option>
+      </select>
+    </div>
+
+    <button class="btn-go" onclick="startExam()">▶ INICIAR EXAMEN</button>
+    <div style="margin-top:14px;">
+      <button class="btn-nav-sm" onclick="backToHome()">← VOLVER</button>
+    </div>
   </div>
 </div>
 
@@ -446,6 +460,8 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
       <button class="mgr-filter" id="mf-log" onclick="setMgrF('log')">Logística</button>
       <button class="mgr-filter" id="mf-adm" onclick="setMgrF('adm')">Act. Admin.</button>
       <button class="mgr-filter" id="mf-seg" onclick="setMgrF('seg')">Seguridad</button>
+      <button class="mgr-filter" id="mf-ops" onclick="setMgrF('ops')">Operaciones</button>
+      <button class="mgr-filter" id="mf-man" onclick="setMgrF('man')">Maniobra</button>
     </div>
     <div class="mgr-body" id="mgr-body"><div class="loading-msg">Cargando…</div></div>
     <div class="mgr-footer">
@@ -457,7 +473,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 
 <script>
 // ══════════════════════════════════════════════════
-// BANCO DE PREGUNTAS (248)
+// BANCO DE PREGUNTAS (418)
 // ══════════════════════════════════════════════════
 const BANCO = [
 // ── LOGÍSTICA (59) ──────────────────────────────────────
@@ -977,9 +993,16 @@ async function upsertError(id, materia, wrong) {
   if (wrong) {
     cur.fallos++;
     dbErrors[id] = cur;
-    await sb.from('errores').upsert({ pregunta_id: id, materia, fallos: cur.fallos, memorizada: false, ultima_vez: new Date().toISOString() });
+    await sb.from('errores').upsert({
+      pregunta_id: id, materia, fallos: cur.fallos,
+      memorizada: cur.memorizada, ultima_vez: new Date().toISOString()
+    });
   }
-  // Correct: do NOT auto-reduce — only manual memorized does
+  // Correct answers do NOT auto-remove from errors — only manual "Memorizada" does
+  // But we keep local dbErrors in sync if entry already exists
+  if (!wrong && dbErrors[id]) {
+    dbErrors[id] = cur; // keep reference fresh, no DB write needed
+  }
 }
 
 async function setMemorized(id, val) {
@@ -1014,13 +1037,22 @@ let timer=null, timeLeft=1800, totalQ=20, examStartTime=0;
 function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
 
 const MATNAME={log:'LOGÍSTICA',adm:'ACT. ADMIN.',seg:'SEGURIDAD',ops:'OPERACIONES MIL.',man:'MANIOBRA'};
-const MODELAB={adapt:'Modo adaptativo',all:'Modo aleatorio',wrong:'Solo errores',ops:'Solo Operaciones'};
+const MODELAB={adapt:'Modo adaptativo',all:'Modo aleatorio',wrong:'Solo errores'};
+
+function showConfig(){
+  document.getElementById('start-screen').classList.remove('active');
+  document.getElementById('config-screen').classList.add('active');
+}
+function backToHome(){
+  document.getElementById('config-screen').classList.remove('active');
+  document.getElementById('start-screen').classList.add('active');
+}
 
 function setMode(m){
   mode=m;
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('mode-'+m).classList.add('active');
-  const hints={adapt:'Prioriza preguntas con mayor número de fallos previos.',all:'Preguntas al azar del banco completo (248).',wrong:'Solo preguntas que ha fallado en sesiones anteriores.'};
+  const hints={adapt:'Prioriza preguntas con mayor número de fallos previos.',all:'Preguntas al azar del banco completo (418).',wrong:'Solo preguntas que ha fallado en sesiones anteriores.'};
   document.getElementById('mode-hint').textContent=hints[m];
 }
 
@@ -1052,6 +1084,7 @@ function startExam(){
   totalQ=questions.length; answers=new Array(totalQ).fill(-1); answered=new Array(totalQ).fill(false);
   aiCache={}; current=0; timeLeft=1800; examStartTime=Date.now();
   document.getElementById('start-screen').classList.remove('active');
+  document.getElementById('config-screen').classList.remove('active');
   document.getElementById('exam-header').style.display='block';
   document.getElementById('prog-wrap').style.display='block';
   document.getElementById('exam-screen').classList.add('active');
@@ -1118,7 +1151,7 @@ async function finishExam(){
   const elapsed=Math.round((Date.now()-examStartTime)/1000);
   let correct=0;
   const detalles=questions.map((q,i)=>{const ok=answers[i]===q.ans; if(ok)correct++; return{id:q.id,m:q.m,correcta:ok};});
-  const wrong=totalQ-correct, pct=Math.round(correct/totalQ*100), pass=pct>=70;
+  const wrong=totalQ-correct, pct=totalQ>0?Math.round(correct/totalQ*100):0, pass=pct>=70;
   await saveSession({modo:mode,total:totalQ,correctas:correct,incorrectas:wrong,porcentaje:pct,tiempo:elapsed,detalles});
   await loadDBState();
 
@@ -1150,7 +1183,13 @@ function replayWrong(){mode='wrong'; document.getElementById('results-screen').c
 // AI
 // ══════════════════════════════════════════════════
 async function fetchAI(q){
-  const mats={log:'Manual de Logística Militar (SEDENA)',adm:'Actividades Administrativas Militares (SEDENA)',seg:'Manual de Operaciones Militares — La Seguridad (SEDENA)'};
+  const mats={
+    log:'Manual de Logística Militar (SEDENA)',
+    adm:'Actividades Administrativas Militares (SEDENA)',
+    seg:'Manual de Operaciones Militares — La Seguridad (SEDENA)',
+    ops:'Manual de Operaciones Militares (SEDENA)',
+    man:'Manual de Operaciones Militares — Maniobra (SEDENA)'
+  };
   try{
     const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:150,messages:[{role:'user',content:`Eres asesor de exámenes militares del Ejército Mexicano. El candidato falló esta pregunta del ${mats[q.m]}:\n\nPregunta: "${q.q}"\nRespuesta correcta: "${q.opts[q.ans]}"\n\nExplica en máximo 2 líneas el concepto doctrinal clave. Sin saludos ni preámbulos.`}]})});
     const d=await r.json(); const t=d.content?.[0]?.text||'Consulte el manual de referencia.';
@@ -1231,7 +1270,7 @@ function renderMgr(){
   let items=[...allIds].map(id=>{const q=BANCO.find(x=>x.id===id); if(!q)return null; return{id,q,fallos:dbErrors[id]?.fallos||0,mem:dbErrors[id]?.memorizada||false};}).filter(Boolean);
   if(mgrF==='errors') items=items.filter(x=>x.fallos>0&&!x.mem);
   else if(mgrF==='mem') items=items.filter(x=>x.mem);
-  else if(['log','adm','seg'].includes(mgrF)) items=items.filter(x=>x.q.m===mgrF);
+  else if(['log','adm','seg','ops','man'].includes(mgrF)) items=items.filter(x=>x.q.m===mgrF);
   items.sort((a,b)=>{ if(a.mem&&!b.mem)return 1; if(!a.mem&&b.mem)return -1; return b.fallos-a.fallos; });
   document.getElementById('mgr-count').textContent=`${items.filter(x=>!x.mem).length} errores · ${items.filter(x=>x.mem).length} memorizadas`;
   const body=document.getElementById('mgr-body');
@@ -1288,7 +1327,7 @@ function showReview(){
 
 function resetExam(){
   clearInterval(timer);
-  ['results-screen','exam-screen','stats-screen'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['results-screen','exam-screen','stats-screen','config-screen'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('review-section').classList.remove('show');
   document.getElementById('exam-header').style.display='none';
   document.getElementById('prog-wrap').style.display='none';
