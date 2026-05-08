@@ -1,292 +1,207 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SDN Exámenes - Capitán Primero</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap');
-:root{
-  --bg:#080f0a;--surface:#0d1a10;--surface2:#132018;
-  --border:rgba(180,150,60,.18);--dorado:#c8a84b;--dorado2:#e8c86b;
-  --crema:#f0ead8;--dim:#8a8a7a;
-  --correct:#2a7a48;--correct-light:#7dffa5;
-  --wrong:#7a1818;--wrong-light:#ffaaaa;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--crema);min-height:100vh;overflow-x:hidden;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Evaluación - Capitán Primero</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300&display=swap');
+        
+        :root {
+            --bg: #080f0a; --surface: #0d1a10; --surface2: #132018;
+            --border: rgba(180,150,60,.18); --dorado: #c8a84b; --dorado2: #e8c86b;
+            --crema: #f0ead8; --dim: #8a8a7a;
+            --correct: #2a7a48; --wrong: #7a1818;
+        }
 
-/* Reutilizando tus estilos base con mejoras de grid */
-.screen{display:none;padding:20px;max-width:900px;margin:0 auto;}
-.screen.active{display:block;}
+        body { font-family: 'Source Serif 4', serif; background: var(--bg); color: var(--crema); margin: 0; }
+        .screen { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+        .screen.active { display: block; }
 
-#home-screen.active{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:60px;}
+        /* Estilo para las 6 materias */
+        .materias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
 
-.logo-hex{width:80px;height:80px;background:var(--dorado);clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-family:'Oswald',sans-serif;font-weight:700;color:var(--bg);font-size:1.5rem;}
+        .mat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+        }
 
-h1{font-family:'Oswald',sans-serif;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;}
-h1 span{color:var(--dorado);}
+        .mat-card:hover { border-color: var(--dorado); background: var(--surface2); }
+        .mat-card.selected { border: 2px solid var(--dorado); background: var(--surface2); }
+        
+        .mat-card h3 { font-family: 'Oswald'; margin: 0; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; color: var(--dorado); }
+        .mat-card p { font-size: 0.75rem; color: var(--dim); margin: 5px 0 0 0; }
+        .mat-card .badge { position: absolute; top: 10px; right: 10px; font-size: 0.7rem; background: rgba(200,168,75,0.1); padding: 2px 6px; border-radius: 10px; }
 
-.stat-row{display:flex;gap:10px;margin:30px 0;flex-wrap:wrap;justify-content:center;}
-.stat-card{background:var(--surface);border:1px solid var(--border);padding:15px;border-radius:4px;min-width:120px;}
-.stat-card span{display:block;}
-.stat-card .sv{font-family:'Oswald',sans-serif;font-size:1.8rem;color:var(--dorado);}
-.stat-card .sl{font-size:0.7rem;text-transform:uppercase;color:var(--dim);letter-spacing:1px;}
+        .btn-primary { 
+            background: var(--dorado); color: var(--bg); border: none; padding: 15px 40px; 
+            font-family: 'Oswald'; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; width: 100%;
+        }
+        .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
 
-.materias-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:15px;width:100%;margin-bottom:40px;}
-.mat-card{background:var(--surface);border:1px solid var(--border);padding:20px;border-radius:4px;cursor:pointer;text-align:left;transition:0.2s;display:flex;align-items:center;gap:15px;}
-.mat-card:hover{border-color:var(--dorado);background:var(--surface2);}
-.mat-card.selected{border-left:5px solid var(--dorado);background:var(--surface2);}
-.mat-info h3{font-family:'Oswald',sans-serif;font-size:0.9rem;text-transform:uppercase;letter-spacing:1px;}
-.mat-info p{font-size:0.75rem;color:var(--dim);margin-top:4px;}
-
-/* Estilos de examen y navegación */
-.q-text{font-size:1.1rem;line-height:1.6;margin:25px 0;padding:20px;background:var(--surface);border-left:4px solid var(--dorado);}
-.options{display:flex;flex-direction:column;gap:10px;}
-.opt-btn{background:var(--surface2);border:1px solid var(--border);color:var(--crema);padding:15px;text-align:left;cursor:pointer;border-radius:4px;font-size:1rem;transition:0.2s;}
-.opt-btn:hover{border-color:var(--dorado);}
-.opt-btn.correct{background:var(--correct);color:white;}
-.opt-btn.wrong{background:var(--wrong);color:white;}
-
-.btn-primary{background:var(--dorado);color:var(--bg);border:none;padding:15px 40px;font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-weight:600;}
-.btn-primary:disabled{opacity:0.3;}
-
-/* Pantalla de configuración de credenciales */
-#cfg-screen{height:100vh;display:flex;align-items:center;justify-content:center;}
-.cfg-box{background:var(--surface);padding:40px;border:1px solid var(--dorado);max-width:400px;width:90%;}
-.cfg-box input{width:100%;padding:10px;margin:10px 0;background:var(--bg);border:1px solid var(--border);color:white;}
-</style>
+        /* Estilos de Pregunta */
+        .q-text { font-size: 1.15rem; padding: 20px; background: var(--surface); border-left: 4px solid var(--dorado); margin: 20px 0; }
+        .opt-btn { 
+            width: 100%; text-align: left; padding: 15px; margin-bottom: 10px; 
+            background: var(--surface2); border: 1px solid var(--border); color: white; cursor: pointer;
+        }
+        .opt-btn.correct { background: var(--correct); }
+        .opt-btn.wrong { background: var(--wrong); }
+    </style>
 </head>
 <body>
 
-<div id="cfg-screen" class="active">
-    <div class="cfg-box">
-        <h1>CONECTAR <span>DB</span></h1>
-        <input type="text" id="cfg-url" placeholder="Supabase URL">
-        <input type="password" id="cfg-key" placeholder="Anon Key">
-        <button class="btn-primary" style="width:100%" onclick="saveConfig()">Conectar</button>
-        <p id="cfg-status" style="margin-top:15px; font-size:0.8rem"></p>
-    </div>
-</div>
+<div id="home-screen" class="screen active">
+    <h1 style="font-family: 'Oswald'; text-align: center; letter-spacing: 4px;">EVALUACIÓN <span style="color:var(--dorado)">2026</span></h1>
+    <p style="text-align: center; color: var(--dim);">Seleccione una de las 6 materias oficiales:</p>
 
-<div id="home-screen" class="screen">
-    <div class="logo-hex">SDN</div>
-    <h1>Examen <span>2026</span></h1>
-    <p style="color:var(--dim)">Promoción a Capitán Primero</p>
-
-    <div class="stat-row">
-        <div class="stat-card"><span class="sv" id="sc-total">0</span><span class="sl">Preguntas</span></div>
-        <div class="stat-card"><span class="sv" id="sc-err">0</span><span class="sl">Errores</span></div>
-        <div class="stat-card"><span class="sv" id="sc-avg">0%</span><span class="sl">Promedio</span></div>
-    </div>
-
-    <div class="materias-grid" id="materias-grid">
+    <div class="materias-grid" id="materias-container">
         </div>
 
-    <button class="btn-primary" id="btn-iniciar" onclick="startExam()" disabled>Iniciar Evaluación</button>
-    <div style="margin-top:20px">
-        <button onclick="showStats()" style="background:none; border:1px solid var(--dim); color:var(--dim); padding:10px 20px; cursor:pointer">Ver Estadísticas</button>
-    </div>
+    <button class="btn-primary" id="btn-iniciar" onclick="startExam()" disabled>Iniciar Examen</button>
 </div>
 
 <div id="exam-screen" class="screen">
-    <div style="display:flex; justify-content:space-between; color:var(--dorado); font-family:'Oswald'">
-        <span id="q-progress">PREGUNTA 1 DE 20</span>
-        <span id="q-timer">00:00</span>
+    <div id="exam-header" style="display:flex; justify-content:space-between; font-family:'Oswald'; color:var(--dorado)">
+        <span id="progress-text"></span>
+        <span id="timer">20:00</span>
     </div>
-    <div class="q-text" id="q-text"> Cargando pregunta...</div>
-    <div class="options" id="opts"></div>
-    <div id="feedback" style="margin-top:20px; padding:15px; display:none"></div>
-    <div style="margin-top:30px; display:flex; justify-content:flex-end">
-        <button class="btn-primary" id="btn-next" onclick="nextQ()">Siguiente</button>
-    </div>
-</div>
-
-<div id="stats-screen" class="screen">
-    <h1>TUS <span>PROGRESOS</span></h1>
-    <div id="stats-content" style="margin-top:30px"></div>
-    <button class="btn-primary" onclick="showScreen('home-screen')" style="margin-top:30px">Volver</button>
+    <div class="q-text" id="q-text"></div>
+    <div id="options-container"></div>
+    <div id="feedback" style="margin-top: 20px; font-weight: bold;"></div>
+    <button class="btn-primary" id="btn-next" onclick="nextQuestion()" style="margin-top: 20px; display: none;">Siguiente Pregunta</button>
 </div>
 
 <script>
-const CFG_KEY = 'sdn_config_v2';
-let sb = null;
-let materias = [];
-let selectedMat = null;
-let preguntas = [];
-let indexActual = 0;
-let respuestasUsuario = [];
+    // Configuración de Supabase (Sustituye con tus credenciales si no las has guardado)
+    const url = "TU_URL_DE_SUPABASE";
+    const key = "TU_ANON_KEY";
+    const sb = supabase.createClient(url, key);
 
-// 1. GESTIÓN DE CONFIGURACIÓN
-function saveConfig() {
-    const url = document.getElementById('cfg-url').value;
-    const key = document.getElementById('cfg-key').value;
-    const status = document.getElementById('cfg-status');
-    
-    try {
-        const client = supabase.createClient(url, key);
-        client.from('materias').select('id').limit(1).then(({data, error}) => {
-            if (error) throw error;
-            localStorage.setItem(CFG_KEY, JSON.stringify({url, key}));
-            sb = client;
-            initApp();
-        });
-    } catch (e) {
-        status.innerText = "Error de conexión: " + e.message;
-        status.style.color = "var(--wrong-light)";
-    }
-}
+    // Lista Oficial de 6 Materias
+    const MATERIAS_OFICIALES = [
+        { id: 'leg', nombre: 'Legislación Militar' },
+        { id: 'ops', nombre: 'Operaciones Militares' },
+        { id: 'nor', nombre: 'Normatividad Gubernamental' },
+        { id: 'gir', nombre: 'Guerra Irregular' },
+        { id: 'adm', nombre: 'Adiestramiento y Mando Militar' },
+        { id: 'inf', nombre: 'Táctica de Infantería' }
+    ];
 
-async function initApp() {
-    document.getElementById('cfg-screen').classList.remove('active');
-    showScreen('home-screen');
-    
-    // Cargar Materias
-    const {data} = await sb.from('materias').select('*').eq('activa', true).order('id');
-    materias = data || [];
-    
-    // Cargar Errores para el contador
-    const {count: errCount} = await sb.from('errores').select('*', {count: 'exact'});
-    document.getElementById('sc-err').innerText = errCount || 0;
-    
-    renderMaterias();
-}
+    let selectedMateriaId = null;
+    let bancoPreguntas = [];
+    let currentIndex = 0;
 
-function renderMaterias() {
-    const grid = document.getElementById('materias-grid');
-    grid.innerHTML = materias.map(m => `
-        <div class="mat-card" id="mat-${m.id}" onclick="selectMateria('${m.id}')">
-            <div style="width:12px; height:12px; border-radius:50%; background:${m.color || 'var(--dorado)'}"></div>
-            <div class="mat-info">
-                <h3>${m.nombre}</h3>
-                <p>${m.total_preguntas} preguntas disponibles</p>
-            </div>
-        </div>
-    `).join('');
-}
-
-function selectMateria(id) {
-    selectedMat = id;
-    document.querySelectorAll('.mat-card').forEach(c => c.classList.remove('selected'));
-    document.getElementById('mat-' + id).classList.add('selected');
-    document.getElementById('btn-iniciar').disabled = false;
-}
-
-// 2. LÓGICA DE EXAMEN
-async function startExam() {
-    const {data} = await sb.from('preguntas')
-        .select('*')
-        .eq('materia_id', selectedMat)
-        .limit(20);
-    
-    preguntas = data.sort(() => Math.random() - 0.5);
-    indexActual = 0;
-    respuestasUsuario = [];
-    showScreen('exam-screen');
-    renderPregunta();
-}
-
-function renderPregunta() {
-    const p = preguntas[indexActual];
-    document.getElementById('q-progress').innerText = `PREGUNTA ${indexActual + 1} DE ${preguntas.length}`;
-    document.getElementById('q-text').innerText = p.pregunta;
-    
-    const optsDiv = document.getElementById('opts');
-    optsDiv.innerHTML = '';
-    document.getElementById('feedback').style.display = 'none';
-    
-    p.opciones.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'opt-btn';
-        btn.innerText = opt;
-        btn.onclick = () => validarRespuesta(i);
-        optsDiv.appendChild(btn);
-    });
-}
-
-async function validarRespuesta(idx) {
-    const p = preguntas[indexActual];
-    const esCorrecta = idx === p.respuesta_correcta;
-    const btns = document.querySelectorAll('.opt-btn');
-    
-    btns.forEach(b => b.disabled = true);
-    btns[idx].classList.add(esCorrecta ? 'correct' : 'wrong');
-    if (!esCorrecta) btns[p.respuesta_correcta].classList.add('correct');
-
-    // Guardar error en Supabase si es incorrecta
-    if (!esCorrecta) {
-        await sb.from('errores').upsert({
-            id: p.id,
-            pregunta_id: p.id,
-            ultima_vez: new Date()
-        });
-    }
-
-    document.getElementById('feedback').style.display = 'block';
-    document.getElementById('feedback').innerHTML = esCorrecta ? 
-        '✅ Correcto' : `❌ Incorrecto. Ref: ${p.manual_referencia || 'No disponible'}`;
-}
-
-function nextQ() {
-    indexActual++;
-    if (indexActual < preguntas.length) {
-        renderPregunta();
-    } else {
-        alert("Evaluación finalizada");
-        showScreen('home-screen');
-        initApp();
-    }
-}
-
-// 3. ESTADÍSTICAS POR SUBTEMA
-async function showStats() {
-    showScreen('stats-screen');
-    const content = document.getElementById('stats-content');
-    content.innerHTML = "Analizando desempeño...";
-
-    // Solo para la materia de Operaciones que es la que tiene datos
-    const {data: fallos} = await sb.from('errores')
-        .select('pregunta_id, preguntas(subtema)')
-        .limit(100);
-
-    const resumen = {};
-    fallos.forEach(f => {
-        const sub = f.preguntas?.subtema || "General";
-        resumen[sub] = (resumen[sub] || 0) + 1;
-    });
-
-    content.innerHTML = `
-        <h3>Debilidades por Subtema (Operaciones Militares)</h3>
-        <div style="margin-top:20px">
-            ${Object.entries(resumen).map(([sub, count]) => `
-                <div style="margin-bottom:15px">
-                    <div style="display:flex; justify-content:space-between; font-size:0.9rem">
-                        <span>${sub}</span>
-                        <span style="color:var(--wrong-light)">${count} fallos</span>
-                    </div>
-                    <div style="height:6px; background:var(--surface2); width:100%; margin-top:5px">
-                        <div style="height:100%; background:var(--wrong); width:${Math.min(count * 10, 100)}%"></div>
-                    </div>
+    async function init() {
+        const container = document.getElementById('materias-container');
+        
+        // Consultar conteo real de preguntas en Supabase
+        const { data: counts } = await sb.from('materias').select('id, total_preguntas');
+        
+        container.innerHTML = MATERIAS_OFICIALES.map(m => {
+            const dbInfo = counts?.find(c => c.id === m.id);
+            const total = dbInfo ? dbInfo.total_preguntas : 0;
+            return `
+                <div class="mat-card" id="card-${m.id}" onclick="selectMateria('${m.id}')">
+                    <span class="badge">${total} pregs</span>
+                    <h3>${m.nombre}</h3>
+                    <p>${total > 0 ? 'Disponible para evaluación' : 'Sin preguntas cargadas'}</p>
                 </div>
-            `).join('')}
-        </div>
-    `;
-}
-
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-
-// Auto-login si ya existe config
-(async () => {
-    const cfg = JSON.parse(localStorage.getItem(CFG_KEY));
-    if (cfg) {
-        sb = supabase.createClient(cfg.url, cfg.key);
-        initApp();
+            `;
+        }).join('');
     }
-})();
+
+    function selectMateria(id) {
+        selectedMateriaId = id;
+        document.querySelectorAll('.mat-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById('card-' + id).classList.add('selected');
+        document.getElementById('btn-iniciar').disabled = false;
+    }
+
+    async function startExam() {
+        // Cargar preguntas de la materia seleccionada
+        const { data, error } = await sb.from('preguntas')
+            .select('*')
+            .eq('materia_id', selectedMateriaId)
+            .limit(20);
+
+        if (data && data.length > 0) {
+            bancoPreguntas = data.sort(() => Math.random() - 0.5);
+            currentIndex = 0;
+            document.getElementById('home-screen').classList.remove('active');
+            document.getElementById('exam-screen').classList.add('active');
+            renderQuestion();
+        } else {
+            alert("Aún no hay preguntas cargadas para esta materia en Supabase.");
+        }
+    }
+
+    function renderQuestion() {
+        const q = bancoPreguntas[currentIndex];
+        document.getElementById('progress-text').innerText = `PREGUNTA ${currentIndex + 1} DE ${bancoPreguntas.length}`;
+        document.getElementById('q-text').innerText = q.pregunta;
+        document.getElementById('feedback').innerText = '';
+        document.getElementById('btn-next').style.display = 'none';
+
+        const optsContainer = document.getElementById('options-container');
+        optsContainer.innerHTML = '';
+
+        q.opciones.forEach((opt, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(i, q.respuesta_correcta);
+            optsContainer.appendChild(btn);
+        });
+    }
+
+    async function checkAnswer(selected, correct) {
+        const btns = document.querySelectorAll('.opt-btn');
+        btns.forEach(b => b.disabled = true);
+
+        if (selected === correct) {
+            btns[selected].classList.add('correct');
+            document.getElementById('feedback').innerText = "✓ CORRECTO";
+            document.getElementById('feedback').style.color = "var(--correct)";
+        } else {
+            btns[selected].classList.add('wrong');
+            btns[correct].classList.add('correct');
+            document.getElementById('feedback').innerText = "✗ INCORRECTO";
+            document.getElementById('feedback').style.color = "var(--wrong)";
+            
+            // Guardar error en Supabase para el "Modo Enfoque"
+            await sb.from('errores').upsert({
+                id: bancoPreguntas[currentIndex].id,
+                pregunta_id: bancoPreguntas[currentIndex].id,
+                ultima_vez: new Date()
+            });
+        }
+        document.getElementById('btn-next').style.display = 'block';
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex < bancoPreguntas.length) {
+            renderQuestion();
+        } else {
+            alert("Examen finalizado. Volviendo al inicio.");
+            location.reload();
+        }
+    }
+
+    init();
 </script>
+
 </body>
 </html>
