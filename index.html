@@ -13,116 +13,95 @@
   --crema:#f0ead8;--dim:#8a8a7a;
   --correct:#2a7a48;--correct-light:#7dffa5;
   --wrong:#7a1818;--wrong-light:#ffaaaa;
-  --ai:#1a2a4a;--ai-border:#3a6aaa;--ai-text:#aad0ff;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--crema);min-height:100vh;overflow-x:hidden;}
 
-/* ── CONFIG SCREEN ── */
-#cfg-screen{
-  min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  padding:40px 20px;text-align:center;
-}
+/* ── CFG ── */
+#cfg-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
 #cfg-screen.hidden{display:none;}
-.cfg-box{
-  background:var(--surface);border:1px solid rgba(200,168,75,.3);
-  border-radius:6px;padding:32px 28px;max-width:480px;width:100%;
-}
-.cfg-box h2{
-  font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:3px;
-  color:var(--dorado);text-transform:uppercase;margin-bottom:20px;
-}
+.cfg-box{background:var(--surface);border:1px solid rgba(200,168,75,.3);border-radius:6px;padding:32px 28px;max-width:480px;width:100%;}
+.cfg-box h2{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;margin-bottom:20px;}
 .cfg-field{margin-bottom:16px;text-align:left;}
 .cfg-field label{font-size:.78rem;color:var(--dim);display:block;margin-bottom:5px;letter-spacing:1px;text-transform:uppercase;}
-.cfg-field input{
-  width:100%;background:var(--surface2);color:var(--crema);
-  border:1px solid var(--border);padding:10px 14px;
-  font-family:'Source Serif 4',serif;font-size:.9rem;border-radius:2px;
-}
+.cfg-field input{width:100%;background:var(--surface2);color:var(--crema);border:1px solid var(--border);padding:10px 14px;font-family:'Source Serif 4',serif;font-size:.9rem;border-radius:2px;}
 .cfg-field input:focus{outline:none;border-color:var(--dorado);}
 .cfg-hint{font-size:.75rem;color:var(--dim);font-style:italic;margin-top:4px;}
-.btn-cfg{
-  font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:3px;
-  text-transform:uppercase;background:var(--dorado);color:var(--bg);
-  border:none;cursor:pointer;padding:13px 36px;border-radius:2px;
-  transition:all .2s;margin-top:8px;width:100%;
-}
+.btn-cfg{font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:3px;text-transform:uppercase;background:var(--dorado);color:var(--bg);border:none;cursor:pointer;padding:13px 36px;border-radius:2px;transition:all .2s;margin-top:8px;width:100%;}
 .btn-cfg:hover{background:var(--dorado2);}
 .cfg-status{margin-top:12px;font-size:.82rem;font-style:italic;}
 .cfg-status.ok{color:var(--correct-light);}
 .cfg-status.err{color:var(--wrong-light);}
 
-/* ── START SCREEN ── */
+/* ── SCREENS ── */
 .screen{display:none;position:relative;z-index:1;}
 .screen.active{display:block;}
-#start-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
-#start-screen.active{display:flex;}
-#config-screen.active{display:flex;}
-.logo-hex{
-  width:100px;height:100px;
-  background:conic-gradient(var(--dorado) 0deg,#6a4a10 180deg,var(--dorado) 360deg);
-  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
-  display:flex;align-items:center;justify-content:center;margin:0 auto 28px;
-  animation:hexPulse 4s ease-in-out infinite;
-}
+
+/* ── HOME ── */
+#home-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
+#home-screen.active{display:flex;}
+.logo-hex{width:100px;height:100px;background:conic-gradient(var(--dorado) 0deg,#6a4a10 180deg,var(--dorado) 360deg);clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:hexPulse 4s ease-in-out infinite;}
 @keyframes hexPulse{0%,100%{filter:drop-shadow(0 0 10px rgba(200,168,75,.3))}50%{filter:drop-shadow(0 0 28px rgba(200,168,75,.7))}}
 .logo-hex span{font-family:'Oswald',sans-serif;font-size:1.8rem;font-weight:700;color:var(--bg);}
-#start-screen h1{font-family:'Oswald',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--crema);margin-bottom:6px;}
-#start-screen h1 span{color:var(--dorado);}
-.start-sub{font-style:italic;color:var(--dim);margin-bottom:32px;font-size:.9rem;}
+#home-screen h1{font-family:'Oswald',sans-serif;font-size:2rem;letter-spacing:3px;color:var(--crema);margin-bottom:6px;}
+#home-screen h1 span{color:var(--dorado);}
+.home-sub{font-style:italic;color:var(--dim);margin-bottom:28px;font-size:.9rem;}
 .stat-row{display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;justify-content:center;}
-.stat-card{background:var(--surface);border:1px solid var(--border);padding:14px 18px;border-radius:3px;min-width:100px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:14px 18px;border-radius:3px;min-width:100px;text-align:center;}
 .stat-card .sv{font-family:'Oswald',sans-serif;font-size:1.6rem;color:var(--dorado);display:block;font-weight:600;}
 .stat-card .sl{font-size:.65rem;color:var(--dim);letter-spacing:1px;text-transform:uppercase;}
 .stat-card.hl{border-color:rgba(200,168,75,.4);background:rgba(200,168,75,.06);}
-.mode-lbl{font-size:.75rem;letter-spacing:2px;color:var(--dim);text-transform:uppercase;margin-bottom:10px;}
-.mode-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:520px;margin:0 auto 12px;}
-.mode-btn{
-  background:var(--surface);border:1px solid var(--border);color:var(--crema);
-  cursor:pointer;padding:12px 8px;border-radius:3px;
-  font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:1px;
-  text-transform:uppercase;transition:all .2s;text-align:center;
+
+/* Materias grid */
+.materias-title{font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;margin-bottom:14px;}
+.materias-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:520px;margin:0 auto 24px;width:100%;}
+.mat-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:14px 16px;cursor:pointer;
+  transition:all .2s;text-align:left;
+  display:flex;align-items:center;gap:12px;
 }
+.mat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.mat-card.selected{border-width:2px;}
+.mat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.mat-info{flex:1;min-width:0;}
+.mat-name{font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:1px;text-transform:uppercase;display:block;}
+.mat-count{font-size:.72rem;color:var(--dim);}
+.mat-check{font-size:1rem;color:var(--correct-light);display:none;}
+.mat-card.selected .mat-check{display:block;}
+
+.home-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;}
+.btn-go{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:4px;text-transform:uppercase;background:var(--dorado);color:var(--bg);border:none;cursor:pointer;padding:14px 48px;border-radius:2px;transition:all .2s;}
+.btn-go:hover:not(:disabled){background:var(--dorado2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,168,75,.35);}
+.btn-go:disabled{opacity:.4;cursor:default;}
+.btn-sm{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;background:transparent;border:1px solid var(--dorado);color:var(--dorado);cursor:pointer;padding:8px 20px;border-radius:2px;transition:all .2s;}
+.btn-sm:hover{background:var(--dorado);color:var(--bg);}
+
+/* ── CONFIG EXAMEN ── */
+#config-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;text-align:center;}
+#config-screen.active{display:flex;}
+.config-box{max-width:520px;width:100%;}
+.config-box h2{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;margin-bottom:20px;}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;}
+.mode-btn{background:var(--surface);border:1px solid var(--border);color:var(--crema);cursor:pointer;padding:12px 8px;border-radius:3px;font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;transition:all .2s;text-align:center;}
 .mode-btn:hover{border-color:var(--dorado);background:rgba(200,168,75,.08);}
 .mode-btn.active{border-color:var(--dorado);background:rgba(200,168,75,.14);color:var(--dorado);}
 .mode-btn .mi{font-size:1.2rem;display:block;margin-bottom:4px;}
-.mode-hint{font-size:.78rem;color:var(--dim);font-style:italic;margin-bottom:24px;min-height:1.2em;}
-.qty-row{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:28px;flex-wrap:wrap;}
+.mode-hint{font-size:.78rem;color:var(--dim);font-style:italic;margin-bottom:20px;min-height:1.2em;}
+.qty-row{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:24px;}
 .qty-row label{font-size:.82rem;color:var(--dim);}
 .qty-row select{background:var(--surface2);color:var(--crema);border:1px solid var(--border);padding:7px 14px;font-family:'Oswald',sans-serif;font-size:.9rem;border-radius:2px;}
-.adaptive-bar{max-width:480px;margin:0 auto 24px;background:var(--surface2);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:14px 18px;display:none;}
+.adaptive-bar{background:var(--surface2);border:1px solid rgba(200,168,75,.2);border-radius:4px;padding:14px 18px;margin-bottom:20px;display:none;text-align:left;}
 .adaptive-bar.show{display:block;}
 .ab-title{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2px;color:var(--dorado);text-transform:uppercase;margin-bottom:8px;}
-.ab-items{display:flex;gap:12px;flex-wrap:wrap;}
+.ab-items{display:flex;gap:10px;flex-wrap:wrap;}
 .ab-item{font-size:.8rem;}
 .ab-item strong{color:var(--wrong-light);}
-.btn-go{
-  font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:4px;text-transform:uppercase;
-  background:var(--dorado);color:var(--bg);border:none;cursor:pointer;
-  padding:15px 52px;border-radius:2px;transition:all .2s;
-}
-.btn-go:hover{background:var(--dorado2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,168,75,.35);}
-.btn-nav-sm{
-  font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
-  background:transparent;border:1px solid var(--dorado);color:var(--dorado);
-  cursor:pointer;padding:8px 20px;border-radius:2px;transition:all .2s;
-}
-.btn-nav-sm:hover{background:var(--dorado);color:var(--bg);}
 
 /* ── EXAM HEADER ── */
-#exam-header{
-  display:none;background:linear-gradient(180deg,#050c07 0%,var(--surface) 100%);
-  border-bottom:2px solid var(--dorado);padding:14px 24px;
-  position:sticky;top:0;z-index:100;
-}
+#exam-header{display:none;background:linear-gradient(180deg,#050c07 0%,var(--surface) 100%);border-bottom:2px solid var(--dorado);padding:14px 24px;position:sticky;top:0;z-index:100;}
 .hdr-inner{display:flex;align-items:center;gap:14px;max-width:860px;margin:0 auto;}
-.hdr-badge{
-  width:42px;height:42px;background:var(--dorado);
-  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Oswald',sans-serif;font-size:14px;color:var(--bg);font-weight:700;flex-shrink:0;
-}
+.hdr-badge{width:42px;height:42px;background:var(--dorado);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);display:flex;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:14px;color:var(--bg);font-weight:700;flex-shrink:0;}
 .hdr-text h2{font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;}
 .hdr-text p{font-size:.7rem;color:var(--dim);font-style:italic;}
 .hdr-stats{margin-left:auto;display:flex;gap:16px;align-items:center;}
@@ -134,26 +113,16 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .prog-wrap{height:3px;background:var(--surface2);}
 .prog-fill{height:100%;background:var(--dorado);transition:width .4s ease;width:0%;}
 
-/* ── EXAM SCREEN ── */
+/* ── EXAM ── */
 #exam-screen{padding:28px 20px 80px;max-width:860px;margin:0 auto;}
 #exam-screen.active{display:block;}
 .q-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
 .q-num{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;}
 .q-tag{font-size:.65rem;padding:2px 8px;border-radius:2px;border:1px solid;font-family:'Oswald',sans-serif;letter-spacing:1px;text-transform:uppercase;}
-.q-tag.log{color:#a0d0ff;border-color:rgba(100,180,255,.3);background:rgba(100,180,255,.07);}
-.q-tag.adm{color:#ffd0a0;border-color:rgba(255,180,100,.3);background:rgba(255,180,100,.07);}
-.q-tag.seg{color:#a0ffb0;border-color:rgba(100,255,150,.3);background:rgba(100,255,150,.07);}
-.q-tag.ops{color:#e0b0ff;border-color:rgba(200,100,255,.3);background:rgba(200,100,255,.07);}
-.q-tag.man{color:#ffe0a0;border-color:rgba(255,200,80,.3);background:rgba(255,200,80,.07);}
 .q-tag.dif{color:var(--wrong-light);border-color:rgba(255,100,100,.3);background:rgba(255,100,100,.07);}
 .q-text{font-size:1rem;line-height:1.78;color:var(--crema);background:rgba(255,255,255,.025);border-left:3px solid var(--dorado);padding:18px 22px;margin-bottom:20px;border-radius:0 4px 4px 0;}
 .options{display:flex;flex-direction:column;gap:9px;}
-.opt-btn{
-  background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--crema);
-  text-align:left;padding:13px 18px;border-radius:3px;cursor:pointer;
-  font-family:'Source Serif 4',serif;font-size:.95rem;line-height:1.5;
-  transition:all .15s;display:flex;align-items:flex-start;gap:12px;
-}
+.opt-btn{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--crema);text-align:left;padding:13px 18px;border-radius:3px;cursor:pointer;font-family:'Source Serif 4',serif;font-size:.95rem;line-height:1.5;transition:all .15s;display:flex;align-items:flex-start;gap:12px;}
 .opt-btn:hover:not(:disabled){background:rgba(200,168,75,.09);border-color:rgba(200,168,75,.5);transform:translateX(4px);}
 .opt-btn .ol{font-family:'Oswald',sans-serif;font-weight:600;color:var(--dorado);min-width:18px;font-size:.88rem;flex-shrink:0;}
 .opt-btn.correct{background:rgba(42,122,72,.3);border-color:var(--correct);color:var(--correct-light);}
@@ -161,28 +130,18 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .opt-btn.wrong{background:rgba(122,24,24,.3);border-color:#cc3333;color:var(--wrong-light);}
 .opt-btn.wrong .ol{color:#cc3333;}
 .opt-btn:disabled{cursor:default;}
-.ai-box{margin-top:14px;background:var(--ai);border:1px solid var(--ai-border);border-radius:4px;padding:14px 18px;display:none;animation:fadeUp .3s ease;}
-.ai-box.show{display:block;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.ai-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
-.ai-dot{width:8px;height:8px;border-radius:50%;background:var(--ai-border);animation:aiPulse 1.5s ease-in-out infinite;}
-@keyframes aiPulse{0%,100%{opacity:1}50%{opacity:.3}}
-.ai-lbl{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:2px;color:var(--ai-border);text-transform:uppercase;}
-.ai-text{font-size:.88rem;line-height:1.65;color:var(--ai-text);font-style:italic;}
-.btn-mem{
-  margin-top:10px;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:2px;
-  text-transform:uppercase;background:transparent;border:1px solid var(--dorado);
-  color:var(--dorado);cursor:pointer;padding:7px 18px;border-radius:2px;
-  transition:all .2s;display:inline-flex;align-items:center;gap:6px;
-}
+.feedback-box{margin-top:14px;border-radius:4px;padding:14px 18px;display:none;}
+.feedback-box.show-wrong{display:block;background:rgba(122,24,24,.18);border:1px solid rgba(204,51,51,.4);}
+.feedback-box.show-ok{display:block;background:rgba(42,122,72,.18);border:1px solid rgba(42,122,72,.4);}
+.fb-label{font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.fb-label.wrong-lbl{color:#cc6666;}
+.fb-label.ok-lbl{color:var(--correct-light);}
+.fb-answer{font-size:.95rem;color:var(--correct-light);font-weight:600;margin-bottom:10px;}
+.btn-mem{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase;background:transparent;border:1px solid var(--dorado);color:var(--dorado);cursor:pointer;padding:6px 16px;border-radius:2px;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
 .btn-mem:hover{background:var(--dorado);color:var(--bg);}
 .btn-mem.done{border-color:var(--correct);color:var(--correct-light);background:rgba(42,122,72,.2);cursor:default;}
 .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:26px;}
-.btn-nav{
-  font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;
-  background:transparent;border:1px solid var(--dorado);color:var(--dorado);
-  cursor:pointer;padding:10px 26px;border-radius:2px;font-size:.82rem;transition:all .2s;
-}
+.btn-nav{font-family:'Oswald',sans-serif;letter-spacing:2px;text-transform:uppercase;background:transparent;border:1px solid var(--dorado);color:var(--dorado);cursor:pointer;padding:10px 26px;border-radius:2px;font-size:.82rem;transition:all .2s;}
 .btn-nav:hover:not(:disabled){background:var(--dorado);color:var(--bg);}
 .btn-nav:disabled{opacity:.25;cursor:default;}
 .btn-nav.primary{background:var(--dorado);color:var(--bg);}
@@ -197,7 +156,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 #results-screen h2{font-family:'Oswald',sans-serif;font-size:1.8rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:6px;}
 .verdict{font-style:italic;color:var(--dim);margin-bottom:24px;}
 .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:460px;margin-bottom:24px;}
-.res-card{background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:3px;}
+.res-card{background:var(--surface);border:1px solid var(--border);padding:14px;border-radius:3px;text-align:center;}
 .res-card .rv{font-family:'Oswald',sans-serif;font-size:1.9rem;display:block;}
 .res-card.c .rv{color:var(--correct-light);}
 .res-card.w .rv{color:var(--wrong-light);}
@@ -209,32 +168,22 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .weak-item::before{content:'×';color:var(--wrong-light);font-weight:700;flex-shrink:0;}
 .btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
 
-/* ── STATS SCREEN ── */
+/* ── STATS ── */
 #stats-screen{min-height:100vh;padding:40px 20px 80px;max-width:860px;margin:0 auto;}
 #stats-screen.active{display:block;}
-.stats-title{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;margin-bottom:24px;border-bottom:1px solid var(--border);padding-bottom:10px;}
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:28px;}
+.stats-title{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--dorado);text-transform:uppercase;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:10px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:24px;}
 .stats-card{background:var(--surface);border:1px solid var(--border);padding:16px;border-radius:3px;text-align:center;}
 .stats-card .scv{font-family:'Oswald',sans-serif;font-size:2rem;color:var(--dorado);display:block;}
 .stats-card .scl{font-size:.68rem;color:var(--dim);text-transform:uppercase;letter-spacing:1px;}
-.mat-bar-wrap{margin-bottom:28px;}
+.mat-bar-wrap{margin-bottom:24px;}
 .mat-bar-title{font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:2px;color:var(--dorado);text-transform:uppercase;margin-bottom:14px;}
 .mat-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
-.mat-label{font-size:.8rem;min-width:100px;color:var(--crema);}
+.mat-label{font-size:.8rem;min-width:120px;color:var(--crema);}
 .mat-track{flex:1;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
 .mat-fill{height:100%;border-radius:4px;transition:width .6s ease;}
-.mat-fill.log{background:#3a8aff;}
-.mat-fill.adm{background:#ff8a3a;}
-.mat-fill.seg{background:#3aff6a;}
-.mat-fill.ops{background:#c060ff;}
-.mat-fill.man{background:#ffaa30;}
 .mat-pct{font-family:'Oswald',sans-serif;font-size:.8rem;color:var(--dim);min-width:36px;text-align:right;}
-.session-list{margin-top:8px;}
-.session-item{
-  background:var(--surface);border:1px solid var(--border);
-  padding:12px 16px;border-radius:3px;margin-bottom:8px;
-  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-}
+.session-item{background:var(--surface);border:1px solid var(--border);padding:12px 16px;border-radius:3px;margin-bottom:8px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
 .si-date{font-size:.78rem;color:var(--dim);}
 .si-mode{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:1px;color:var(--dorado);}
 .si-pct{font-family:'Oswald',sans-serif;font-size:1.1rem;}
@@ -287,74 +236,73 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .rev-item.bad .rl2{color:#cc3333;}
 .rev-item .ra{font-size:.88rem;}
 .rev-item.bad .rc{margin-top:7px;font-size:.85rem;color:var(--correct-light);}
-
 .loading-msg{text-align:center;padding:60px 20px;color:var(--dim);font-style:italic;}
 </style>
 </head>
 <body>
 
-<!-- ══ CONFIG SCREEN ══ -->
+<!-- CFG -->
 <div id="cfg-screen">
   <div class="cfg-box">
     <h2>⚙ Configuración inicial</h2>
-    <p style="font-size:.85rem;color:var(--dim);margin-bottom:20px;font-style:italic;">
-      Ingrese las credenciales de su proyecto Supabase.<br>Solo se solicitan una vez.
-    </p>
+    <p style="font-size:.85rem;color:var(--dim);margin-bottom:20px;font-style:italic;">Ingrese las credenciales de su proyecto Supabase.<br>Solo se solicitan una vez.</p>
     <div class="cfg-field">
       <label>Supabase URL</label>
       <input type="text" id="cfg-url" placeholder="https://xxxxxxxxxxxx.supabase.co">
-      <div class="cfg-hint">Proyecto → Settings → API → Project URL</div>
+      <div class="cfg-hint">Settings → API → Project URL</div>
     </div>
     <div class="cfg-field">
       <label>Anon Key</label>
       <input type="text" id="cfg-key" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
-      <div class="cfg-hint">Proyecto → Settings → API → Project API Keys → anon public</div>
+      <div class="cfg-hint">Settings → API → anon public</div>
     </div>
     <button class="btn-cfg" onclick="saveConfig()">Guardar y conectar</button>
     <div class="cfg-status" id="cfg-status"></div>
   </div>
 </div>
 
-<!-- ══ START SCREEN ══ -->
-<!-- ══ PANTALLA DE BIENVENIDA ══ -->
-<div id="start-screen" class="screen">
+<!-- HOME -->
+<div id="home-screen" class="screen">
   <div class="logo-hex"><span>SDN</span></div>
   <p style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:5px;color:var(--dorado);margin-bottom:10px">SISTEMA ADAPTATIVO</p>
   <h1>Examen <span>Integrado</span></h1>
-  <p class="start-sub">MALOMI · Actividades Administrativas · Seguridad · Operaciones · Maniobra</p>
+  <p class="home-sub">Examen de ascenso a Capitán Primero — Seleccione materias</p>
 
   <div class="stat-row">
-    <div class="stat-card"><span class="sv">418</span><span class="sl">Total preguntas</span></div>
+    <div class="stat-card"><span class="sv" id="sc-total">—</span><span class="sl">Preguntas totales</span></div>
     <div class="stat-card hl"><span class="sv" id="sc-err">—</span><span class="sl" id="sc-err-lbl">Errores activos</span></div>
     <div class="stat-card"><span class="sv" id="sc-exams">—</span><span class="sl">Exámenes</span></div>
     <div class="stat-card"><span class="sv" id="sc-avg">—</span><span class="sl">Promedio</span></div>
   </div>
 
-  <button class="btn-go" onclick="showConfig()" style="margin-bottom:16px">▶ NUEVO EXAMEN</button>
+  <p class="materias-title">Materias disponibles</p>
+  <div class="materias-grid" id="materias-grid">
+    <div class="loading-msg" style="grid-column:span 2">Cargando materias…</div>
+  </div>
+
+  <div class="home-actions">
+    <button class="btn-go" id="btn-iniciar" onclick="goConfig()" disabled>▶ INICIAR</button>
+  </div>
   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-    <button class="btn-nav-sm" onclick="showStats()">📊 Estadísticas</button>
-    <button class="btn-nav-sm" onclick="openManager()">⚙ Gestionar errores</button>
+    <button class="btn-sm" onclick="showStats()">📊 Estadísticas</button>
+    <button class="btn-sm" onclick="openManager()">⚙ Gestionar errores</button>
   </div>
 </div>
 
-<!-- ══ PANTALLA DE CONFIGURACIÓN ══ -->
+<!-- CONFIG EXAMEN -->
 <div id="config-screen" class="screen">
-  <div style="max-width:520px;margin:0 auto;padding:40px 20px;text-align:center;">
-    <p style="font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:5px;color:var(--dorado);margin-bottom:16px">CONFIGURAR EXAMEN</p>
-
-    <p class="mode-lbl">Modo de selección</p>
+  <div class="config-box">
+    <h2>Configurar examen</h2>
     <div class="mode-grid">
       <button class="mode-btn" id="mode-adapt" onclick="setMode('adapt')"><span class="mi">🎯</span>Adaptativo</button>
       <button class="mode-btn active" id="mode-all" onclick="setMode('all')"><span class="mi">🔀</span>Aleatorio</button>
       <button class="mode-btn" id="mode-wrong" onclick="setMode('wrong')"><span class="mi">⚠️</span>Solo errores</button>
     </div>
-    <p class="mode-hint" id="mode-hint">Preguntas al azar del banco completo.</p>
-
+    <p class="mode-hint" id="mode-hint">Preguntas al azar de las materias seleccionadas.</p>
     <div class="adaptive-bar" id="adaptive-bar">
       <div class="ab-title">Preguntas con más fallos</div>
       <div class="ab-items" id="ab-items"></div>
     </div>
-
     <div class="qty-row">
       <label>Número de preguntas:</label>
       <select id="qty-sel">
@@ -365,15 +313,14 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
         <option value="9999">Todas</option>
       </select>
     </div>
-
-    <button class="btn-go" onclick="startExam()">▶ INICIAR EXAMEN</button>
-    <div style="margin-top:14px;">
-      <button class="btn-nav-sm" onclick="backToHome()">← VOLVER</button>
+    <div style="display:flex;gap:10px;justify-content:center;">
+      <button class="btn-nav" onclick="goHome()">← VOLVER</button>
+      <button class="btn-go" onclick="startExam()">▶ INICIAR EXAMEN</button>
     </div>
   </div>
 </div>
 
-<!-- ══ EXAM HEADER ══ -->
+<!-- EXAM HEADER -->
 <header id="exam-header">
   <div class="hdr-inner">
     <div class="hdr-badge">★</div>
@@ -387,18 +334,18 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 </header>
 <div class="prog-wrap" id="prog-wrap" style="display:none"><div class="prog-fill" id="prog-fill"></div></div>
 
-<!-- ══ EXAM SCREEN ══ -->
+<!-- EXAM -->
 <div id="exam-screen" class="screen">
   <div class="q-meta">
     <span class="q-num" id="q-num">PREGUNTA 1 DE 20</span>
-    <span class="q-tag" id="q-tag-mat">LOG</span>
+    <span class="q-tag" id="q-tag-mat" style="color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)">—</span>
     <span class="q-tag dif" id="q-tag-dif" style="display:none">⚠ DIFÍCIL</span>
   </div>
   <div class="q-text" id="q-text"></div>
   <div class="options" id="opts"></div>
-  <div class="ai-box" id="ai-box">
-    <div class="ai-header"><div class="ai-dot"></div><span class="ai-lbl">Concepto clave</span></div>
-    <div class="ai-text" id="ai-text"></div>
+  <div class="feedback-box" id="feedback-box">
+    <div class="fb-label" id="fb-label"></div>
+    <div class="fb-answer" id="fb-answer"></div>
     <button class="btn-mem" id="btn-mem" onclick="markCurrentMem()">☆ Marcar como memorizada</button>
   </div>
   <div class="nav-row">
@@ -407,7 +354,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
   </div>
 </div>
 
-<!-- ══ RESULTS ══ -->
+<!-- RESULTS -->
 <div id="results-screen" class="screen">
   <div class="result-ring" id="res-ring"></div>
   <h2 id="res-title"></h2>
@@ -424,44 +371,39 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
   <div class="btn-row">
     <button class="btn-nav" onclick="showReview()">VER REVISIÓN</button>
     <button class="btn-nav" onclick="replayWrong()" id="btn-replay" style="display:none">REPASAR ERRORES</button>
-    <button class="btn-nav primary" onclick="resetExam()">NUEVO EXAMEN</button>
+    <button class="btn-nav primary" onclick="goHome()">NUEVO EXAMEN</button>
   </div>
 </div>
 
-<!-- ══ STATS SCREEN ══ -->
+<!-- STATS -->
 <div id="stats-screen" class="screen">
   <div class="stats-title">📊 Estadísticas de desempeño</div>
-  <div id="stats-content"><div class="loading-msg">Cargando estadísticas…</div></div>
+  <div id="stats-content"><div class="loading-msg">Cargando…</div></div>
   <div style="text-align:center;margin-top:24px">
-    <button class="btn-nav primary" onclick="resetExam()">← VOLVER</button>
+    <button class="btn-nav primary" onclick="goHome()">← VOLVER</button>
   </div>
 </div>
 
-<!-- ══ REVIEW ══ -->
+<!-- REVIEW -->
 <div class="review-section" id="review-section">
   <div class="rev-title">Revisión completa</div>
   <div id="rev-container"></div>
   <div style="text-align:center;margin-top:24px">
-    <button class="btn-nav primary" onclick="resetExam()">NUEVO EXAMEN</button>
+    <button class="btn-nav primary" onclick="goHome()">NUEVO EXAMEN</button>
   </div>
 </div>
 
-<!-- ══ MANAGER ══ -->
+<!-- MANAGER -->
 <div class="manager-overlay" id="manager-overlay">
   <div class="manager-panel">
     <div class="mgr-header">
       <h3>⚙ Gestión de errores</h3>
       <button class="mgr-close" onclick="closeManager()">✕</button>
     </div>
-    <div class="mgr-filters">
+    <div class="mgr-filters" id="mgr-filters">
       <button class="mgr-filter active" id="mf-all" onclick="setMgrF('all')">Todas</button>
       <button class="mgr-filter" id="mf-errors" onclick="setMgrF('errors')">Solo errores</button>
       <button class="mgr-filter" id="mf-mem" onclick="setMgrF('mem')">Memorizadas</button>
-      <button class="mgr-filter" id="mf-log" onclick="setMgrF('log')">Logística</button>
-      <button class="mgr-filter" id="mf-adm" onclick="setMgrF('adm')">Act. Admin.</button>
-      <button class="mgr-filter" id="mf-seg" onclick="setMgrF('seg')">Seguridad</button>
-      <button class="mgr-filter" id="mf-ops" onclick="setMgrF('ops')">Operaciones</button>
-      <button class="mgr-filter" id="mf-man" onclick="setMgrF('man')">Maniobra</button>
     </div>
     <div class="mgr-body" id="mgr-body"><div class="loading-msg">Cargando…</div></div>
     <div class="mgr-footer">
@@ -473,621 +415,246 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 
 <script>
 // ══════════════════════════════════════════════════
-// BANCO DE PREGUNTAS (418)
-// ══════════════════════════════════════════════════
-const BANCO = [
-// ── LOGÍSTICA (59) ──────────────────────────────────────
-{id:'L01',m:'log',q:"¿En este principio, no es posible llevar a cabo una operación sin que existan los medios indispensables para realizarla?",opts:["Balance","Economía","Autoridad","Oportunidad"],ans:0},
-{id:'L02',m:'log',q:"La logística es a los servicios técnicos como la _______________, es a las armas.",opts:["La táctica General","La estrategia","El planeamiento operacional","La logística conjunta"],ans:0},
-{id:'L03',m:'log',q:"Servicios que tienen a su cargo actividades administrativas que no sean de carácter logístico.",opts:["Servicios administrativos y generales","Servicios técnicos del Ejército y Fuerza Aérea","Servicios de orden","Servicios de acción moral"],ans:0},
-{id:'L04',m:'log',q:"¿La operación se ajusta a los recursos disponibles, nos referimos a qué principio?",opts:["Balance","Apoyo Adecuado","Economía","Sencillez"],ans:0},
-{id:'L05',m:'log',q:"El principio de la sencillez significa simpleza, sin artificio o complicación, además implica eliminar escalones innecesarios en las peticiones y trámites. ¿Quiénes deben conocer este principio ya que son los que crean unidad en los procedimientos, así como la forma correcta y uniforme de actuar?",opts:["Los mandos en todos los niveles","Exclusivamente el estado mayor","Solo los jefes de servicios técnicos","Los auxiliares del mando"],ans:0},
-{id:'L06',m:'log',q:"¿Deberán siempre tener presente, el satisfacer las necesidades de vida y operación de las tropas en tiempo oportuno, en el lugar adecuado, así como en la cantidad necesaria de medios, para mantener elevada la moral y garantizar su eficiencia combativa, nos referimos a?",opts:["Los mandos, auxiliares del mando y los servicios","Exclusivamente los servicios técnicos","Solo los jefes de unidad","El personal de abastecimiento y transportes"],ans:0},
-{id:'L07',m:'log',q:"La o el Comandante al aplicar este principio en las operaciones tiene bien en cuenta que el sistema de apoyo logístico debe ser digno de confianza y a la vez garantizar su continuidad en las operaciones a pesar de las eventualidades o contingencias no previstas. ¿A qué principio de la logística se refiere el comandante?",opts:["Confiabilidad","Seguridad","Balance","Economía"],ans:0},
-{id:'L08',m:'log',q:"Mencione usted, quién combina el empleo y la actuación de diversos servicios técnicos para yuxtaponer o superponer su acción y apoyar a las tropas combatientes para satisfacer sus necesidades de vida, operaciones de Guerra, así como otro tipo de operaciones diferentes a la guerra.",opts:["La Logística","La táctica General","El estado mayor","El mando superior"],ans:0},
-{id:'L09',m:'log',q:"Dentro de la clasificación por la forma en que dejan sentir su acción a las tropas. (Mantenimiento y Recuperación)",opts:["Mantenimiento y Recuperación","Abastecimiento y evacuación","Enlace y transportes","Servicios especiales"],ans:0},
-{id:'L10',m:'log',q:"Mencione usted, en qué clasificación caen desde el punto de vista orgánico los servicios de enlace y de transportes.",opts:["Por la forma que dejan sentir su acción a las tropas","Por sus misiones generales","Por su influencia en las operaciones","Por su naturaleza administrativa"],ans:0},
-{id:'L11',m:'log',q:"Mencione usted, quiénes tienen aplicación en la planeación y ejecución de las actividades logísticas.",opts:["Los Principios de la Guerra","Las normas de administración pública","Los reglamentos de servicios","El manual de logística militar"],ans:0},
-{id:'L12',m:'log',q:"¿Cómo se clasifican los servicios desde el punto de vista orgánico?",opts:["Por sus misiones generales y por su influencia en las operaciones","Por la forma en que dejan sentir su acción a las tropas y por su naturaleza","Por sus actividades logísticas y administrativas","Por la zona de operaciones en que actúan"],ans:0},
-{id:'L13',m:'log',q:"¿Es el que proporcionan los mandos a sus tropas, por sí mismos y por medio de los servicios de toda clase?",opts:["Apoyo administrativo","Apoyo logístico","Apoyo de servicios","Apoyo táctico"],ans:0},
-{id:'L14',m:'log',q:"¿Cuántas acciones ejemplifican cómo el mando de una unidad manifiesta su apoyo administrativo?",opts:["7","5","6","8"],ans:0},
-{id:'L15',m:'log',q:"Al aplicar este principio significa asignar en forma correcta los recursos y ubicarlos en tiempo y lugar de acuerdo con las necesidades.",opts:["Apoyo Adecuado","Balance","Oportunidad","Economía"],ans:0},
-{id:'L16',m:'log',q:"¿Se refiere a la acción material de las unidades e instalaciones de un servicio específico? ¿Se refiere exclusivamente al apoyo que se proporciona en los aspectos que comprenden las funciones logísticas?",opts:["Apoyo de servicios","Apoyo administrativo","Apoyo logístico","Acción material"],ans:0},
-{id:'L17',m:'log',q:"La clasificación de este servicio desde el punto de vista orgánico señala que es necesario en tiempo de guerra para un eficaz apoyo a las operaciones; su ausencia o deficiente funcionamiento podrían provocar fracaso o incapacidad para operar. ¿A qué servicio se refiere?",opts:["Servicios técnicos del Ejército y Fuerza Aérea","Servicios administrativos y generales","Servicios de acción moral","Servicios de orden"],ans:0},
-{id:'L18',m:'log',q:"Dentro de la clasificación por la forma en que dejan sentir su acción a las tropas. (Abastecimiento y evacuación)",opts:["Abastecimiento y evacuación","Mantenimiento y Recuperación","Enlace y transportes","Servicios especiales"],ans:0},
-{id:'L19',m:'log',q:"Mencione usted, ¿cuántos principios de la logística establece el manual de logística militar?",opts:["Nueve Principios","Siete principios","Ocho principios","Diez principios"],ans:0},
-{id:'L20',m:'log',q:"Dentro de la clasificación por sus misiones generales, es un servicio técnico del Ejército.",opts:["Servicio de aeronáutica","Servicio de justicia","Servicio de policía militar","Servicio de seguridad social"],ans:0},
-{id:'L21',m:'log',q:"¿Se aplica a los medios de consumo y de reemplazo, así como a las unidades de los servicios técnicos?",opts:["El balance","La economía","La autoridad","El apoyo adecuado"],ans:0},
-{id:'L22',m:'log',q:"Proporcionar reemplazos a una unidad que haya sufrido bajas; esta forma de apoyo administrativo corresponde a:",opts:["Asuntos de personal","Abastecimiento","Evacuación sanitaria","Servicios técnicos"],ans:0},
-{id:'L23',m:'log',q:"¿Este principio está estrechamente ligado al balance?",opts:["Economía","Sencillez","Autoridad","Oportunidad"],ans:0},
-{id:'L24',m:'log',q:"Dentro de los servicios de acción moral, están destinados exprofeso a tales propósitos.",opts:["Servicios especiales y de seguridad social","Servicios de orden","Servicios técnicos","Servicios de enlace"],ans:0},
-{id:'L25',m:'log',q:"Uno de los aspectos desde el que se clasifican los servicios.",opts:["Por la forma en que dejan sentir su acción a las tropas","Por el territorio que cubren","Por el rango del jefe que los emplea","Por el tipo de arma que apoyan"],ans:0},
-{id:'L26',m:'log',q:"¿Se conceptúan como las diversas agrupaciones especializadas, que tienen como propósito coadyuvar a satisfacer las necesidades de vida y operación de los mandos, auxiliares y tropas de combate?",opts:["Los servicios","Las unidades de combate","Los organismos del estado mayor","Las fuerzas de tarea"],ans:0},
-{id:'L27',m:'log',q:"En las operaciones, ¿es el que se refiere principalmente a las funciones recíprocamente relacionadas de logística, personal y asuntos civiles?",opts:["Apoyo administrativo","Apoyo de servicios","Apoyo logístico","Apoyo táctico"],ans:0},
-{id:'L28',m:'log',q:"Hablando de los servicios de mantenimiento y recuperación, ¿qué tiene a su cargo este servicio?",opts:["Conservar en buenas condiciones el personal, animales y material diverso","El movimiento de toda clase de abastecimientos","Elevar la moral de las tropas","El control del potencial humano de la nación"],ans:0},
-{id:'L29',m:'log',q:"Al estimar la situación logística para apoyar una operación, deben analizarse los factores tácticos: misión, entorno, enemigo y medios. ¿Qué principio estaría aplicando al realizar referida estimación?",opts:["Apoyo Adecuado","Balance","Confiabilidad","Economía"],ans:0},
-{id:'L30',m:'log',q:"Mencione usted, quién combina el empleo y la actuación de las tropas de las diversas armas para realizar una maniobra táctica encaminada a combatir fuerzas enemigas.",opts:["La táctica General","La Logística","El planeamiento operacional","El estado mayor"],ans:0},
-{id:'L31',m:'log',q:"Pertenecen a los servicios de orden.",opts:["Justicia y policía militar","Aeronáutica y transmisiones","Administración militar y personal","Servicios especiales y de seguridad social"],ans:0},
-{id:'L32',m:'log',q:"¿Se deriva del apoyo administrativo?",opts:["Apoyo de servicios","Apoyo logístico","Apoyo táctico","Apoyo conjunto"],ans:0},
-{id:'L33',m:'log',q:"La aplicación de este principio implica una estrecha coordinación entre la planeación y ejecución de las actividades tácticas y las logísticas.",opts:["Apoyo adecuado","Balance","Economía","Sencillez"],ans:0},
-{id:'L34',m:'log',q:"¿Las actividades de apoyo logístico deben realizarse mediante una planeación centralizada y una ejecución descentralizada, nos referimos al principio de?",opts:["Autoridad","Balance","Oportunidad","Seguridad"],ans:0},
-{id:'L35',m:'log',q:"¿Se refiere exclusivamente al apoyo que se proporciona en los aspectos que comprenden las funciones logísticas?",opts:["Apoyo logístico","Apoyo administrativo","Apoyo de servicios","Acción material"],ans:0},
-{id:'L36',m:'log',q:"Comprende un conjunto de actividades administrativas, que son parte de las actividades militares. ¿Mencione usted a qué nos referimos?",opts:["La logística","El apoyo administrativo","Los servicios técnicos","El apoyo de servicios"],ans:0},
-{id:'L37',m:'log',q:"Aspectos que se toman en cuenta en la clasificación de los servicios por la forma en que dejan sentir su acción a las tropas.",opts:["Funcionales","Territoriales","Orgánicos","Administrativos"],ans:0},
-{id:'L38',m:'log',q:"La aplicación de este principio significa establecer reservas en abastecimientos, transportes y demás medios, anteponer el servicio al interés personal si se requiere. ¿A qué principio nos referimos?",opts:["Confiabilidad","Seguridad","Balance","Economía"],ans:0},
-{id:'L39',m:'log',q:"Mencione usted, quién comprende un conjunto de actividades administrativas, que son parte de las actividades militares; pero a la vez, revisten aspectos netamente operativos.",opts:["La Logística","El apoyo administrativo","Los servicios técnicos","La táctica General"],ans:0},
-{id:'L40',m:'log',q:"Es el servicio técnico que principalmente cae bajo el servicio de enlace.",opts:["Transmisiones","Transportes","Aeronáutica","Intendencia"],ans:0},
-{id:'L41',m:'log',q:"La actuación de los diversos servicios al desarrollar sus actividades, cada uno en la esfera de sus responsabilidades, misiones y funciones se traduce en:",opts:["Acción material","Apoyo administrativo","Apoyo logístico","Apoyo de servicios"],ans:0},
-{id:'L42',m:'log',q:"Son aquellos a cuyo cargo está el movimiento de toda clase de abastecimientos.",opts:["Transportes","Transmisiones","Servicios de enlace","Intendencia"],ans:0},
-{id:'L43',m:'log',q:"Servicios que tienen como finalidad elevar la moral de las tropas.",opts:["Servicios de seguridad social","Servicios de orden","Servicios técnicos","Servicios administrativos"],ans:0},
-{id:'L44',m:'log',q:"La táctica general combina el empleo y actuación de las tropas de las diversas armas; en ese sentido, en forma similar este combina el empleo y la actuación de los diversos servicios técnicos. ¿A qué nos referimos?",opts:["A la logística","A la táctica General","Al estado mayor","Al apoyo administrativo"],ans:0},
-{id:'L45',m:'log',q:"La aplicación de este principio significa que los servicios deben actuar en beneficio de las tropas apoyadas. ¿A qué principio nos referimos?",opts:["Oportunidad","Balance","Economía","Seguridad"],ans:0},
-{id:'L46',m:'log',q:"Los servicios necesarios, pero no indispensables para las operaciones, son aquellos de los cuales puede prescindirse temporalmente para la maniobra táctica. ¿A qué servicio nos referimos?",opts:["Servicios Administrativos y generales","Servicios técnicos del Ejército y Fuerza Aérea","Servicios de orden","Servicios de acción moral"],ans:0},
-{id:'L47',m:'log',q:"Este principio asegura la existencia y conservación de los medios de apoyo logístico.",opts:["Seguridad","Economía","Balance","Autoridad"],ans:0},
-{id:'L48',m:'log',q:"Servicios que auxilian a los mandos en la prevención de faltas y delitos.",opts:["De orden","De acción moral","Técnicos","Administrativos y generales"],ans:0},
-{id:'L49',m:'log',q:"Servicio técnico que corresponde a los administrativos y generales.",opts:["Servicio de administración militar","Servicio de aeronáutica","Servicio de transmisiones","Servicio de intendencia"],ans:0},
-{id:'L50',m:'log',q:"Tiene como misión general controlar el potencial humano de la nación para fines militares.",opts:["El servicio de Personal","El servicio de administración militar","El servicio de transmisiones","El servicio de intendencia"],ans:0},
-{id:'L51',m:'log',q:"Numerosas actividades administrativas militares deben sujetarse a normas y condiciones legales que regulan la administración pública para obtener economías, coordinación, unificación y control. ¿En qué situación ocurre esto?",opts:["En tiempo de paz","En tiempo de guerra","En el teatro de operaciones","Durante la movilización"],ans:0},
-{id:'L52',m:'log',q:"Responde a necesidades de orden interno y se basa en factores de índole político y económico, con miras a la defensa nacional.",opts:["La división militar del territorio nacional en tiempo de paz","La organización del teatro de operaciones en tiempo de guerra","La estructura orgánica de las zonas militares","El despliegue estratégico de las fuerzas armadas"],ans:0},
-{id:'L53',m:'log',q:"Queda bajo las órdenes del mando supremo, quien delegará normalmente las funciones específicas militares en la o el titular de la Secretaría de la Defensa Nacional.",opts:["La Zona del Interior","La Zona del Frente","La Zona de Retaguardia","El Teatro de Operaciones"],ans:0},
-{id:'L54',m:'log',q:"Deberá contener el espacio necesario para llevar a cabo las operaciones de combate, apoyo logístico y administrativo inmediato.",opts:["La Zona del Frente","La Zona del Interior","La Zona de Retaguardia","El área de reunión"],ans:0},
-{id:'L55',m:'log',q:"Contendrá el espacio necesario para la administración del teatro de operaciones como un todo y constituirá la base logística y administrativa del mismo.",opts:["La Zona de Retaguardia","La Zona del Frente","La Zona del Interior","El área de apoyo avanzado"],ans:0},
-{id:'L56',m:'log',q:"En esta zona opera una Jefatura del Servicio Territorial, que está subordinada a la o el Comandante del Teatro y apoya a todas las Fuerzas Armadas dentro del mismo.",opts:["La Zona de Retaguardia de un Teatro de Operaciones","La Zona del Frente de un Teatro de Operaciones","La Zona del Interior","El área de seguridad avanzada"],ans:0},
-{id:'L57',m:'log',q:"El apoyo administrativo en operaciones es el que se refiere principalmente a las funciones recíprocamente relacionadas de logística, de personal y de:",opts:["Asuntos Civiles","Inteligencia militar","Operaciones especiales","Comunicaciones estratégicas"],ans:0},
-{id:'L58',m:'log',q:"De los siguientes conceptos, ¿cuál es la relación correcta?\n1-Sencillez, 2-Confiabilidad, 3-Balance, 4-Economía",opts:["1-Sencillez, 2-Confiabilidad, 3-Balance, 4-Economía","1-Oportunidad, 2-Seguridad, 3-Autoridad, 4-Sencillez","1-Balance, 2-Economía, 3-Confiabilidad, 4-Oportunidad","1-Economía, 2-Balance, 3-Sencillez, 4-Confiabilidad"],ans:0},
-{id:'L59',m:'log',q:"Según el Manual de Logística Militar, ¿cuál es la correspondencia correcta? 1-Apoyo Adecuado / 2-Sencillez / 7-Autoridad / 9-Economía",opts:["1:Coordinación táctica y logística; 2:No debe interpretarse erróneamente; 7:Planeación centralizada y ejecución descentralizada; 9:Recursos dosificados","1:No debe interpretarse; 2:Planes alternos; 7:Apoyo oportuno; 9:Tecnología","1:Planes alternos; 2:Coordinación táctica; 7:Dosificación; 9:Planeación centralizada","1:Dosificación; 2:Planeación centralizada; 7:No interpretarse; 9:Coordinación"],ans:0},
-
-// ── ACTIVIDADES ADMINISTRATIVAS (90) ────────────────────
-{id:'A01',m:'adm',q:"En relación con la Movilización; en tiempo de paz, las organizaciones civiles de la industria, comercio, agricultura y servicios diversos, cumplen su función de acuerdo con este tipo de conveniencias:",opts:["Conveniencias mercantiles","Conveniencias gubernamentales","Conveniencias civiles-militares","Conveniencias comerciales"],ans:0},
-{id:'A02',m:'adm',q:"Su elaboración se apega a la técnica de las órdenes de operaciones en todas aquellas partes en que resulte apropiado.",opts:["Orden Administrativa","Orden Particular Administrativa","Orden General de Operaciones","Orden Logística"],ans:0},
-{id:'A03',m:'adm',q:"Documento que es redactado por unidades de servicio en las grandes unidades, para apoyar servicios subordinados, puede cubrir una o más operaciones o fases de ellas.",opts:["Plan de Apoyo de Servicios","Plan de Empleo Logístico","Plan de Empleo de Servicios","Plan de Apoyo Logístico"],ans:0},
-{id:'A04',m:'adm',q:"Técnica para la elaboración de la orden administrativa, que facilita su redacción y aumenta su claridad.",opts:["Orden Administrativa en forma de cuadros","Orden General de Operaciones","Orden Logística","Orden Particular Administrativa"],ans:0},
-{id:'A05',m:'adm',q:"El empleo y operación de los servicios de orden moral y social; es una Actividad Administrativa Militar, en materia de:",opts:["Personal","Asuntos Civiles","Gobierno Militar","Logística"],ans:0},
-{id:'A06',m:'adm',q:"Comprende la estructuración funcional de los organismos, la definición de las funciones, facultades, competencia y responsabilidades y la determinación de las normas y procedimientos de funcionamiento.",opts:["Orgánica","Logística","Administrativa","Personal"],ans:0},
-{id:'A07',m:'adm',q:"Del personal movilizado se toman los que, por su profesión o habilidad técnica o práctica, estén capacitados para causar alta en estos servicios:",opts:["Técnicos, Administrativos y Especiales","Indispensables para las Operaciones Militares","Técnicos del Ejército y Fuerza Aérea Mexicanos","Técnicos, Administrativos y Operativos"],ans:0},
-{id:'A08',m:'adm',q:"La movilización del personal para integrar los organismos de las fuerzas armadas se lleva a cabo conforme a lo que está previsto en:",opts:["La Legislación sobre la materia","La Ley del Servicio Militar Nacional","La Ley Orgánica del Ejército y Fuerza Aérea Mexicanos","El Reglamento de Reclutamiento de Personal"],ans:0},
-{id:'A09',m:'adm',q:"¿Normalmente a qué nivel se preparan Ordenes Administrativas?",opts:["Grandes Unidades","Grandes Unidades Superiores","Teatro de Operaciones","Corporaciones"],ans:0},
-{id:'A10',m:'adm',q:"Párrafo de la Orden Administrativa; que contendrá datos tales como límite de retaguardia de la unidad, ubicación del escalón de retaguardia del cuartel general y otros asuntos administrativos no tratados en los párrafos anteriores.",opts:["Prescripciones Diversas","Transportes","Prescripciones Administrativas","Ley y Orden"],ans:0},
-{id:'A11',m:'adm',q:"Son las que se refieren a la dirección y ejecución de responsabilidades y funciones militares en todo tipo.",opts:["Las actividades administrativas militares","Las actividades operativas militares","Las actividades logísticas militares","Las actividades estratégico militares"],ans:0},
-{id:'A12',m:'adm',q:"El contenido de este párrafo es redactado por la S-4 y remitido a la S-3 para que sea incluido en la Orden General de Operaciones.",opts:["Prescripciones Administrativas","Prescripciones Operativas","Prescripciones Logísticas","Prescripciones de los Servicios"],ans:0},
-{id:'A13',m:'adm',q:"Tiene por objeto satisfacer las necesidades de asuntos civiles y gobierno militar.",opts:["Las actividades administrativas militares","Las actividades operativas militares","Las actividades logísticas militares","Las actividades estratégico militares"],ans:0},
-{id:'A14',m:'adm',q:"Para conducir con facilidad, rapidez y buen éxito las Actividades Administrativas y Operativas; en tiempo de guerra, el Mando Supremo hará uso de facultades extraordinarias que le otorga:",opts:["El Congreso de la Unión","La Constitución Política de los Estados Unidos Mexicanos","La Suprema Corte de Justicia de la Nación","La Ley Orgánica de la Administración Pública Federal"],ans:0},
-{id:'A15',m:'adm',q:"En este párrafo se enlistan por separado las instalaciones que sean necesarias para el apoyo de las operaciones e indica su ubicación, hora de apertura y cierre, unidades apoyadas y los niveles o créditos establecidos.",opts:["Párrafo Abastecimientos","Párrafo Prescripciones Diversas","Párrafo Evacuaciones","Párrafo Transportes"],ans:0},
-{id:'A16',m:'adm',q:"Este es uno de los párrafos, del documento \"Proposiciones de empleo del Servicio\".",opts:["Necesidades","Modalidades logísticas","Prescripciones Diversas","Instalaciones logísticas"],ans:0},
-{id:'A17',m:'adm',q:"En relación con la Orden Administrativa, cuando en específico se cita el párrafo de Abastecimiento por Servicios; ¿De qué forma se citan cada una de las Instalaciones de Servicio?",opts:["Alfabéticamente","Por importancia","Orgánicamente","Numéricamente"],ans:0},
-{id:'A18',m:'adm',q:"¿A qué nivel se elabora la Orden Administrativa?",opts:["Grandes Unidades","Corporación","Teatro de Operaciones","Agrupamiento Logístico"],ans:0},
-{id:'A19',m:'adm',q:"¿Quién coordina las propuestas de los servicios?",opts:["El jefe de la S-4","El jefe del servicio","El jefe del agrupamiento logístico","El mando"],ans:0},
-{id:'A20',m:'adm',q:"Estos planes son elaborados por la S-4 en los Estados Mayores y por la S-P/A/A en los Grupos de Comando.",opts:["Planes Administrativos","Planes Operativos","Planes Tácticos","Planes de Apoyo de Servicios"],ans:0},
-{id:'A21',m:'adm',q:"Otros servicios son creados durante la guerra para atender a necesidades que se presenten, para desaparecer o solamente reducirse al cesar esta o al producirse:",opts:["La Desmovilización","La Desactivación","La Desintegración","La Desorganización"],ans:0},
-{id:'A22',m:'adm',q:"El encabezado y el final contienen las mismas anotaciones indicadas para una orden de operaciones, excepto que será firmada por la o el jefe de la S-4 (redactó) y por la o el comandante de la gran unidad (aprobó).",opts:["Orden Administrativa","Orden General de Operaciones","Orden Logística","Orden Particular Administrativa"],ans:0},
-{id:'A23',m:'adm',q:"¿En qué parte de la Orden Administrativa, se cita la ubicación de los Talleres de Mantenimiento?",opts:["Evacuación de materiales","Transportes","Servicios","Prescripciones diversas"],ans:0},
-{id:'A24',m:'adm',q:"Implica que el esfuerzo de producción estará destinado a satisfacer necesidades militares.",opts:["La movilización","La comercialización","La mercantilización","La industrialización"],ans:0},
-{id:'A25',m:'adm',q:"Asegurar el contacto de las unidades de combate con las unidades de apoyo de servicio, precisándoles las horas, lugares, formas o métodos de establecer el contacto; es una de las disposiciones que contiene esta orden.",opts:["Orden Administrativa","Orden Logística","Orden Particular Administrativa","Orden General de Operaciones"],ans:0},
-{id:'A26',m:'adm',q:"Párrafos completos, subpárrafos o incisos de la orden administrativa pueden remitirse a:",opts:["Procedimientos Sistemáticos de Operar","Apéndices","Agregados","Instructivos Administrativos"],ans:0},
-{id:'A27',m:'adm',q:"¿Quién redacta el párrafo de Asuntos Civiles de la Orden Administrativa?",opts:["El jefe de la S-1","El jefe de la SPAA","El jefe del agrupamiento de servicios","El comandante"],ans:0},
-{id:'A28',m:'adm',q:"La mayoría de los aspectos de este tipo de Actividad Administrativa Militar se llevan a cabo en toda situación, de acuerdo con las leyes, reglamentos y disposiciones castrenses relativas a la administración de personal militar.",opts:["Personal","Asuntos Civiles","Logística","Gobierno Militar"],ans:0},
-{id:'A29',m:'adm',q:"¿Cuántos párrafos tiene la Orden Administrativa?",opts:["7","8","5","6"],ans:0},
-{id:'A30',m:'adm',q:"La movilización de las fuerzas armadas en general y del Ejército en particular, se logra al crear en cantidad y tipo los organismos necesarios para poner en acción estos planes.",opts:["De Guerra, de campaña y de operaciones","De Defensa Nacional y de Guerra","Estratégicos, operacionales y tácticos","Operativos, Logísticos y Administrativos"],ans:0},
-{id:'A31',m:'adm',q:"Con la finalidad de obtener economías, coordinación, unificación y control; en tiempo de paz, numerosas actividades administrativas militares deben sujetarse a normas y condiciones legales que regulan diversos aspectos de:",opts:["La administración pública","La normatividad vigente","La administración militar","La normatividad militar"],ans:0},
-{id:'A32',m:'adm',q:"Párrafo de la Orden Administrativa; que contiene prescripciones respecto a relaciones con las autoridades y particulares en el área, auxilio y protección de la población, mano de obra, explotación local, uso de recursos diversos y gobierno militar.",opts:["Asuntos Civiles","Gobierno Militar","Prescripciones Diversas","Personal"],ans:0},
-{id:'A33',m:'adm',q:"¿Quién opera los Servicios?",opts:["El jefe del servicio","El jefe de la S-4","El jefe de la SPAA","El mando"],ans:0},
-{id:'A34',m:'adm',q:"Consiste en el control que ejerce en el TO quien se desempeñe como comandante de la fuerza conjunta, para establecer, mantener y administrar el área considerada.",opts:["Gobierno Militar","Asuntos Civiles","Asuntos Políticos-Militares","Gobierno Político-Militar"],ans:0},
-{id:'A35',m:'adm',q:"La movilización del personal para integrar los organismos de las fuerzas armadas se lleva a cabo de conformidad con estos planes.",opts:["Planes de Movilización","Planes Estratégicos","Planes de Operaciones","Planes Administrativos Militares"],ans:0},
-{id:'A36',m:'adm',q:"No implica que las empresas afectadas ni su personal queden bajo la autoridad militar, ni que pasen a ser parte de las fuerzas armadas.",opts:["La movilización","La comercialización","La producción","La industrialización"],ans:0},
-{id:'A37',m:'adm',q:"Consiste en hacer pasar a la nación y a sus fuerzas armadas del pie de paz al pie de guerra.",opts:["La movilización","La cobertura","El despliegue estratégico","La concentración"],ans:0},
-{id:'A38',m:'adm',q:"En relación con la Actividad Administrativa Militar de Personal; ¿Cuál es su Misión General?",opts:["Controlar el Potencial Humano de la Nación para fines militares","El manejo del personal como individuos mientras se encuentra en el activo","La movilización y desmovilización","El reclutamiento"],ans:0},
-{id:'A39',m:'adm',q:"Adjuntos a los diversos órganos de las empresas afectadas, actúan estos grupos integrados por militares destacados por las autoridades castrenses.",opts:["Grupos de enlace","Grupos de movilización militar","Grupos de información militar e industrial","Grupos de operación y comercialización"],ans:0},
-{id:'A40',m:'adm',q:"Es elaborada y distribuida completa, cuando se calcula que la situación administrativa permanecerá inalterable durante toda la operación o más de una fase de ella.",opts:["Orden Administrativa","Orden Logística","Orden General de Operaciones","Orden Particular Administrativa"],ans:0},
-{id:'A41',m:'adm',q:"Este documento es presentado por el jefe de cada servicio, al mando de la unidad en la fase de concepción.",opts:["Las proposiciones de empleo del servicio","Plan de apoyo logístico","Plan de empleo logístico","Plan de empleo de servicios"],ans:0},
-{id:'A42',m:'adm',q:"Durante una Movilización; ¿Quién, si es necesario, establece o vigila la seguridad contra el espionaje, sabotaje o actividades similares en las empresas?",opts:["Grupos de enlace","Grupos de operación y comercialización","Grupos de movilización militar","Grupos de información militar e industrial"],ans:0},
-{id:'A43',m:'adm',q:"¿A qué plan puede remitirse la mayor parte del contenido del párrafo de Transportes de una Orden Administrativa?",opts:["Plan de circulación y control de tránsito","Plan militar de Transportes","Plan de la Ruta Principal de Abastecimientos y Evacuación","Plan Administrativo"],ans:0},
-{id:'A44',m:'adm',q:"Párrafo de la Orden Administrativa que normalmente es redactado por la S-1.",opts:["Personal","Prescripciones diversas","Logística","Servicios"],ans:0},
-{id:'A45',m:'adm',q:"Una vez elaborada la Orden Administrativa y se quiere hacer alusión de ella en la O.G.O.; ¿Cómo se denomina ese párrafo de la O.G.O.?",opts:["Administración y Logística","Servicios y Logística","Prescripciones de los Servicios","Prescripciones Logísticas"],ans:0},
-{id:'A46',m:'adm',q:"Siguen la forma de mensajes y contienen instrucciones limitadas para un determinado servicio o para aquellas tropas que deban recibir cierto apoyo logístico.",opts:["Órdenes particulares o fragmentarias","Órdenes de operaciones","Órdenes logísticas","Órdenes administrativas"],ans:0},
-{id:'A47',m:'adm',q:"Subpárrafo del Párrafo de Personal de la Orden Administrativa; que establece los puntos de recolección, clasificación, trato, campos de concentración de prisioneros, evacuación y responsabilidades de custodia.",opts:["Prisioneros de Guerra","Partes","Manejo de Personal","Ley y Orden"],ans:0},
-{id:'A48',m:'adm',q:"Documento que se elabora a nivel corporación por las o los jefes de servicio.",opts:["Plan de Empleo de Servicio","Plan de Apoyo de Servicios","Plan Administrativo","Orden Administrativa"],ans:0},
-{id:'A49',m:'adm',q:"Durante una Movilización ¿Quién tienen la comisión de coordinar las actividades de las empresas con las necesidades militares, supervisar la producción, controlar la calidad de los productos o servicios proporcionados?",opts:["Grupos de enlace","Grupos de movilización militar","Grupos de operación y comercialización","Grupos de información militar e industrial"],ans:0},
-{id:'A50',m:'adm',q:"Se anotan, en subpárrafos por separado, aquellas actividades de los servicios de la unidad que expide la orden y que no se encuentren dentro de los otros párrafos.",opts:["Servicios","Evacuación","Transportes","Prescripciones diversas"],ans:0},
-{id:'A51',m:'adm',q:"¿Quiénes; una vez enterados del plan táctico decidido por el mando para una operación, proponen para apoyarlo sus respectivos planes de empleo?",opts:["Los jefes de los diversos servicios","Los jefes de la S-4 (Log.)","Los jefes de la SPAA","Los jefes de los servicios técnicos"],ans:0},
-{id:'A52',m:'adm',q:"¿Qué párrafo de la Orden General de Operaciones se constituye en una de las formas en que reviste un Plan Administrativo?",opts:["Párrafo IV","Párrafo III","Párrafo II","Párrafo V"],ans:0},
-{id:'A53',m:'adm',q:"Esta es una de las actividades administrativas más significativas en la integración, preparación, vida, empleo y operación de las fuerzas armadas.",opts:["Las de Gobierno Militar","Las de justicia, disciplina, orden y policía","Las de contabilidad y control de bienes, cargos, consumos y finanzas","Las de trámite, documentación, archivo, estadísticas e historial"],ans:0},
-{id:'A54',m:'adm',q:"Se refieren a la autoridad ejercida, a las responsabilidades que se asumen y a las acciones que se toman, por parte de las o los comandantes militares con respecto a las autoridades civiles locales, a los habitantes, a las propiedades y al terreno.",opts:["Asuntos Civiles","Gobierno Militar","Asuntos Políticos-Militares","Gobierno Político-Militar"],ans:0},
-{id:'A55',m:'adm',q:"Esta movilización se realiza de acuerdo a normas legales que para el efecto se decretan y las empresas son puestas a trabajar en el sentido que se desea, mediante acuerdos, convenios y contratos.",opts:["Movilización de la producción","Movilización de las reservas humanas","Movilización de las fuerzas armadas","Movilización industrial"],ans:0},
-{id:'A56',m:'adm',q:"Tiene por objeto satisfacer las necesidades de organización; logísticas; de manejo y control de personal.",opts:["Las actividades administrativas militares","Las actividades operativas militares","Las actividades logísticas militares","Las actividades estratégico militares"],ans:0},
-{id:'A57',m:'adm',q:"Servicio médico dental, de laboratorio, optometría, medicina preventiva, salud pública, Panadería, Lavandería y Prevención y extinción de incendios, ¿en qué párrafo de la Orden Administrativa puede venir incluido?",opts:["Servicios","Transportes","Evacuación","Prescripciones diversas"],ans:0},
-{id:'A58',m:'adm',q:"La aplicación del fuero de guerra ¿Qué tipo de actividades son?",opts:["Actividades administrativas en materia de personal","Actividades administrativas en materia de justicia","Actividades administrativas en materia de policía","Actividades administrativas en materia de orden"],ans:0},
-{id:'A59',m:'adm',q:"¿Quién emplea a los Servicios?",opts:["El mando","El jefe de la SPAA","El jefe de la S-4","El jefe del servicio"],ans:0},
-{id:'A60',m:'adm',q:"¿Cuántos párrafos tiene el Plan de Empleo de Servicios?",opts:["5","6","7","4"],ans:0},
-{id:'A61',m:'adm',q:"Subpárrafo del Párrafo de Personal de la Orden Administrativa; que establece permisos, películas, servicio postal, ubicación y uso de campos de recreo, servicios especiales de recreación, organizaciones civiles apropiadas.",opts:["Moral","Manejo de Personal","Partes","Ley y Orden"],ans:0},
-{id:'A62',m:'adm',q:"Se refiere a incrementar la magnitud de éstas en cuanto a sus efectivos para que estén en capacidad de responder eficazmente a la agresión.",opts:["Movilización de las fuerzas armadas","Movilización industrial","Movilización de la producción","Movilización de las reservas humanas"],ans:0},
-{id:'A63',m:'adm',q:"La aplicación del arte de organizar se ajusta a los principios y técnicas particulares que se manifiestan en:",opts:["Las organizaciones castrenses exclusivamente","Cualquier tipo de organización","Las organizaciones político administrativas","Las organizaciones civiles"],ans:0},
-{id:'A64',m:'adm',q:"Subpárrafo del Párrafo de Personal de la Orden Administrativa; que establece directivas sobre clasificación y reclasificación, designación o asignación de individuos, promociones, entre otros.",opts:["Manejo de Personal","Partes","Ley y Orden","Moral"],ans:0},
-{id:'A65',m:'adm',q:"Documento que se elabora por quien se desempeñe como jefe de servicio y una vez aprobados se convierten en planes de empleo del servicio.",opts:["Proposiciones de empleo del Servicio","Plan de Apoyo de Servicio","Plan Técnico del Servicio","Plan del Servicio Técnico"],ans:0},
-{id:'A66',m:'adm',q:"¿En qué párrafo de la Orden Administrativa, se establece la designación de las rutas principal y secundaria de abastecimiento y evacuación?",opts:["Transportes","Prescripciones diversas","Servicios","Abastecimientos"],ans:0},
-{id:'A67',m:'adm',q:"Se refiere a la acción gubernamental tendiente a encauzar la producción industrial, agrícola y de servicios para apoyar el esfuerzo de guerra.",opts:["Movilización de la producción","Movilización de las fuerzas armadas","Movilización de las reservas humanas","Movilización industrial"],ans:0},
-{id:'A68',m:'adm',q:"Tiene por objeto satisfacer las necesidades de justicia, disciplina, orden y policía.",opts:["Las actividades administrativas militares","Las actividades operativas militares","Las actividades logísticas militares","Las actividades estratégico militares"],ans:0},
-{id:'A69',m:'adm',q:"Documento que es redactado a nivel corporación por quien asuma la jefatura del servicio para el apoyo directo a las tropas.",opts:["Plan de Empleo de Servicios","Plan de Apoyo Logístico","Plan de Empleo Logístico","Plan de Apoyo de Servicios"],ans:0},
-{id:'A70',m:'adm',q:"En tiempo de guerra, este proceso exige a las autoridades disponer de algunas empresas u organizaciones privadas para dedicarlas a producir artículos o servicios necesarios a las fuerzas armadas.",opts:["El proceso de movilización","El proceso de industrialización","El proceso político-militar de guerra","El proceso de comercialización"],ans:0},
-{id:'A71',m:'adm',q:"Subpárrafo del Párrafo de Personal de la Orden Administrativa; que establece la situación de cementerios, mano de obra, procedimientos para el manejo de los cadáveres y control de efectos personales.",opts:["Registro de Sepulturas","Manejo de Personal","Ley y Orden","Partes"],ans:0},
-{id:'A72',m:'adm',q:"¿En qué subpárrafo del Párrafo de Personal de la Orden Administrativa, viene incluido: Créditos, depósitos, peticiones y ubicación de unidades de reemplazo?",opts:["Reemplazos","Partes","Manejo de personal","Moral"],ans:0},
-{id:'A73',m:'adm',q:"Documento que se elabora a nivel agrupamiento logístico o agrupamiento de servicios orgánico de las grandes unidades.",opts:["Plan de Apoyo de Servicios","Plan Administrativo","Orden Administrativa","Plan de Empleo de Servicio"],ans:0},
-{id:'A74',m:'adm',q:"Esto sería sustituido por la organización y despliegue de cada servicio en particular, cuando la unidad que expide la orden maneja a cada servicio por separado.",opts:["Organización y despliegue del agrupamiento de servicios","Instalaciones de servicio","Organización y despliegue del agrupamiento logístico","Instalaciones logísticas"],ans:0},
-{id:'A75',m:'adm',q:"Es una de las actividades administrativas en materia de personal.",opts:["El empleo y operación de los servicios de orden moral y social","Los de bienestar y seguridad social","El empleo y operación de los servicios de justicia y policía","Los de asuntos civiles y gobierno militar"],ans:0},
-{id:'A76',m:'adm',q:"En la Orden Administrativa; ¿Cómo se indican los abastecimientos para las Pequeñas Unidades?",opts:["Por artículo","Por tipo","Por servicio","Por clase"],ans:0},
-{id:'A77',m:'adm',q:"Este es uno de los Subpárrafos del Escalón Superior.",opts:["Evacuación de animales","Transportes","Abastecimientos","Prescripciones Diversas"],ans:0},
-{id:'A78',m:'adm',q:"La aplicación del arte de organizar se ajusta a los principios y técnicas generales que se manifiestan en:",opts:["Cualquier tipo de organización","Las organizaciones civiles","Las organizaciones castrenses exclusivamente","Las organizaciones político administrativas"],ans:0},
-{id:'A79',m:'adm',q:"Este es uno de los párrafos del Plan de Empleo de Servicios.",opts:["Diversos","Instalaciones logísticas","Modalidades logísticas","Prescripciones Diversas"],ans:0},
-{id:'A80',m:'adm',q:"Consiste en incorporar al servicio militar activo al personal de la nación necesario para nutrir a los organismos de las fuerzas armadas.",opts:["Movilización de las reservas humanas","Movilización de las fuerzas armadas","Movilización industrial","Movilización de la producción"],ans:0},
-{id:'A81',m:'adm',q:"En este subpárrafo del Párrafo de Personal se considera la ubicación de la línea de control de rezagados, jurisdicción de los consejos de guerra, medidas disciplinarias, castigos y prescripciones para la policía militar.",opts:["Ley y Orden","Manejo de Personal","Moral","Prisioneros de Guerra"],ans:0},
-{id:'A82',m:'adm',q:"Gran parte de estas actividades son atendidas por los mandos de cada nivel orgánico, auxiliados por personal de sus cuarteles generales o grupos de comando.",opts:["Las actividades administrativas en materia de personal","Las actividades administrativas en materia de finanzas","Las actividades administrativas en materia de asuntos civiles","Las actividades administrativas en materia de gobierno militar"],ans:0},
-{id:'A83',m:'adm',q:"Es la que se ocupa de la reunión y disposición de los medios de acción humanos y materiales para constituir unidades, dependencias e instalaciones, con miras a su eficaz empleo en las operaciones militares.",opts:["Orgánica","Personal","Logística","Administrativa"],ans:0},
-{id:'A84',m:'adm',q:"Podrá presentarse el caso extremo de que, por ser necesario, a quien funja como comandante del TO se le otorguen facultades para gobernar y administrar el área en aspectos que normalmente corresponden a:",opts:["La Secretaría de la Defensa Nacional","El Gobierno de la República","Los Gobiernos Locales","Dependencias Civiles"],ans:0},
-{id:'A85',m:'adm',q:"En la Orden Administrativa, las instalaciones de servicio dentro del párrafo de abastecimiento se citan de forma:",opts:["Alfabética","Por importancia","Numérica","Orgánica"],ans:0},
-{id:'A86',m:'adm',q:"¿Quiénes se encargan de asegurar la producción y vigilar la seguridad en las empresas movilizadas?",opts:["Grupos de enlace","Grupos de información militar e industrial","Grupos de movilización militar","Grupos de operación y comercialización"],ans:0},
-{id:'A87',m:'adm',q:"La actividad orgánica comprende la estructuración funcional de los organismos. ¿Para qué organismos se aplican principios y técnicas particulares de la organización?",opts:["Las organizaciones castrenses exclusivamente","Las organizaciones civiles","Las organizaciones gubernamentales","Cualquier tipo de organización"],ans:0},
-{id:'A88',m:'adm',q:"¿Cuántos subpárrafos tiene normalmente el Párrafo de Personal de la Orden Administrativa?",opts:["5","4","6","7"],ans:0},
-{id:'A89',m:'adm',q:"El Gobierno Militar es distinto a los Asuntos Civiles. ¿En qué consiste específicamente el Gobierno Militar?",opts:["Control ejercido por el comandante de la fuerza conjunta en el TO","Relaciones del comandante con autoridades civiles locales","Prescripciones de gobierno dentro del área de operaciones","Administración del territorio bajo ocupación enemiga"],ans:0},
-{id:'A90',m:'adm',q:"¿Qué documento se elabora a nivel corporación por jefes de servicio para el apoyo directo a las tropas?",opts:["Plan de Empleo de Servicios","Plan de Apoyo de Servicios","Plan Administrativo","Orden Administrativa"],ans:0},
-
-// ── SEGURIDAD MOM (99) ───────────────────────────────────
-{id:'S01',m:'seg',q:"Forma de acción enemiga que consiste en el empleo de misiles balísticos intercontinentales.",opts:["Acción aeroespacial","Acción del ciberespacio","Acción electrónica","Acción cibernética"],ans:0},
-{id:'S02',m:'seg',q:"Representa aptitud para marchar, estacionar y realizar otras actividades similares al abrigo de los fuegos y protección contra las sorpresas materiales que pudieran causar la destrucción de nuestra fuerza.",opts:["Seguridad de las Tropas","Seguridad Inmediata","Seguridad de combate","Seguridad Táctica"],ans:0},
-{id:'S03',m:'seg',q:"Cuando las tropas destacadas del grueso se envían a gran distancia y fuera del apoyo inmediato de este para proporcionar seguridad táctica, se denominan:",opts:["Fuerzas de Cobertura","Destacamentos de Seguridad","Destacamentos de Seguridad Táctica","Fuerzas Principales de Seguridad"],ans:0},
-{id:'S04',m:'seg',q:"Es la que se obtiene manteniendo los medios y actividades propias ignorados por el enemigo.",opts:["Seguridad por el secreto","Seguridad por la protección","Seguridad por el informe","Seguridad por el dispositivo"],ans:0},
-{id:'S05',m:'seg',q:"En relación con la seguridad durante el combate; esto constituye una responsabilidad para las unidades en primer escalón, las que no deben dejarse sorprender por acciones demostrativas de fuerzas enemigas.",opts:["La conservación del contacto","El repliegue","La protección","El dispositivo"],ans:0},
-{id:'S06',m:'seg',q:"¿Forma de acción enemiga que incluye el ataque con aerotropas?",opts:["Acción terrestre","Acción aérea","Acción secreta","Acción sorpresiva"],ans:0},
-{id:'S07',m:'seg',q:"Aquellas que de una manera material actúan contra la amenaza de que se trate, por ejemplo: la acción de una cortina de contra reconocimiento contra las patrullas de reconocimiento enemigas.",opts:["Medidas activas","Medidas comunes","Medidas prácticas","Medidas complementarias"],ans:0},
-{id:'S08',m:'seg',q:"Cuando las tropas destacadas del grueso se envían a las proximidades inmediatas de este para proporcionar seguridad inmediata, se denominan:",opts:["Destacamentos de Seguridad","Destacamentos de Seguridad Táctica","Fuerzas de Cobertura","Fuerzas Principales de Seguridad"],ans:0},
-{id:'S09',m:'seg',q:"Mediante un dispositivo adecuado, los diversos escalones o núcleos de tropas estarán en condiciones de protegerse e informarse mutuamente con oportunidad y de intervenir para asegurar la ejecución de la maniobra general proyectada. ¿A qué tipo de seguridad nos referimos?",opts:["La Seguridad durante el combate","La Seguridad Táctica","La Seguridad Inmediata","La Seguridad Estratégica"],ans:0},
-{id:'S10',m:'seg',q:"Es la combinación de medidas relacionadas con el informe, secreto, dispositivo y protección para responder a los diversos tipos de amenaza enemiga.",opts:["Medidas prácticas de seguridad","Medidas complementarias de seguridad","Medidas activas de seguridad","Medidas comunes de seguridad"],ans:0},
-{id:'S11',m:'seg',q:"Dispositivo que corresponde al escalón superior en que esté encuadrado.",opts:["Dispositivo General","Dispositivo Particular","Dispositivo del Grueso","Dispositivo de Seguridad"],ans:0},
-{id:'S12',m:'seg',q:"Es la que proporciona a quienes se desempeñen como comandantes en los diversos niveles, la libertad de acción necesaria para preparar su maniobra y ponerla en ejecución.",opts:["Seguridad del mando","Seguridad estratégica","Seguridad táctica","Seguridad de las tropas"],ans:0},
-{id:'S13',m:'seg',q:"En la seguridad durante el combate; la seguridad por el informe se orientará al conocimiento inmediato de las actividades enemigas en las proximidades del frente de combate, obtenidos principalmente por medio de:",opts:["La aviación","Las unidades de infantería aerotransportada","Las unidades de caballería motorizada","Las unidades blindadas principalmente las de reconocimiento"],ans:0},
-{id:'S14',m:'seg',q:"Durante la noche la conservación del contacto resulta más difícil, por lo que estas unidades deben de propia iniciativa destacar las patrullas que sean necesarias.",opts:["Las unidades de primera línea","Las armas de apoyo","Las unidades de segundo escalón","Las unidades de reserva"],ans:0},
-{id:'S15',m:'seg',q:"Forma de acción enemiga que consiste en el empleo de las tecnologías de la información y comunicaciones para atacar y neutralizar los sistemas informáticos propios, a través del ciberespacio.",opts:["Acción cibernética","Acción electrónica","Acción del ciberespacio","Acción aeroespacial"],ans:0},
-{id:'S16',m:'seg',q:"Durante la noche, el combate suele interrumpirse o manifestarse por fuego intermitente y actividades de patrullaje, por lo que las tropas más adelantadas deben desempeñar el papel de:",opts:["Puestos Avanzados","Puestos de Combate","Patrullas","Puestos de Observación"],ans:0},
-{id:'S17',m:'seg',q:"Estas actividades deben ser constantemente practicadas con todos los elementos y medios.",opts:["La búsqueda de información y contrainformación","La protección y la adopción del dispositivo","El reconocimiento y el contra reconocimiento","La seguridad, el secreto y el informe"],ans:0},
-{id:'S18',m:'seg',q:"Para garantizar la seguridad táctica, los mandos deben emplear tropas de mayor movilidad. ¿Qué características son indispensables, para los que cumplan esta misión?",opts:["Movilidad, potencia y velocidad","Movilidad, poder de fuego y protección blindada","Movilidad, protección y choque","Movilidad, volumen y poder de fuego"],ans:0},
-{id:'S19',m:'seg',q:"Durante el combate ofensivo o defensivo en que se encuentre una unidad determinada, la seguridad descansa fundamentalmente en:",opts:["El Dispositivo","El Secreto","La Protección","El Informe"],ans:0},
-{id:'S20',m:'seg',q:"Dispositivo en el que el comandante debe hacer una distribución adecuada en frente y profundidad con las unidades que lo integran, articulándolas de manera que se garantice el apoyo recíproco.",opts:["Dispositivo del Grueso","Dispositivo General","Dispositivo de Seguridad","Dispositivo Particular"],ans:0},
-{id:'S21',m:'seg',q:"La protección física es mediante corazas, blindajes, organizaciones adecuadas del terreno, fortificaciones y este tipo de vestuario.",opts:["Vestuario protector","Vestuario QBR","Vestuario blindado","Vestuario pesado y voluminoso"],ans:0},
-{id:'S22',m:'seg',q:"Es la que obtienen el mando y sus tropas, mediante la más completa, adecuada y oportuna información respecto al enemigo.",opts:["Seguridad por el informe","Seguridad por el secreto","Seguridad por la protección","Seguridad por el dispositivo"],ans:0},
-{id:'S23',m:'seg',q:"Mediante estas fuerzas, la o el comandante protege al grueso de su dispositivo cubriendo las direcciones peligrosas y dispone de un primer elemento de percepción y conocimiento del enemigo.",opts:["Fuerzas de Cobertura","Destacamentos de Seguridad","Fuerzas de Combate","Fuerzas de Seguridad"],ans:0},
-{id:'S24',m:'seg',q:"Permitirá a las o los comandantes controlar las actividades de búsqueda de información y las de contra información, así como llevar a cabo ciertas medidas activas para proceder contra la amenaza de que se trate.",opts:["Establecimiento de una red de transmisiones","Búsqueda de información y contra información","Establecimiento de un dispositivo de alarma","Establecimiento de un dispositivo de seguridad"],ans:0},
-{id:'S25',m:'seg',q:"Contribuye en forma muy importante a la seguridad y a las medidas que haya que adoptar para garantizar ésta.",opts:["La actitud favorable o desfavorable de la población civil","Los reconocimientos","Los contra reconocimientos","Las medidas de contrainformación"],ans:0},
-{id:'S26',m:'seg',q:"Forma de acción enemiga que consiste en las actividades realizadas por la fuerza enemiga para negar o dificultar el empleo, control y explotación del espectro electromagnético.",opts:["Acción electrónica","Acción aeroespacial","Acción cibernética","Acción del ciberespacio"],ans:0},
-{id:'S27',m:'seg',q:"Se refiere a la que requieren los comandantes de unidad de teatro, para darse el tiempo y espacio necesario para llevar a cabo la concentración y despliegue estratégicos a salvo de la intervención del enemigo.",opts:["Seguridad Estratégica","Seguridad Inmediata","Seguridad de las Tropas","Seguridad Táctica"],ans:0},
-{id:'S28',m:'seg',q:"¿Qué es lo que protege contra proyectiles, gases y radioactividad?",opts:["Ciertas prendas de vestuario","Ciertas prendas de protección blindada","Ciertas prendas de seguridad inmediata","Ciertas prendas de protección radioactiva"],ans:0},
-{id:'S29',m:'seg',q:"Son esencialmente destinadas a proporcionar seguridad, puesto que impiden la ejecución del reconocimiento enemigo sobre las propias tropas.",opts:["Los contra reconocimientos","Los reconocimientos","La actitud favorable o desfavorable de la población civil","Las medidas de contrainformación"],ans:0},
-{id:'S30',m:'seg',q:"¿Cómo se clasifican las medidas prácticas de seguridad?",opts:["Naturaleza y frecuencia","Comunes y complementarias","Activas y pasivas","Naturaleza y propósito"],ans:0},
-{id:'S31',m:'seg',q:"Complementa a la seguridad táctica y llena los huecos que ésta deja a distancia próxima de la pequeña unidad que la destaca.",opts:["La Seguridad inmediata","La Seguridad de las tropas","La Seguridad lejana","La Seguridad cercana"],ans:0},
-{id:'S32',m:'seg',q:"Es la que se proporciona al personal, armamento, o a determinado equipo, para evitar su destrucción mediante vehículos blindados, obras de organización del terreno y de fortificación.",opts:["Seguridad por la protección","Seguridad por el informe","Seguridad por el dispositivo","Seguridad por el secreto"],ans:0},
-{id:'S33',m:'seg',q:"Este es uno de los principales destacamentos de seguridad en situaciones de movimiento.",opts:["Guarda flancos","Patrullas","Puestos avanzados","Puestos de observación"],ans:0},
-{id:'S34',m:'seg',q:"En la seguridad durante el combate; ¿Cuál de los medios para obtener seguridad queda restringido?",opts:["El Informe","La Protección","El Secreto","El Dispositivo"],ans:0},
-{id:'S35',m:'seg',q:"Por su lejanía y dispersión en el campo de batalla, no podrán impedir que elementos ligeros del enemigo se infiltren y se acerquen al grueso propio para reconocerlo o atacarlo.",opts:["Las Fuerzas de Seguridad Táctica","Las Fuerzas de Seguridad Mediata","Las Fuerzas de Seguridad Estratégica","Las Fuerzas de Seguridad Inmediata"],ans:0},
-{id:'S36',m:'seg',q:"En relación con la seguridad durante el combate en la noche; estas, arreglarán sus tiros desde las horas de luz, de tal manera que puedan desencadenarlos durante la noche sobre puntos que favorezcan ataques enemigos por sorpresa. ¿A qué tipo de unidades nos referimos?",opts:["Las Armas de Apoyo","Los Morteros","La Aviación","La Artillería"],ans:0},
-{id:'S37',m:'seg',q:"Son las que se adoptan para responder a acciones específicas de parte del enemigo.",opts:["Medidas complementarias","Medidas pasivas","Medidas activas","Medidas comunes"],ans:0},
-{id:'S38',m:'seg',q:"Las que solamente protegen contra las vistas o la acción destructora del enemigo; por ejemplo: los abrigos, el camuflaje y la dispersión.",opts:["Medidas pasivas","Medidas prácticas","Medidas comunes","Medidas complementarias"],ans:0},
-{id:'S39',m:'seg',q:"¿Forma de acción enemiga que incluye el transporte de paracaidistas?",opts:["Acción aérea","Acción secreta","Acción terrestre","Acción sorpresiva"],ans:0},
-{id:'S40',m:'seg',q:"En la seguridad por el informe; la información puede proceder del escalón superior, de los órganos de búsqueda propios y de:",opts:["Unidades adyacentes","Unidades subordinadas","Unidades de 1/er. escalón","Agencias de información"],ans:0},
-{id:'S41',m:'seg',q:"Forma de acción enemiga que se refiere a la propaganda enemiga entre las tropas propias.",opts:["Acción psicológica","Acción de contra propaganda","Acción de guerra psicológica","Acción propagandística"],ans:0},
-{id:'S42',m:'seg',q:"Es la que proporciona al mando en las grandes unidades, el espacio y tiempo suficiente para que conciba, prepare y ponga en acción su maniobra; asimismo, le informa respecto a la naturaleza, magnitud y actividad enemiga a mucha distancia.",opts:["Seguridad Táctica","Seguridad Estratégica","Seguridad Lejana","Seguridad Inmediata"],ans:0},
-{id:'S43',m:'seg',q:"Es una condición que busca todo ser viviente en sus actividades para poder existir, desarrollarse y cumplir sus propósitos.",opts:["Seguridad","Comer","Protección","Vivir"],ans:0},
-{id:'S44',m:'seg',q:"Mediante esta seguridad se evita la sorpresa estratégica, esto es, verse acometido por los gruesos enemigos antes de estar preparado para afrontarlos.",opts:["Seguridad Estratégica","Seguridad Táctica","Seguridad Inmediata","Seguridad de las Tropas"],ans:0},
-{id:'S45',m:'seg',q:"La utilización de la protección aérea en apoyo de ciertas operaciones, contra la amenaza aérea del enemigo, es una medida:",opts:["Complementaria de seguridad","Común de seguridad","Activa de seguridad","Práctica de seguridad"],ans:0},
-{id:'S46',m:'seg',q:"¿Qué es lo que debe hacer todo comandante para proteger a su unidad en conjunto?",opts:["Prescribir las medidas de seguridad","Realizar actividades de contra reconocimiento","Aplicar medidas de contrainformación","Realizar actividades de reconocimiento"],ans:0},
-{id:'S47',m:'seg',q:"Estas medidas están destinadas para la protección contra amenazas por medios especiales de hacer la guerra, tales como atómicos, psicológicos, electrónicos, cibernéticos, radiológicos, biológicos y químicos.",opts:["Medidas de carácter táctico y técnico","Medidas activas de protección de seguridad","Medida practicas de seguridad","Medidas de protección operativa de seguridad"],ans:0},
-{id:'S48',m:'seg',q:"El control de civiles y militares dentro del área de operaciones, para evitar o controlar el espionaje, la subversión, la propaganda enemiga; es una medida:",opts:["Complementaria de seguridad","Activa de seguridad","Común de seguridad","Práctica de seguridad"],ans:0},
-{id:'S49',m:'seg',q:"Es más efectiva como medio de seguridad que el establecimiento de patrullas.",opts:["La observación","Los Destacamentos de Policía Militar","Los puestos de escucha","La vigilancia periférica"],ans:0},
-{id:'S50',m:'seg',q:"Constituyen amenazas contra la seguridad propia, serán siempre muy variadas, principalmente en la actualidad, debido a los adelantos tecnológicos y científicos.",opts:["Formas de acción enemiga","Formas de amenaza enemiga","Amenazas tradicionales","Amenazas multidimensionales"],ans:0},
-{id:'S51',m:'seg',q:"Consistente en medidas de contra información.",opts:["El Secreto","Las medidas prácticas de seguridad","Las operaciones psicológicas","Las medidas de engaño al enemigo"],ans:0},
-{id:'S52',m:'seg',q:"¿Quiénes cubren de cerca, protegen a su grueso y evitan las sorpresas materiales?",opts:["Los Destacamentos de Seguridad","Los Medios Complementarios de Seguridad Inmediata","Las Fuerzas de Cobertura","Las Fuerzas de Seguridad"],ans:0},
-{id:'S53',m:'seg',q:"Medida común de seguridad que se organiza creando sistemas de aviso rápido y efectivo que permiten al mando y a las tropas propias enterarse de la presencia de cualquier amenaza contra su seguridad.",opts:["Establecimiento de un dispositivo de alarma","Búsqueda de información y contra información","Establecimiento de una red de transmisiones","Establecimiento de un dispositivo de seguridad"],ans:0},
-{id:'S54',m:'seg',q:"¿Principalmente cómo se logra la seguridad inmediata?",opts:["Con los Destacamentos de Seguridad","Con las Fuerzas de Seguridad","Con los Medios Complementarios de Seguridad Inmediata","Con las Fuerzas de Cobertura"],ans:0},
-{id:'S55',m:'seg',q:"Esta seguridad corresponde al ámbito de acción de las pequeñas unidades.",opts:["Seguridad inmediata","Seguridad lejana","Seguridad táctica","Seguridad estratégica"],ans:0},
-{id:'S56',m:'seg',q:"Factor esencial para preparar y aplicar la sorpresa.",opts:["El secreto","El dispositivo","La contra información","La información"],ans:0},
-{id:'S57',m:'seg',q:"Esta red se organiza diversificando los recursos, para asegurar las transmisiones por uno u otro de los medios disponibles, en caso de que alguno de ellos falle.",opts:["Establecimiento de una red de transmisiones","Establecimiento de un dispositivo de seguridad","Búsqueda de información y contra información","Establecimiento de un dispositivo de alarma"],ans:0},
-{id:'S58',m:'seg',q:"Dispositivo que está representado por el empleo de tropas destacadas al frente, flancos y retaguardia del grueso, con la función de informar al mando y cubriéndolo de ataques sorpresivos del enemigo.",opts:["Dispositivo de Seguridad","Dispositivo del Grueso","Dispositivo Particular","Dispositivo General"],ans:0},
-{id:'S59',m:'seg',q:"Se logra destacando a la mayor distancia posible, fuerzas adecuadas en número y potencia, de la mayor movilidad disponible con el fin de tomar y mantener contacto con el enemigo.",opts:["Seguridad Táctica","Seguridad Lejana","Seguridad Estratégica","Seguridad Inmediata"],ans:0},
-{id:'S60',m:'seg',q:"En relación con la seguridad táctica, esta unidad se debe emplear en toda circunstancia, a fin de obtener información relativa al terreno y al enemigo; proteger a las fuerzas de cobertura contra la acción aérea adversaria.",opts:["Aviación","Artillería pesada","Unidades del Arma Blindada, principalmente de tanques","Unidades de Aero tropas"],ans:0},
-{id:'S61',m:'seg',q:"Desde el punto de vista de Seguridad, en la parte que refiere a la seguridad inmediata y los destacamentos de seguridad; ¿Cómo son considerados los vehículos aéreo no tripulados?",opts:["Medios Complementarios de Seguridad Inmediata","Medios Activos de Seguridad Inmediata","Medios Comunes de Seguridad Inmediata","Medios Prácticos de Seguridad Inmediata"],ans:0},
-{id:'S62',m:'seg',q:"Seguridad que emplean principalmente las tropas de las armas y de los servicios.",opts:["Seguridad inmediata","Seguridad táctica","Seguridad estratégica","Seguridad lejana"],ans:0},
-{id:'S63',m:'seg',q:"Las patrullas, los puestos de observación, los puestos avanzados, los guardias y en general, cualquier personal en funciones de proporcionar seguridad; son:",opts:["Órganos de información","Agencias de búsqueda","Órganos de búsqueda","Agencias de información"],ans:0},
-{id:'S64',m:'seg',q:"Forma de acción enemiga que comprende el empleo de armas Q.B.R.",opts:["Acción de armas de destrucción masiva","Acción de armas bacteriológicas","Acción terrestre","Acción secreta"],ans:0},
-{id:'S65',m:'seg',q:"Este es uno de los dos elementos, en que se clasifica a seguridad del mando.",opts:["Seguridad Táctica","Seguridad Inmediata","Seguridad Material","Seguridad de las Tropas"],ans:0},
-{id:'S66',m:'seg',q:"Es parte integral de cualquier operación por lo que debe adoptarse en toda situación, en todo lugar y en todo tiempo.",opts:["La seguridad","La contrainformación","El reconocimiento","El contra reconocimiento"],ans:0},
-{id:'S67',m:'seg',q:"Toda unidad, agrupamiento, destacamento, o fuerza de cualquier magnitud y especialidad, es responsable de:",opts:["Su propia seguridad","Aplicar medidas de contrainformación","Realizar actividades de contra reconocimiento","Realizar actividades de reconocimiento"],ans:0},
-{id:'S68',m:'seg',q:"Forma de acción enemiga representada por el espionaje, sabotaje, actividades subversivas y de resistencia.",opts:["Acción secreta","Acción terrestre","Acción sorpresiva","Acción desconocida"],ans:0},
-{id:'S69',m:'seg',q:"Es la forma en que las tropas son distribuidas sobre el terreno, en grupos de constitución y magnitud adecuadas, para poner en práctica una idea de maniobra tendiente a lograr el cumplimiento de una misión.",opts:["La seguridad por el dispositivo","El dispositivo particular","El dispositivo general","El dispositivo de seguridad"],ans:0},
-{id:'S70',m:'seg',q:"Forma de acción enemiga que se refiere al empleo de tácticas, técnicas, armas y tecnologías desconocidas.",opts:["Acción sorpresiva","Acción terrestre","Acción secreta","Acción desconocida"],ans:0},
-{id:'S71',m:'seg',q:"Esta seguridad es la que le proporciona libertad de acción a quien ejerza el mando, le garantiza la libre disposición de los medios y le facilita el cumplimiento de la misión.",opts:["Seguridad Táctica","Seguridad Inmediata","Seguridad Estratégica","Seguridad de las Tropas"],ans:0},
-{id:'S72',m:'seg',q:"Los observadores antiaéreos, patrullas y destacamentos de policía militar, puestos de vigilantes y escuchas, puestos de observación, escoltas de convoyes, guardias en los cuarteles generales, armas antiaéreas, antitanques, vehículos aéreos no tripulados, son:",opts:["Medios Complementarios de Seguridad Inmediata","Fuerzas de Seguridad","Destacamentos de Seguridad","Fuerzas de Cobertura"],ans:0},
-{id:'S73',m:'seg',q:"En las actividades militares tácticas, en las que existe siempre un enemigo presente, lejano o potencial, esta actividad juega el papel más importante.",opts:["La seguridad","El secreto","La protección","El informe"],ans:0},
-{id:'S74',m:'seg',q:"En relación con la seguridad y si la situación lo requiere; ¿Qué se utilizará si el sector por cubrir es muy amplio?",opts:["Patrullas","Línea de Puestos de observación y escucha","Los Destacamentos de Policía Militar","Los observadores antiaéreos"],ans:0},
-{id:'S75',m:'seg',q:"En relación con la seguridad durante el combate; esto es esencial para una fuerza que actúa ofensivamente; el enemigo que se defiende procurará en ocasiones romperlo para replegarse y ponerse a salvo.",opts:["La conservación del contacto","El repliegue","La protección","El dispositivo"],ans:0},
-{id:'S76',m:'seg',q:"Método para proveer seguridad en un frente amplio con pocas tropas; esto permitirá estar alerta ante un ataque enemigo.",opts:["Línea de Puestos de observación y escucha","Destacamentos de Policía Militar","Patrullas","Puestos de vigilantes"],ans:0},
-{id:'S77',m:'seg',q:"Durante el combate, es básicamente este dispositivo el que proporcionará la seguridad del conjunto.",opts:["Dispositivo del Grueso","Dispositivo de Seguridad","Dispositivo Particular","Dispositivo General"],ans:0},
-{id:'S78',m:'seg',q:"Es la que se obtiene empleando núcleos de tropas que se protegen mutuamente o protegen a los gruesos, contra la acción sorpresiva del enemigo.",opts:["La seguridad por el dispositivo","El dispositivo general","El dispositivo","El dispositivo particular"],ans:0},
-{id:'S79',m:'seg',q:"Consiste en aprovechar eficazmente sus formas, accidentes y detalles, para establecer obstáculos a las amenazas del enemigo, e impedirle observar y hacer fuego contra las tropas propias.",opts:["Utilización del Terreno","Aprovechamiento del Terreno","Fortificación del Terreno","Organización del Terreno"],ans:0},
-{id:'S80',m:'seg',q:"Esta es una unidad que puede emplearse para proporcionar seguridad táctica.",opts:["Armas de apoyo","Artillería pesada","Unidades de Aero tropas","Unidades del Arma Blindada, principalmente de tanques"],ans:0},
-{id:'S81',m:'seg',q:"Es la que evita a la o el comandante exponerse a la sorpresa táctica o verse obligado a variar con premura y precipitación sus proyectos originales de marchar, estacionar o combatir.",opts:["Seguridad Táctica","Seguridad Estratégica","Seguridad Inmediata","Seguridad de las Tropas"],ans:0},
-{id:'S82',m:'seg',q:"De los aspectos que abajo vienen mencionados, cual corresponde a la clasificación de la seguridad.",opts:["Seguridad material","Seguridad inmediata","Seguridad táctica","Seguridad estratégica"],ans:0},
-{id:'S83',m:'seg',q:"Este es uno de los principales destacamentos de seguridad en situaciones estacionarias.",opts:["Puestos de escucha","Guarda flancos","Retaguardia","Vanguardia"],ans:0},
-{id:'S84',m:'seg',q:"Dispositivo que corresponde al de la propia unidad y que comprende dos escalones.",opts:["Dispositivo Particular","Dispositivo del Grueso","Dispositivo General","Dispositivo de Seguridad"],ans:0},
-{id:'S85',m:'seg',q:"Influyen en la seguridad, puesto que proporcionan informes que servirán de guías para determinar efectivos, composición y dispositivo de las fuerzas destinadas a proporcionar esta.",opts:["Los reconocimientos","Los contra reconocimientos","La actitud de la población civil","Las medidas de contrainformación"],ans:0},
-{id:'S86',m:'seg',q:"Es la forma de lograr y garantizar la alerta oportuna, rápida y efectiva.",opts:["Establecimiento de una red de transmisiones","Búsqueda de información y contra información","Establecimiento de un dispositivo de alarma","Establecimiento de un dispositivo de seguridad"],ans:0},
-{id:'S87',m:'seg',q:"Son aquellas que se adoptan en casi todas las situaciones y que se aplican para obtener protección contra algún tipo de amenaza.",opts:["Medidas comunes","Medidas activas","Medidas pasivas","Medidas complementarias"],ans:0},
-{id:'S88',m:'seg',q:"Se establecerán durante la noche o en periodos de poca visibilidad, su colocación debe ser en o cerca de las avenidas de aproximación o por medio de infiltración.",opts:["Puestos de escucha","Puestos de observación","Patrullas","Destacamentos de Policía Militar"],ans:0},
-{id:'S89',m:'seg',q:"Para obtener esta seguridad, la instrucción de las tropas debe prever ampliamente lo necesario y durante las operaciones deben prepararse y ejecutarse adecuados planes de contra información.",opts:["Seguridad por el secreto","Seguridad por el informe","Seguridad por la protección","Seguridad por el dispositivo"],ans:0},
-{id:'S90',m:'seg',q:"Se establecen durante el día y generalmente se instalan en terrenos elevados, desde los cuales pueden observarse las posibles avenidas de aproximación del enemigo.",opts:["Puestos de observación","Patrullas","Destacamentos de Policía Militar","Puestos de escucha"],ans:0},
-{id:'S91',m:'seg',q:"Los dispositivos que pueden proporcionar seguridad al mando y sus tropas son:",opts:["Dispositivos: General y Particular","Dispositivos: Del Grueso y de Seguridad","Dispositivos: De las Fuerzas de Cobertura y de los Destacamentos de Seguridad","Dispositivos: De la Seguridad Táctica y de la Seguridad Inmediata"],ans:0},
-{id:'S92',m:'seg',q:"¿En qué planes debe ser tomada en cuenta la seguridad?",opts:["En los planes de operaciones","En los planes tácticos","En los planes logísticos","En los planes de fuegos"],ans:0},
-{id:'S93',m:'seg',q:"La seguridad de las tropas, es llamada también:",opts:["Seguridad Material","Seguridad Inmediata","Seguridad de combate","Seguridad Táctica"],ans:0},
-{id:'S94',m:'seg',q:"En esta medida de seguridad, se lleva a cabo la organización del terreno, camuflaje, minado y fortificación, encaminados a garantizar la seguridad por la ocultación y el mejoramiento del terreno.",opts:["Medida complementaria de seguridad","Medida común de seguridad","Medida practica de seguridad","Medida activa de seguridad"],ans:0},
-{id:'S95',m:'seg',q:"La información respecto al enemigo, para proporcionarse seguridad, puede ser desde la que envíe una fuerza de cobertura a gran distancia, hasta la voz de alarma de:",opts:["Un escucha","Un combatiente","Una patrulla","Un vigilante"],ans:0},
-{id:'S96',m:'seg',q:"Encaminada al logro del secreto, que debe ser practicada por todo el personal en sus diversas actividades, mediante la discreción, la ocultación y la dispersión.",opts:["La contra información","La información","El reconocimiento","La seguridad"],ans:0},
-{id:'S97',m:'seg',q:"Asegurar la libertad de acción, del mando y sus tropas, es de la seguridad, su:",opts:["Propósito","Responsabilidad","Misión","Objetivo"],ans:0},
-{id:'S98',m:'seg',q:"La seguridad se obtiene por medio de:",opts:["La Protección","La información","La distribución","La contrainformación"],ans:0},
-{id:'S99',m:'seg',q:"Esta es una de las funciones principales de las tropas del dispositivo de seguridad.",opts:["Cubrir","Avisar","Combatir","Reconocer"],ans:0},
-{id:'S100',m:'seg',q:"Esta seguridad, tiene como objetivo evitar que las tropas se vean bajo los efectos del fuego o de cualquier otra actividad destructora del enemigo sin estar preparadas para protegerse.",opts:["Seguridad de las Tropas","Seguridad de combate","Seguridad Táctica","Seguridad Inmediata"],ans:0},
-// ── OPERACIONES MILITARES (100) ─────────────────────────
-{id:"O001",m:"ops",q:"Es una operación retrógrada ejecutada generalmente por tropas móviles, en beneficio de otra unidad superior, en la que se cambia espacio por tiempo, causando el mayor daño posible al enemigo sin empeñarse decisivamente.",opts:["La Acción Retardatriz.","La Maniobra Retardatriz.","La Retirada.","La Maniobra en Retirada."],ans:0},
-{id:"O002",m:"ops",q:"Es toda acción táctica consistente en retroceder.",opts:["Repliegue rompiendo el combate.","Ruptura del combate.","Repliegue manteniendo el combate.","Repliegue."],ans:0},
-{id:"O003",m:"ops",q:"Está constituido por equipos terrestres, navales y aéreos, organizados, equipados y adiestrados para llevar a cabo cierto tipo de cometidos que, debido a su naturaleza o características, requiere el empleo de técnicas y medios muy especializados.",opts:["Componente de Operaciones Especiales.","Componente Aéreo.","Componente Naval.","Componente Terrestre."],ans:0},
-{id:"O004",m:"ops",q:"Estas operaciones pueden ser impuestas por la situación, ordenadas por el escalón superior o adoptadas voluntariamente.",opts:["Operaciones Defensivas.","Operaciones Retrogradas.","Operaciones en Retirada.","Operaciones Retardatrices."],ans:0},
-{id:"O005",m:"ops",q:"Es el reemplazo de una unidad por otra con la finalidad de dar continuidad a la actividad que se estaba desarrollando o iniciar una diferente, en todo caso se busca preservar o incrementar la capacidad combativa de las unidades.",opts:["El Relevo en posición.","El Relevo a través de una posición.","El Relevo por paso de líneas.","El Relevo."],ans:0},
-{id:"O006",m:"ops",q:"La velocidad, alcance, y maniobrabilidad convierten a este componente en un instrumento idóneo para tomar la iniciativa.",opts:["Componente Aéreo.","Componente Naval.","Componente Terrestre.","Componente de Operaciones Especiales."],ans:0},
-{id:"O007",m:"ops",q:"Una de las características de este tipo de operación retrograda, es evitar el combate decisivo, pero manteniendo en todo momento el contacto con las fuerzas enemigas.",opts:["La Acción Retardatriz.","La Maniobra Retardatriz.","La Retirada.","La Maniobra en Retirada."],ans:0},
-{id:"O008",m:"ops",q:"Este es uno de los aspectos en que se clasifica el envolvimiento, de acuerdo con la profundidad del objetivo.",opts:["Movimiento de Rodeo.","Envolvimiento Simple.","Envolvimiento Múltiple.","Envolvimiento Doble."],ans:0},
-{id:"O009",m:"ops",q:"Consiste en hacer pasar a la nación y a sus fuerzas armadas, del pie de paz al pie de guerra.",opts:["Movilización.","Maniobra Estratégica.","Despliegue Estratégico.","Cobertura Estratégica."],ans:0},
-{id:"O010",m:"ops",q:"Se efectúa aplicando la masa operativa en dirección frontal, para lograr una penetración en el dispositivo enemigo, actuar sobre los flancos creados y lanzar una explotación profunda sobre la retaguardia.",opts:["Maniobra de Ruptura.","Maniobra Estratégica.","Maniobra de Ala.","Maniobra Envolvente."],ans:0},
-{id:"O011",m:"ops",q:"Es una fase de la operación retrograda, en la que el grueso de una unidad se despega del contacto, protegido por la acción de un escalón de seguridad.",opts:["Ruptura del combate.","Repliegue rompiendo el combate.","Repliegue.","Repliegue manteniendo el combate."],ans:0},
-{id:"O012",m:"ops",q:"Uno de los objetivos de este tipo de operación retrograda, es reducir la distancia de apoyo con otras fuerzas amigas.",opts:["La maniobra en retirada.","La ruptura del combate.","Las acciones retardatrices.","La retirada."],ans:0},
-{id:"O013",m:"ops",q:"En esta defensa se disponen las fuerzas para hacer frente a un ataque procedente de cualquier dirección, su propósito es la autoprotección y la llevan a cabo las unidades que operan independientes o que por alguna razón han quedado aisladas de la unidad superior.",opts:["Defensa perimétrica.","Defensa periférica.","Defensa móvil.","Defensa en posición."],ans:0},
-{id:"O014",m:"ops",q:"La maniobra estratégica se realiza a nivel teatro de operaciones, por las grandes unidades a través de:",opts:["La Maniobra Operacional.","La Maniobra Ofensiva.","Las Maniobras Tácticas.","La Maniobra Ofensivo-Defensiva."],ans:0},
-{id:"O015",m:"ops",q:"Las fuerzas de este componente, tienen capacidad de reacción, autonomía y libertad de acción.",opts:["Componente Naval.","Componente Aéreo.","Componente de Operaciones Especiales.","Componente Terrestre."],ans:0},
-{id:"O016",m:"ops",q:"En operaciones de combate, las acciones de este componente tienen por objetivo anular la capacidad de combate de las fuerzas enemigas y controlar el entorno operativo.",opts:["Componente Terrestre.","Componente Naval.","Componente de Operaciones Especiales.","Componente Aéreo."],ans:0},
-{id:"O017",m:"ops",q:"Consiste en transformar la producción para abastecer el esfuerzo de guerra.",opts:["Movilización Industrial.","Movilización Nacional.","Movilización Previa.","Movilización General."],ans:0},
-{id:"O018",m:"ops",q:"Las normas del servicio interior, de guarnición y de plaza que prescriben los reglamentos y disposiciones vigentes, tienen aplicación en el servicio en campaña, cuando no interfieren con estas operaciones.",opts:["Operaciones tácticas o logísticas.","Operaciones Regulares.","Operaciones Militares de Guerra.","Operaciones Estratégicas."],ans:0},
-{id:"O019",m:"ops",q:"Comprende las medidas adoptadas y actividades que se realizan para proporcionar seguridad al país, evitando o neutralizando ataques por sorpresa del enemigo.",opts:["Cobertura Estratégica.","Despliegue Estratégico.","Seguridad Nacional.","Seguridad Estratégica."],ans:0},
-{id:"O020",m:"ops",q:"Pueden revestir la forma de operaciones regulares, irregulares o una combinación de ambas.",opts:["Operaciones Militares de Guerra.","Operaciones Convencionales.","Operaciones.","Operaciones Militares."],ans:0},
-{id:"O021",m:"ops",q:"¿Qué tipo de operaciones se realizan para afrontar una Situación de Guerra?",opts:["Operaciones Estratégicas.","Operaciones Militares.","Operaciones.","Operaciones Militares de Guerra."],ans:0},
-{id:"O022",m:"ops",q:"Se ocupa tanto de los aspectos teóricos como prácticos de la guerra y se aplica desde el nivel táctico hasta el estratégico.",opts:["Arte Operacional.","Arte Militar.","Nivel Operacional.","Arte de la Guerra."],ans:0},
-{id:"O023",m:"ops",q:"Es el conjunto de actos del servicio que el personal militar lleva a cabo en relación con las operaciones militares determinadas por la guerra.",opts:["Servicio en Campaña.","Acciones de Guerra.","Operaciones de Guerra.","Operaciones."],ans:0},
-{id:"O024",m:"ops",q:"Una acción retardatriz es más eficaz si se realiza con elementos altamente móviles, apoyados por artillería, ingenieros y.-",opts:["Aviación táctica.","Unidades Blindadas de Tanque.","Aviación de combate.","Unidades Blindadas de Reconocimiento."],ans:0},
-{id:"O025",m:"ops",q:"Obligar al enemigo a atacar en circunstancias que le sean desfavorables; es de la defensiva una de sus:",opts:["Tareas Básicas.","Finalidades.","Misiones.","Consideraciones Básicas."],ans:0},
-{id:"O026",m:"ops",q:"Esta es una de las variantes de la penetración.",opts:["Ataques frontales.","Ataques de fijación.","Ataques de Corto Alcance.","Ataques a Gran Radio."],ans:0},
-{id:"O027",m:"ops",q:"Busca llegar a la batalla para decidir el logro del objetivo estratégico y el estado final deseado que se persigue.",opts:["La Maniobra Estratégica.","La Maniobra Defensiva.","La Maniobra Ofensivo-Defensiva.","La Maniobra Ofensiva."],ans:0},
-{id:"O028",m:"ops",q:"La ejecución de estas operaciones debe ser aprobada por el escalón superior.",opts:["Operaciones Retrogradas.","Operaciones Retardatrices.","Operaciones Defensivas.","Operaciones en Retirada."],ans:0},
-{id:"O029",m:"ops",q:"Consiste en ceder terreno al enemigo, con el objeto de desgastarlo al máximo y alargar sus líneas de comunicaciones, mientras se crean condiciones de potencia para iniciar una contraofensiva.",opts:["Maniobra en Retirada.","Maniobra Retardatriz.","Maniobra Defensiva.","Maniobra Retrograda."],ans:0},
-{id:"O030",m:"ops",q:"En la movilización, se crean unidades y fuerzas de todo tipo, de acuerdo con este plan.",opts:["Plan previo de movilización.","Plan de Campaña.","Plan de Guerra.","Plan Estratégico de Operaciones."],ans:0},
-{id:"O031",m:"ops",q:"Es una de las formas de la acción ofensiva.",opts:["Penetración.","Infiltración.","Asalto.","Ataque."],ans:0},
-{id:"O032",m:"ops",q:"Es una misión de las operaciones defensivas.",opts:["Impedir que el enemigo capture un área vital.","Utilización adecuada del terreno.","Defensa en profundidad.","Desorganizar y desgastar su ataque."],ans:0},
-{id:"O033",m:"ops",q:"Es la situación de una fuerza, cuando está preparada para protegerse contra el ataque enemigo.",opts:["Actitud Defensiva.","Maniobra Defensiva.","Operación Defensiva.","Situación Defensiva."],ans:0},
-{id:"O034",m:"ops",q:"Es un tipo básico de defensa.",opts:["Defensa en posición.","Defensa perimétrica.","Defensa en todas direcciones.","Defensa en profundidad."],ans:0},
-{id:"O035",m:"ops",q:"En este tipo de acción retardatriz se emplea la mayor parte de la unidad en la línea de retardo, la cual contempla el mejoramiento y ocupación de cada posición. Las unidades retardan continuamente sobre y entre cada posición, nunca ceden terreno innecesariamente, cada repliegue es coordinado con las unidades adyacentes.",opts:["Retardo en Posiciones Sucesivas.","Retardo en Posiciones Principales.","Retardo Mediante Acción Ofensiva.","Retardo en Posiciones Alternas ."],ans:0},
-{id:"O036",m:"ops",q:"Son las que efectúa una unidad hacia su retaguardia u otra dirección que la aleje del enemigo, partiendo de un contacto.",opts:["Operaciones Retrogradas.","Operaciones Retardatrices.","Operaciones en Retirada.","Operaciones Defensivas."],ans:0},
-{id:"O037",m:"ops",q:"Se ocupa de los aspectos prácticos de la conducción de la guerra en un teatro de operaciones.",opts:["Nivel Operacional.","Arte Militar.","Arte de la Guerra.","Arte Operacional."],ans:0},
-{id:"O038",m:"ops",q:"Este tipo de acciones son sistemáticas entre las fuerzas de cobertura y los destacamentos de seguridad que actúan en beneficio de un escalón superior.",opts:["La Acción Retardatriz.","La Maniobra Retardatriz.","La Retirada.","La Maniobra en Retirada."],ans:0},
-{id:"O039",m:"ops",q:"Son las que llevan a cabo grupos dispersos de civiles armados, pequeñas fracciones militares o una combinación de ambas, contra una fuerza enemiga de gran superioridad.",opts:["Operaciones Irregulares.","Operaciones Militares de Guerra.","Operaciones Militares.","Operaciones Regulares."],ans:0},
-{id:"O040",m:"ops",q:"Es una de las tareas básicas en una acción defensiva.",opts:["Resistir el ataque.","Detener una fuerza enemiga.","Uso máximo de la acción ofensiva.","Fortalecimiento de la zona defensiva."],ans:0},
-{id:"O041",m:"ops",q:"Esta defensa se adopta cuando una unidad debe detenerse provisionalmente en espera de órdenes para iniciar otra acción.",opts:["Defensa perimétrica.","Defensa móvil.","Defensa periférica.","Defensa en posición."],ans:0},
-{id:"O042",m:"ops",q:"Este es uno de los aspectos que favorece la defensa móvil.",opts:["Las reservas disponibles en escalones superiores son limitadas.","Hay reservas adecuadas disponibles en escalones superiores.","Hay suficiente tiempo.","Las fuerzas disponibles son predominantemente de infantería."],ans:0},
-{id:"O043",m:"ops",q:"Es un paso de líneas hacia la retaguardia, en el que la unidad que se repliega le pasa sus responsabilidades a la unidad a través de la cual se repliega.",opts:["Relevo a través de una posición.","Relevo por paso de líneas.","Relevo en posición.","Relevo."],ans:0},
-{id:"O044",m:"ops",q:"Consiste en el empleo coordinado de las fuerzas militares disponibles, para alcanzar un objetivo estratégico.",opts:["Maniobra Estratégica.","Concentración.","Cobertura Estratégica.","Despliegue Estratégico."],ans:0},
-{id:"O045",m:"ops",q:"Esta es una de las fases de la penetración.",opts:["Explotación de la Brecha.","Ensanchamiento de la posición defensiva.","Explotación del Éxito.","Ruptura de la Brecha."],ans:0},
-{id:"O046",m:"ops",q:"Esta es una de las características que deben tener las posiciones de retardo.",opts:["Buena observación y campos de tiro.","Se evita el combate decisivo .","La máxima potencia de fuegos es desencadenada hacia el frente.","Las posiciones se organizan para ser defendidas por corto tiempo."],ans:0},
-{id:"O047",m:"ops",q:"Es uno de los aspectos en que se clasifican las operaciones militares de guerra, por las fuerzas que intervienen y el ámbito en que se desarrollan.",opts:["Aeroespaciales.","Estratégico-Operacional.","Tácticas.","Estratégicas."],ans:0},
-{id:"O048",m:"ops",q:"Consiste en articular las fuerzas operativas repartiéndolas en tiempo y espacio, con miras a ejecutar la maniobra estratégica.",opts:["Despliegue Estratégico.","Maniobra Estratégica.","Concentración.","Cobertura Estratégica."],ans:0},
-{id:"O049",m:"ops",q:"En este nivel, se articulan las acciones tácticas de forma que su combinación coordinada permita alcanzar los objetivos estratégicos.",opts:["Nivel Operacional.","Nivel Táctico.","Nivel Estratégico.","Nivel Estratégico-Operacional."],ans:0},
-{id:"O050",m:"ops",q:"Operaciones que son algo más que acciones de unidades y elementos de las fuerzas armadas, actuando bajo un mismo mando.",opts:["Operaciones Conjuntas.","Operaciones Militares.","Operaciones Tácticas.","Operaciones Estratégicas."],ans:0},
-{id:"O051",m:"ops",q:"Conserva la iniciativa, fija al enemigo mediante el empleo de los medios de acción disponibles, con el objetivo de destruirlo o capturarlo.",opts:["Maniobra Ofensiva.","Maniobra Envolvente.","Maniobra de Ala.","Maniobra de Ruptura."],ans:0},
-{id:"O052",m:"ops",q:"Esta operación se clasifica en operación: Ofensiva, Defensiva, Retrograda y Relevo.",opts:["Operaciones Tácticas.","Operaciones Estratégicas.","Operaciones Estratégico-Operacionales.","Operaciones Militares."],ans:0},
-{id:"O053",m:"ops",q:"Esta forma de maniobra aprovecha el frente sobre extendido o la poca profundidad del dispositivo enemigo, mismos que facilitarán la captura del objetivo y el cumplimiento de la misión, facilitando la continuación de las operaciones.",opts:["Penetración.","Ataque.","Envolvimiento.","Asalto."],ans:0},
-{id:"O054",m:"ops",q:"Consiste en dirigir la masa operativa sobre la retaguardia enemiga, con objeto de cortar sus líneas de comunicaciones, de abastecimiento y rutas de retirada, cercándolo por uno o los dos flancos y la retaguardia, según se trate de un envolvimiento simple o doble.",opts:["Maniobra Envolvente.","Maniobra de Ruptura.","Maniobra por Líneas Exteriores.","Maniobra por Líneas Interiores."],ans:0},
-{id:"O055",m:"ops",q:"Es una operación retrógrada realizada con tiempo mínimo de planeo y bajo presión del enemigo, para evitar la derrota o el aniquilamiento de las fuerzas que la ejecutan.",opts:["La Retirada.","La Maniobra en Retirada.","La Acción Retardatriz.","La Ruptura del Combate."],ans:0},
-{id:"O056",m:"ops",q:"Constituyen el nivel superior en el planeamiento de las operaciones militares.",opts:["Operaciones Estratégicas.","Operaciones Estratégico-Operacionales.","Operaciones Estratégico-Nacionales.","Operaciones Tácticas."],ans:0},
-{id:"O057",m:"ops",q:"Consiste en aprovechar al máximo el terreno en combinación con las tropas dispuestas en profundidad, a fin de que el adversario que progresa encuentre resistencias y obstáculos que le impedida su avance.",opts:["Maniobra Defensiva.","Maniobra Ofensivo-Defensiva.","Maniobra en Retirada.","Maniobra Retrograda."],ans:0},
-{id:"O058",m:"ops",q:"Es uno de los objetivos de las operaciones ofensivas.",opts:["Descubrir el dispositivo del enemigo.","Cortar la retirada de las tropas enemigas .","Posesionarse del terreno dominante que se encuentra en la retaguardia enemiga.","Evitar la llegada de refuerzos."],ans:0},
-{id:"O059",m:"ops",q:"Es uno de los aspectos en que se clasifican las operaciones militares de guerra, desde el punto de vista de su naturaleza y propósito.",opts:["Logísticas.","Aéreas.","Navales.","Aeroterrestre."],ans:0},
-{id:"O060",m:"ops",q:"Precede a una maniobra en retirada, en la cual el grueso se despega del contacto, protegido por la acción de un escalón de seguridad, ésta se inicia cuando se termina la organización de las formaciones de repliegue.",opts:["La ruptura del combate.","El repliegue manteniendo el combate.","Las acciones retardatrices.","El repliegue rompiendo el combate."],ans:0},
-{id:"O061",m:"ops",q:"Son las acciones que llevan a cabo las grandes unidades dentro de un teatro de operaciones, con el objeto de atacar o defenderse del enemigo.",opts:["Maniobra Ofensivo-Defensiva.","Maniobra Ofensiva.","Maniobra Defensiva.","Maniobra Estratégica."],ans:0},
-{id:"O062",m:"ops",q:"Es una operación por la cual toda la unidad o parte de ella es reemplazada en su zona de acción por otra unidad.",opts:["Relevo en posición.","Relevo por paso de líneas.","Relevo.","Relevo a través de una posición."],ans:0},
-{id:"O063",m:"ops",q:"Al vincular el nivel estratégico militar con las operaciones tácticas el mando a nivel operacional es único. Esto quiere decir que solo existe este comandante por teatro de operaciones, quien a su vez es el comandante de la totalidad de fuerzas que en él operan de manera conjunta.",opts:["Comandante Operacional.","Comandante de Fuerza Armada del Teatro de Operaciones.","Comandante de Operaciones.","Comandante de la Unidad de Teatro."],ans:0},
-{id:"O064",m:"ops",q:"Son las que efectúan las fuerzas armadas, conforme a normas vigentes de doctrina militar y de acuerdo con las leyes y usos del derecho internacional.",opts:["Operaciones Regulares.","Operaciones Convencionales.","Operaciones Militares de Guerra.","Operaciones Irregulares."],ans:0},
-{id:"O065",m:"ops",q:"¿Qué objetivos definen las Operaciones Estratégicas?",opts:["Objetivos Estratégico-Militares.","Objetivos Políticos.","Objetivos Estratégico-Operacionales.","Objetivos Nacionales de Guerra."],ans:0},
-{id:"O066",m:"ops",q:"En esta acción la fuerza de maniobra opera a una distancia tal, que le es difícil recibir el apoyo de los fuegos de la fuerza que realiza el ataque secundario y aun de los de la artillería que tiene en apoyo, por lo que se hace necesario reforzar a las unidades de maniobra con unidades de artillería.",opts:["Envolvimiento de gran radio de acción.","Envolvimiento de corto radio de acción.","Envolvimiento Múltiple.","Movimiento de Rodeo."],ans:0},
-{id:"O067",m:"ops",q:"En este tipo de defensa los esfuerzos están encaminados a detener al enemigo en una línea del terreno seleccionada previamente.",opts:["Defensa en posición.","Defensa periférica.","Defensa perimétrica.","Defensa móvil."],ans:0},
-{id:"O068",m:"ops",q:"Es una acción táctica y no estratégica, aun cuando sus alcances sí sean de esta naturaleza.",opts:["La Batalla.","La Estrategia.","La Maniobra.","El Combate."],ans:0},
-{id:"O069",m:"ops",q:"Son aquellas que conservando siempre la iniciativa se llevan a cabo para fijar al enemigo mediante el empleo del fuego, la maniobra y el combate.",opts:["Operaciones Ofensivas.","Operaciones Tácticas.","Operaciones Defensivas.","Operaciones Estratégicas."],ans:0},
-{id:"O070",m:"ops",q:"Son el combate y otras actividades desarrolladas por los componentes tácticos a los cuales se les asignan objetivos militares, cuya consecución, a su vez, permite alcanzar los objetivos operacionales.",opts:["Operaciones Tácticas.","Operaciones Estratégico-Operacionales.","Operaciones Militares.","Operaciones Estratégicas."],ans:0},
-{id:"O071",m:"ops",q:"En este movimiento, la fuerza de maniobra se encuentra fuera del apoyo de la unidad que realiza el ataque secundario; bajo estas condiciones se hace indispensable que ambas fuerzas sean lo suficientemente fuertes y bien balanceadas para evitar que sean destruidas, el mando en este caso es descentralizado.",opts:["Movimiento de Rodeo.","Envolvimiento de corto radio de acción.","Envolvimiento Múltiple.","Envolvimiento de gran radio de acción."],ans:0},
-{id:"O072",m:"ops",q:"Para conducirlas con éxito se requiere un enfoque integral que permita alcanzar el máximo efecto operacional de la fuerza conjunta, empleando de la mejor manera posible las capacidades disponibles.",opts:["Operaciones Conjuntas.","Operaciones Militares.","Operaciones Estratégicas.","Operaciones Tácticas."],ans:0},
-{id:"O073",m:"ops",q:"En el nivel operacional se planifica, conduce y sostiene la campaña mediante la elaboración de este plan.",opts:["Plan de Campaña.","Plan Estratégico-Operacional.","Plan de Guerra.","Plan Estratégico Militar Conjunto."],ans:0},
-{id:"O074",m:"ops",q:"Consiste en operar desde la periferia contra un enemigo central, en forma convergente para batirlo por medio de un golpe, aplicado simultáneamente por varias masas de fuerzas separadas, pero articuladas en tiempo y espacio.",opts:["Maniobra por Líneas Exteriores.","Maniobra por Líneas Interiores.","Maniobra Envolvente.","Maniobra de Ruptura."],ans:0},
-{id:"O075",m:"ops",q:"Consiste en aprovechar al máximo el terreno, combinado con núcleos de tropas dispuestos en profundidad, a fin de presentar al adversario que progresa ofensivamente, varias resistencias y obstáculos sucesivos, con objeto de impedirle el acceso a una zona determinada y buscar a la vez derrotarlo cuando las condiciones sean favorables.",opts:["Maniobra Defensiva.","Maniobra en Retirada.","Maniobra Retrograda.","Maniobra Retardatriz."],ans:0},
-{id:"O076",m:"ops",q:"Es una operación retrógrada previamente planeada, emprendida con la intención expresa de que el grueso de la unidad se aleje del enemigo, sin que éste ejerza presión directa sobre él o con el fin de eludir el combate en la situación existente, para realizar posteriores operaciones ofensivas o defensivas en condiciones más favorables.",opts:["La maniobra en retirada.","Las acciones retardatrices.","La ruptura del combate.","La retirada."],ans:0},
-{id:"O077",m:"ops",q:"Desgastar al enemigo al máximo y causarle la mayor cantidad de bajas como medida preliminar a una acción ofensiva posterior; es de la defensiva una de sus:",opts:["Misiones.","Tareas Básicas.","Finalidades.","Consideraciones Básicas."],ans:0},
-{id:"O078",m:"ops",q:"Forma de acción ofensiva que se emplea cuando se detecta un flanco débil o desprotegido del enemigo y cuando existe el tiempo suficiente para proyectar y realizar la maniobra.",opts:["Envolvimiento.","Ataque.","Penetración.","Movimiento de Rodeo."],ans:0},
-{id:"O079",m:"ops",q:"Componente que puede tener una influencia decisiva sobre las operaciones militares.",opts:["Componente Aéreo.","Componente de Operaciones Especiales.","Componente Naval.","Componente Terrestre."],ans:0},
-{id:"O080",m:"ops",q:"Esta operación estratégica incluye el avance para el contacto y la adopción del dispositivo.",opts:["Despliegue Estratégico.","Concentración.","Cobertura Estratégica.","Maniobra Estratégica."],ans:0},
-{id:"O081",m:"ops",q:"Esta maniobra de ser posible, si se presentan condiciones favorables, bate la retaguardia.",opts:["Maniobra de Ala.","Maniobra Envolvente.","Maniobra Estratégica.","Maniobra de Ruptura."],ans:0},
-{id:"O082",m:"ops",q:"Este es uno de los aspectos en que se clasifica el envolvimiento, de acuerdo con su Esquema General.",opts:["Envolvimiento Doble.","Movimiento de Rodeo.","Envolvimiento de gran radio de acción.","Envolvimiento de corto radio de acción."],ans:0},
-{id:"O083",m:"ops",q:"Comprende los movimientos y la reunión de las fuerzas militares creadas por la movilización, destinadas a realizar la maniobra estratégica, a las zonas desde las cuales se iniciará el despliegue.",opts:["Concentración.","Cobertura Estratégica.","Movilización.","Despliegue Estratégico."],ans:0},
-{id:"O084",m:"ops",q:"Estas actividades bélicas, tienen por objeto hostilizar y desgastar a dicha fuerza; pueden realizarse como hechos aislados e individuales o como parte de un plan previamente establecido, en combinación o no con operaciones regulares.",opts:["Operaciones Irregulares.","Operaciones Militares de Guerra.","Operaciones Militares.","Operaciones Regulares."],ans:0},
-{id:"O085",m:"ops",q:"Parte de un dispositivo central o cóncavo, respecto al despliegue del adversario y tiene por objeto aplicar la masa contra la periferia, para batir en forma sucesiva y decisiva a los diversos organismos separados de las fuerzas enemigas, antes de que puedan realizar su unión o coordinar sus esfuerzos.",opts:["Maniobra por Líneas Interiores.","Maniobra por Líneas Exteriores.","Maniobra de Ruptura.","Maniobra Envolvente."],ans:0},
-{id:"O086",m:"ops",q:"Es una operación en que una unidad entrante, ataca a través de una unidad que se encuentra en contacto con el enemigo.",opts:["Relevo por paso de líneas.","Relevo.","Relevo en posición.","Relevo a través de una posición."],ans:0},
-{id:"O087",m:"ops",q:"Susceptibles de ser empleados en tiempo de paz o guerra, la acción de estas fuerzas se dirige a objetivos de valor estratégico, operacional o táctico en zonas hostiles o sensibles.",opts:["Componente de Operaciones Especiales.","Componente Naval.","Componente Aéreo.","Componente Terrestre."],ans:0},
-{id:"O088",m:"ops",q:"Es una consideración básica en la defensa.",opts:["Utilización adecuada del terreno.","Conocer la hora, dirección y magnitud del ataque enemigo.","Proteger un flanco del dispositivo general.","Obligarlo a atacar en circunstancias que le sean desfavorables."],ans:0},
-{id:"O089",m:"ops",q:"¿Cuál es la primera operación estratégica?",opts:["Movilización.","Despliegue Estratégico.","Cobertura Estratégica.","Maniobra Estratégica."],ans:0},
-{id:"O090",m:"ops",q:"Esta forma de efectuar la acción retardatriz se utiliza en terrenos en los que solamente se requiere cubrir un frente estrecho y existen varias posiciones de retardo. Se emplea con más propiedad en las grandes unidades por la existencia de fuerzas que pueden ocupar dos posiciones al mismo tiempo.",opts:["Retardo en Posiciones Alternas.","Retardo en Posiciones Sucesivas.","Retardo Mediante Acción Ofensiva.","Retardo en Posiciones Principales."],ans:0},
-{id:"O091",m:"ops",q:"La planeación y ejecución de estas operaciones se centran en la maniobra táctica y en los movimientos logísticos necesarios para apoyarla.",opts:["Operaciones Tácticas.","Operaciones Estratégicas.","Operaciones Militares.","Operaciones Estratégico-Operacionales."],ans:0},
-{id:"O092",m:"ops",q:"¿Cuál es la operación estratégica que protege la movilización y la concentración?",opts:["Cobertura Estratégica.","Despliegue Estratégico.","Seguridad Nacional.","Seguridad Estratégica."],ans:0},
-{id:"O093",m:"ops",q:"Estas operaciones pueden ser forzadas o impuestas por el enemigo, llevadas a cabo voluntariamente o bien ordenadas por el escalón superior, como parte del esquema general de maniobra.",opts:["Operaciones Retrogradas.","Operaciones Retardatrices.","Operaciones Defensivas.","Operaciones en Retirada."],ans:0},
-{id:"O094",m:"ops",q:"Son las acciones que desarrollan las tropas y en las que emplean todos los medios a su disposición y formas de combate para las cuales han sido adiestradas, a fin de impedir, resistir o destruir un ataque enemigo.",opts:["Las Operaciones Defensivas.","Las Operaciones Ofensivas.","Las Operaciones Tácticas.","Las Operaciones Ofensivo-Defensivas."],ans:0},
-{id:"O095",m:"ops",q:"Opera en un ambiente complejo y fluido donde se desarrollan múltiples actividades, al relacionar diferentes actores.",opts:["Componente Terrestre.","Componente Naval.","Componente Aéreo.","Componente de Operaciones Especiales."],ans:0},
-{id:"O096",m:"ops",q:"¿Qué tipo de operación es una maniobra estratégica?",opts:["Operación Estratégica.","Operación Militar Combinada.","Operación Militar Conjunta.","Operación Estratégico-Operacional."],ans:0},
-{id:"O097",m:"ops",q:"En este tipo de defensa, fuerzas mínimas descubren al enemigo y lo conducen hacia áreas de destrucción seleccionadas previamente, en donde la fuerza atacante realiza acciones ofensivas y lo destruye.",opts:["Defensa móvil.","Defensa periférica.","Defensa en posición.","Defensa en profundidad."],ans:0},
-{id:"O098",m:"ops",q:"En escalones superiores, el retardo se puede llevar a cabo por acción ofensiva junto con otras formas de acción retardatriz, igualmente las unidades blindadas por su forma de operar pueden llevar a cabo acciones retardatrices en esta forma.",opts:["Retardo Mediante Acción Ofensiva.","Retardo en Posiciones Alternas.","Retardo en Posiciones Sucesivas.","Retardo en Posiciones Principales."],ans:0},
-{id:"O099",m:"ops",q:"Esta defensa se adopta preferentemente cuando la superioridad aérea del enemigo y el terreno limitan el empleo de la reserva.",opts:["Defensa en posición.","Defensa perimétrica.","Defensa periférica.","Defensa móvil."],ans:0},
-{id:"O100",m:"ops",q:"Es una de las finalidades del combate defensivo.",opts:["Consideraciones de tipo político.","Ganar Fuerza.","Economizar Tiempo.","Consideraciones de tipo militar."],ans:0},
-// ── MANIOBRA (70) ───────────────────────────────────────
-{id:"M001",m:"man",q:"Otras manifestaciones del trabajo que contribuyen al éxito de la acción táctica, son las que se realizan en estas actividades.",opts:["Actividades Logísticas, Administrativas y de Enlace.","Actividades Estratégicas, Operacionales y Tácticas.","Actividades Operativas y Administrativas.","Actividades militares de guerra y actividades diferentes a la guerra."],ans:0},
-{id:"M002",m:"man",q:"Son las acciones llevadas a cabo por las aeronaves que integran el componente aéreo en un teatro de operaciones, en beneficio directo de las fuerzas de superficie, en estrecha coordinación e integración con su maniobra.",opts:["Apoyo Aéreo.","Contra Fuerza Aérea.","Operaciones Aéreas Especiales.","Interdicción Aérea."],ans:0},
-{id:"M003",m:"man",q:"Son las operaciones destinadas para la destrucción de la maquinaria de guerra del enemigo dentro de un teatro de operaciones, en forma conjunta o independiente de las fuerzas de superficie.",opts:["Las Operaciones Aéreas Tácticas.","Las Operaciones Aéreas Estratégicas.","Las Operaciones de Interdicción Aérea.","Las Operaciones de Contra Fuerza Aérea."],ans:0},
-{id:"M004",m:"man",q:"Se conceptúa como parte de éste, la acción de armas nucleares, convencionales, químicas y otras que de una u otra manera obran físicamente, causando destrucción y neutralización.",opts:["El Fuego.","El Combate.","El Ataque.","El Choque."],ans:0},
-{id:"M005",m:"man",q:"Organismo que contiene a los servicios técnicos de fuerza aérea, proporciona apoyo en las actividades logísticas de abastecimiento, mantenimiento y evacuación de material aéreo.",opts:["Grupo del Servicio de Material Aéreo.","Grupo de servicios de la Fuerza Aérea.","Grupo de Servicios Aerotáctico.","Grupo de Operaciones Logísticas Aéreas."],ans:0},
-{id:"M006",m:"man",q:"Tiene por objeto atacar al enemigo para destruirlo, desalojarlo o rechazarlo.",opts:["Maniobra Ofensiva.","Maniobra Estratégica.","Maniobra Operacional.","Maniobra Táctica."],ans:0},
-{id:"M007",m:"man",q:"En estas unidades; la maniobra se realiza yuxtaponiendo la acción de los componentes similares en organización, armamento y equipo.",opts:["Unidades de Combate de una misma Arma.","Unidades de Armas Combinadas.","Unidades de Maniobra de diferentes Armas.","Unidades Tácticas de Armas Combinadas."],ans:0},
-{id:"M008",m:"man",q:"Por extensión se dice que maniobran también los servicios, proporcionando:",opts:["Apoyo Logístico y Administrativo.","Apoyo al combate, mediante el despliegue de servicios diversos.","Funciones Tácticas.","Funciones Logísticas."],ans:0},
-{id:"M009",m:"man",q:"En qué operación táctica existe este orden de prioridad: primero, el movimiento; después el fuego; y por último el choque.",opts:["En la Ofensiva.","En la Retirada.","En la Defensiva.","En el Relevo."],ans:0},
-{id:"M010",m:"man",q:"Concierne al empleo y operación de las tropas de combate, puede ser ofensiva, defensiva y en retirada.",opts:["Maniobra Táctica.","Maniobra Estratégica.","Maniobra Operacional.","Maniobra Terrestre."],ans:0},
-{id:"M011",m:"man",q:"Formado por dos o más escuadrones cada uno de las diferentes ramas, para llevar a cabo las operaciones aéreas del ala.",opts:["Grupo de Operaciones.","Grupo Aéreo.","Grupo de Control Aerotáctico.","Grupo Aerotáctico."],ans:0},
-{id:"M012",m:"man",q:"Son aquellas acciones que llevan a cabo unidades específicas en un teatro de operaciones, que por su carácter no se encuentran dentro del marco de las actividades de las otras unidades aéreas y su finalidad es la de apoyar sus operaciones.",opts:["Operaciones Aéreas Especiales.","Contra Fuerza Aérea.","Interdicción Aérea.","Aerotransporte."],ans:0},
-{id:"M013",m:"man",q:"Estos mandos tienen la capacidad de tomar el mando de cualquier teatro de operaciones con preponderancia de operaciones navales.",opts:["Los mandos de las fuerzas navales del pacífico y del golfo.","Los mandos de Grandes Unidades Navales.","Los mandos de Unidad de Teatro Naval.","Los mandos de Región y Zonas Navales."],ans:0},
-{id:"M014",m:"man",q:"Es la combinación de esfuerzos en tiempo y espacio, para la consecución de un objetivo.",opts:["Maniobra.","Desplazamiento.","Marcha.","Movimiento."],ans:0},
-{id:"M015",m:"man",q:"Para el cumplimiento de esta misión las fuerzas navales emplean desde el mar, en apoyo de fuerzas terrestres, su armamento de largo alcance como la artillería, una vez que el comandante terrestre ya tiene el control operativo de sus unidades, las fuerzas navales tienen como misión apoyar desde mar las operaciones que éstas realicen en tierra.",opts:["Operaciones para apoyar con sus fuegos y sus aviones a unidades terrestres.","Operaciones para mantener expedita un área para el paso libre de buques propios.","Operaciones de transporte de abastecimientos para tropas terrestres y apoyo a bases aéreas costeras o en islas.","Operaciones de transporte de tropas de todas las armas."],ans:0},
-{id:"M016",m:"man",q:"Bajo similares condiciones de efectivos, armamentos, entrenamiento, moral y demás factores que crean la potencia combativa, tendrá una situación de mayor poder relativo a su favor, la fuerza que disponga de:",opts:["Un mando más hábil para maniobrar.","Una fuerza mayor para maniobrar.","El equipo, armamento y adiestramiento adecuado para la maniobra.","Mayor tiempo para ejecutar la maniobra."],ans:0},
-{id:"M017",m:"man",q:"Son las acciones realizadas principalmente por la aviación de reconocimiento, para obtener sistemáticamente información sobre objetivos, situación y actividades del enemigo en un teatro de operaciones, como continuación de las que se realizan en tiempo de paz.",opts:["Reconocimiento Aerotáctico.","Reconocimiento Táctico.","Información Aérea.","Observación Aérea."],ans:0},
-{id:"M018",m:"man",q:"Esta maniobra se clasifica en: Táctica, de los fuegos y logística.",opts:["Maniobra Táctica.","Maniobra Terrestre.","Maniobra Estratégica.","Maniobra Ofensiva."],ans:0},
-{id:"M019",m:"man",q:"Son las acciones llevadas a cabo por la aviación de transporte, con la finalidad de trasladar personal y abastecimientos hacía, desde o dentro de un teatro de operaciones; éstas se realizan desde tiempo de paz, revistiendo inclusive carácter estratégico.",opts:["Transporte Aéreo.","Transporte Aerotáctico.","Transporte Táctico de la Fuerza Aérea.","Aerotransporte."],ans:0},
-{id:"M020",m:"man",q:"Se manifiesta por el desplazamiento de las unidades para acercarse al enemigo en forma directa o indirecta o para alejarse de él, ya sea con objeto de colocar efectivamente sus fuegos o de eludirlos; para buscar el choque o evitarlo.",opts:["Movimiento.","Desplazamiento.","Maniobra.","Marcha."],ans:0},
-{id:"M021",m:"man",q:"Maniobra que busca protegerse del enemigo, detenerlo o evitarlo.",opts:["Maniobra Defensiva.","Maniobra Estratégica.","Maniobra Retrograda.","Maniobra en Retirada."],ans:0},
-{id:"M022",m:"man",q:"Tiene la capacidad de integrarse y operar en una fuerza conjunta para desarrollar las operaciones de la Armada de México con las del Ejército y Fuerza Aérea Mexicanos en el logro de un objetivo común, evitando duplicidad de funciones y esfuerzos.",opts:["La Fuerza de Tarea de la Armada de México.","La Fuerza Naval del Pacifico de la Armada de México.","La Fuerza Naval del Golfo de la Armada de México.","La Fuerza Operativa Conjunta de la Armada de México."],ans:0},
-{id:"M023",m:"man",q:"Maniobra en la que participan fuerzas armadas de dos o más países.",opts:["Maniobra Combinada.","Maniobra Estratégica.","Maniobra Conjunta.","Maniobra Defensivo-Ofensiva."],ans:0},
-{id:"M024",m:"man",q:"Esta fuerza, puede disponer de: unidades de reconocimiento, unidades de combate, unidades de transporte, portaaviones, unidades de servicios y aviación con bases en tierra.",opts:["Una Fuerza Tarea.","Una Fuerza Conjunta.","Una Fuerza Combinada.","Una Fuerza Operativa."],ans:0},
-{id:"M025",m:"man",q:"Organismo que en operaciones se despliega para integrar el sistema de control aerotáctico (SCAT).",opts:["Grupo de Control Aerotáctico.","Grupo Aerotáctico.","Grupo de Operaciones.","Grupo Aéreo."],ans:0},
-{id:"M026",m:"man",q:"El Componente de la Armada de México en esta zona; llevará a cabo juntamente con el Ejército y Fuerza Aérea Mexicanos, todas aquellas actividades de planeamiento y logísticas necesarias para sostener el esfuerzo de guerra que se lleve a cabo en la zona de operaciones.",opts:["Zona del Interior.","Zona de Retaguardia.","Zona del Frente.","Zona de Operaciones."],ans:0},
-{id:"M027",m:"man",q:"Estas operaciones en tiempo de paz se orientan al patrullaje y vigilancia; al auxilio y rescate, y al apoyo de otros elementos.",opts:["Las Operaciones Navales.","Las Operaciones Terrestres.","Las Operaciones Aéreas.","Las Operaciones Militares."],ans:0},
-{id:"M028",m:"man",q:"El Componente de la Armada de México en esta zona; actuará con las fuerzas de tarea que la situación específica del teatro requiera, siendo su tamaño y composición de acuerdo con la necesidad del teatro de operaciones.",opts:["Zona de Operaciones.","Zona de Retaguardia.","Zona del Interior.","Zona del Frente."],ans:0},
-{id:"M029",m:"man",q:"No es un factor de la maniobra, ni un modo de combatir, pero es un modo de actuar.",opts:["El Trabajo.","El Ataque.","La Logística.","El Enlace."],ans:0},
-{id:"M030",m:"man",q:"Son las que se desarrollan en la atmosfera terrestre y en el espacio exterior próximo, incluye el empleo de misiles balísticos intercontinentales y equipos de comunicaciones.",opts:["Operaciones Aeroespaciales.","Operaciones Tácticas Especiales.","Operaciones del Ciberespacio.","Operaciones Estratégicas Espaciales."],ans:0},
-{id:"M031",m:"man",q:"Expresan la energía en manos del mando, quien los utiliza para integrar y darle forma a la maniobra.",opts:["Los Factores de la Maniobra.","Los Elementos de la Táctica.","Los Factores de la Táctica.","Los Elementos de la Maniobra."],ans:0},
-{id:"M032",m:"man",q:"Maniobra que se manifiesta a nivel nacional.",opts:["Estratégica.","Conjunta.","Defensiva.","Combinada."],ans:0},
-{id:"M033",m:"man",q:"Puede conceptuarse como un medio en manos del mando, el cual es combinado con el fuego, el movimiento y el choque, utilizando adecuadamente sus características, accidentes y particularidades, para ocultar los movimientos de las tropas, incrementar los efectos del fuego de sus armas, protegerse de los fuegos enemigos y obstaculizar los movimientos de éste.",opts:["El Terreno.","El Entorno.","El Área de Operaciones.","El Trabajo."],ans:0},
-{id:"M034",m:"man",q:"En este caso, el componente de la Armada de México estará integrado por una fuerza de tarea superior como unidad marítima de teatro, acorde a las necesidades del teatro, destinando los medios y recursos necesarios para que él o la comandante de teatro pueda concebir, preparar y conducir las operaciones de carácter naval que las necesidades demanden.",opts:["Componente de la Armada de México en los teatros de operaciones.","Componente de la Armada de México en la zona del frente.","Componente de la Armada de México en la zona de operaciones.","Componente de la Armada de México en la zona del interior."],ans:0},
-{id:"M035",m:"man",q:"La fase característica en que se manifiesta el choque es:",opts:["El Asalto.","La Explotación.","El Ataque.","La Destrucción."],ans:0},
-{id:"M036",m:"man",q:"Consisten en la aplicación de principios, planeamiento, organización y administración en el uso de los recursos y de la fuerza militar, para conseguir metas u objetivos específicos.",opts:["Las Operaciones Militares de Guerra.","Las Operaciones Estratégicas.","Las Operaciones Convencionales.","Las Operaciones Militares."],ans:0},
-{id:"M037",m:"man",q:"Para tropas con recursos limitados y que tienen como oponente un adversario de igual o superior fuerza relativa, es la maniobra a base de movimiento y choque; y de esto, el recurso substancial para lograr un adecuado equilibrio e incluso superioridad y una mayor certeza de poder cumplir con las misiones.",opts:["Sorpresa y agresividad.","Fuego y terreno.","Logística y táctica.","Estrategia y táctica."],ans:0},
-{id:"M038",m:"man",q:"La orgánica de estas unidades debe estar estructurada para responder a las necesidades de la maniobra táctica, de manera que por sí sola sea capaz de afrontar y resolver la mayoría de los problemas que se presenten con pocas o ninguna modificación.",opts:["Unidades Combatientes.","Grandes Unidades.","Pequeñas Unidades.","Unidades Tácticas."],ans:0},
-{id:"M039",m:"man",q:"Conceptos que van siempre estrechamente relacionados en táctica, ya que no se manifiesta uno sin el otro, si se considera que toda maniobra se concibe, prepara y conduce para realizar un combate y que todo combate, se efectúa mediante una maniobra táctica.",opts:["Combate y Maniobra.","Fuego y Movimiento.","Táctica y Logística.","Táctica y Estrategia."],ans:0},
-{id:"M040",m:"man",q:"Son aquellas acciones contra blancos enemigos que están en cercana proximidad a los componentes de superficie propios.",opts:["Concepto de las operaciones de apoyo aéreo.","Concepto estratégico de operaciones aéreas.","Concepto de las operaciones de contra fuerza aérea.","Concepto de las operaciones de interdicción aérea."],ans:0},
-{id:"M041",m:"man",q:"Estas operaciones se refieren al que se ofrece a estudios científicos que realizan otras organizaciones civiles, oficiales o privadas, así como a efectuar transportes para el personal o implementos del ejército.",opts:["Las operaciones de apoyo.","Las operaciones de auxilio y rescate.","Las operaciones de patrullaje y vigilancia.","Las operaciones de policía naval."],ans:0},
-{id:"M042",m:"man",q:"Son todas las actividades que desarrollan las fuerzas armadas de tierra, mar y aire, para cumplir las misiones que tengan encomendadas en diferentes situaciones.",opts:["Las Operaciones Militares.","Las Operaciones Convencionales.","Las Operaciones Militares de Guerra.","Las Operaciones Regulares."],ans:0},
-{id:"M043",m:"man",q:"Tienen por objeto evitar actividades ilícitas en apoyo de autoridades policíacas o judiciales, tales como el contrabando de mercancías, de enervantes, la pesca ilegal en aguas nacionales y el uso indebido del mar territorial o patrimonial en cualquier forma.",opts:["Las operaciones de patrullaje y vigilancia.","Las operaciones de auxilio y rescate.","Las operaciones de policía naval.","Las operaciones de apoyo."],ans:0},
-{id:"M044",m:"man",q:"Operaciones que se realizan en beneficio de la marina mercante o de la aviación y otras organizaciones en naufragios y desastres naturales; este tipo de operaciones se realizan también en las costas con el personal marino.",opts:["Las operaciones de auxilio y rescate.","Las operaciones de patrullaje y vigilancia.","Las operaciones de policía naval.","Las operaciones de apoyo."],ans:0},
-{id:"M045",m:"man",q:"La Maniobra, desde esta perspectiva se conceptúa como la combinación con que un mando concibe, ordena y conduce el fuego, movimiento y choque de las tropas disponibles, en conjunción con las ventajas que el terreno ofrezca, para obtener superioridad con respecto al enemigo.",opts:["La maniobra como principio de la guerra.","La maniobra como elemento táctico.","La maniobra como factor de la guerra.","La maniobra como factor táctico."],ans:0},
-{id:"M046",m:"man",q:"Maniobra que implica el uso de los fuegos en apoyo a la táctica.",opts:["Maniobra de Fuegos.","Maniobra Terrestre.","Maniobra Táctica.","Maniobra Estratégica."],ans:0},
-{id:"M047",m:"man",q:"Toda situación táctica de combate se resuelve realizando:",opts:["Una maniobra.","Un Combate","Una batalla.","Una Operación."],ans:0},
-{id:"M048",m:"man",q:"Las Operaciones Militares de Guerra y las Operaciones Militares Diferentes a la Guerra; son:",opts:["Las Operaciones Militares.","Las Operaciones Regulares.","Las Operaciones Estratégicas.","Las Operaciones Convencionales."],ans:0},
-{id:"M049",m:"man",q:"Por las fuerzas que participan en la maniobra; ¿Cómo se clasifica?",opts:["Terrestre, Aérea, Naval, Conjunta y Combinada.","Estratégica, Operacional y Táctica.","Táctica, Logística y de Fuegos.","Ofensiva, Defensiva y Retirada."],ans:0},
-{id:"M050",m:"man",q:"En qué operación táctica existe este orden de prioridad: primero, el fuego; después el movimiento; y por último el choque.",opts:["En la Defensiva.","En la Retirada.","En el Relevo.","En la Ofensiva."],ans:0},
-{id:"M051",m:"man",q:"Son las que se caracterizan por el empleo del ciberespacio como un medio para desarrollar la guerra (uso de las tecnologías de la información y comunicaciones - TIC's).",opts:["Operaciones del Ciberespacio.","Operaciones Tácticas Especiales.","Operaciones Estratégicas Espaciales.","Operaciones Aeroespaciales."],ans:0},
-{id:"M052",m:"man",q:"Son las acciones realizadas por la aviación de pelea del componente aéreo, en forma conjunta con las fuerzas de superficie, para garantizar la soberanía del espacio aéreo en un teatro de operaciones y preservar los objetivos vitales del mismo.",opts:["La Defensa Aérea Táctica.","La Defensa Aérea Estratégica.","Interdicción Aérea.","Contra Fuerza Aérea."],ans:0},
-{id:"M053",m:"man",q:"Este tipo de operaciones lo realizan mediante el empleo de barcos de transporte y de desembarco, a fin de formar convoyes con las seguridades debidas, proporcionadas por barcos de guerra, para atravesar áreas marítimas y desembarcar en las playas seleccionadas para el inicio de una operación terrestre.",opts:["Operaciones de transporte de tropas de todas las armas.","Operaciones de transporte de abastecimientos para tropas terrestres y apoyo a bases aéreas costeras o en islas.","Operaciones para mantener expedita un área para el paso libre de buques propios.","Operaciones para apoyar con sus fuegos y sus aviones a unidades terrestres."],ans:0},
-{id:"M054",m:"man",q:"Es la gran unidad de la fuerza aérea, asignada para llevar a cabo las operaciones aéreas tácticas en el TO.",opts:["Unidad Aérea de Teatro.","División Aérea.","Gran Unidad del Teatro de Operaciones Aéreo.","Ala Aérea."],ans:0},
-{id:"M055",m:"man",q:"Es la acción de cerrar contra el enemigo para mezclarse con él, a fin de destruirlo o vencerlo, mediante el efecto moral y físico del contacto inmediato, en el que se manifiesta la acción destructora y desmoralizadora que causan las armas de corto alcance.",opts:["El Choque.","El Ataque.","El Combate.","El Asalto."],ans:0},
-{id:"M056",m:"man",q:"Para el cumplimiento de estas misiones se emplean barcos de transporte o convoyes para acercar los abastecimientos necesarios para las operaciones terrestres que se realicen cerca de las costas, así como para el abastecimiento en provecho de las bases aéreas costeras o situadas en islas.",opts:["Operaciones de transporte de abastecimientos para tropas terrestres y apoyo a bases aéreas costeras o en islas.","Operaciones para apoyar con sus fuegos y sus aviones a unidades terrestres.","Operaciones de transporte de tropas de todas las armas.","Operaciones para mantener expedita un área para el paso libre de buques propios."],ans:0},
-{id:"M057",m:"man",q:"Independientemente de que el mando de las fuerzas conjuntas recaiga o no en un mando de la armada, la fuerza de tarea de la armada ejecutará las misiones que el mando de fuerzas conjuntas ordene, de acuerdo con:",opts:["La Estrategia de la Nación.","El Plan Estratégico de la Armada de México.","El Plan de Defensa Nacional.","El Plan de Campaña del Cmte. del Teatro de Operaciones."],ans:0},
-{id:"M058",m:"man",q:"Dentro de su organización deben tener elementos de reconocimiento, transporte, combate, aeronavales, defensa de costas y defensa aérea.",opts:["Las Fuerzas Navales Operativas.","Las Fuerzas Aéreas Tácticas.","Las Fuerzas Terrestres del Teatro de Operaciones.","Las Fuerzas Conjuntas del Teatro de Operaciones."],ans:0},
-{id:"M059",m:"man",q:"Es el factor más importante para el logro de la destrucción física del enemigo.",opts:["Fuego.","Ataque.","Choque.","Asalto."],ans:0},
-{id:"M060",m:"man",q:"Maniobra en la que participan dos o más fuerzas armadas.",opts:["Maniobra Conjunta.","Maniobra Estratégica.","Maniobra Defensivo-Ofensiva.","Maniobra Combinada."],ans:0},
-{id:"M061",m:"man",q:"Es el conjunto de acciones, operaciones conjuntas y/o combinadas, que se realizan a nivel teatro de operaciones o área operacional.",opts:["Maniobra Operacional.","Maniobra Táctica.","Maniobra Estratégica.","Maniobra Combinada."],ans:0},
-{id:"M062",m:"man",q:"Son aquellas acciones llevadas a cabo por la aviación de combate en un teatro de operaciones, con el fin de lograr la superioridad aérea, mediante la destrucción o neutralización de la capacidad ofensiva y defensiva aérea del enemigo.",opts:["Contra Fuerza Aérea.","Apoyo Aéreo.","Operaciones Aéreas Especiales.","Interdicción Aérea."],ans:0},
-{id:"M063",m:"man",q:"Es aquella de carácter defensivo, en que mediante repliegues sucesivos se va cediendo terreno al enemigo a cambio de tiempo, en espera de la oportunidad de asumir la ofensiva.",opts:["Maniobra en Retirada.","Maniobra Estratégica.","Maniobra Defensiva.","Maniobra Retrograda."],ans:0},
-{id:"M064",m:"man",q:"¿Cómo se clasifica la maniobra?",opts:["Naturaleza y alcance; por las fuerzas que participan en ella; y por el tipo de Operación a desarrollar.","Naturaleza y propósito; por las fuerzas que intervienen y ámbito en el que se desarrollan.","Naturaleza y objetivos que persigue; por las fuerzas que actúan en ella y entorno operacional en donde se desarrollan.","Naturaleza y propósito; por las fuerzas que intervienen; y por el tipo de Operación a desarrollar."],ans:0},
-{id:"M065",m:"man",q:"Son las acciones llevadas a cabo por la aviación de combate en un teatro de operaciones, con el fin de limitar la capacidad combativa del enemigo mediante el aislamiento de su zona del frente, por la interrupción de sus líneas de comunicación y de abastecimiento.",opts:["Interdicción Aérea.","Apoyo Aéreo.","Contra Fuerza Aérea.","Operaciones Aéreas Especiales."],ans:0},
-{id:"M066",m:"man",q:"Por la naturaleza y alcance; ¿Cómo se clasifica la maniobra?",opts:["Estratégica, Operacional y Táctica.","Ofensiva, Defensiva y Retirada.","Terrestre, Aérea, Naval, Conjunta y Combinada.","Táctica, Logística y de Fuegos."],ans:0},
-{id:"M067",m:"man",q:"Es el esfuerzo realizado para abordar al enemigo, con objeto de destruirlo o capturarlo físicamente, cuando el fuego y el movimiento por sí solos, no logran el objetivo deseado.",opts:["Acción de Choque.","Acción de Combate.","Acción de Ataque.","Acción Ofensiva."],ans:0},
-{id:"M068",m:"man",q:"Maniobra de los servicios técnicos en sus actividades para proporcionar los medios de vida y combate al conjunto.",opts:["Maniobra Logística.","Maniobra de los Servicios.","Maniobra de Desarrollo de Funciones Logísticas.","Maniobra de Apoyo Logístico y Administrativo."],ans:0},
-{id:"M069",m:"man",q:"En estas unidades; la maniobra se lleva a cabo superponiendo la acción de componentes diferentes entre sí, en cuanto a sus características, capacidades y limitaciones.",opts:["Unidades de Armas Combinadas.","Unidades de Combate de una misma Arma.","Unidades Tácticas de una misma Arma.","Unidades de Maniobra de diferentes Armas."],ans:0},
-{id:"M070",m:"man",q:"El fuego, movimiento, choque y terreno, son:",opts:["Factores de la Maniobra.","Elementos de la Maniobra.","Elementos de la Táctica.","Factores de la Táctica."],ans:0},
-];
-
-// ══════════════════════════════════════════════════
-// SUPABASE CONFIG
+// CONFIG & SUPABASE
 // ══════════════════════════════════════════════════
 const CFG_KEY = 'sdn_supabase_cfg';
 let sb = null;
 
-function getConfig() {
-  try { return JSON.parse(localStorage.getItem(CFG_KEY) || 'null'); } catch { return null; }
-}
-function saveConfig() {
-  const url = document.getElementById('cfg-url').value.trim();
-  const key = document.getElementById('cfg-key').value.trim();
-  const st  = document.getElementById('cfg-status');
-  if (!url || !key) { st.textContent = 'Complete ambos campos.'; st.className='cfg-status err'; return; }
-  st.textContent = 'Conectando…'; st.className = 'cfg-status';
-  try {
-    const client = supabase.createClient(url, key);
-    // Quick test query
-    client.from('errores').select('pregunta_id').limit(1).then(({error}) => {
-      if (error) { st.textContent = 'Error: ' + error.message; st.className='cfg-status err'; return; }
-      localStorage.setItem(CFG_KEY, JSON.stringify({url, key}));
-      sb = client;
-      st.textContent = '✓ Conexión exitosa.'; st.className='cfg-status ok';
-      setTimeout(() => { document.getElementById('cfg-screen').classList.add('hidden'); boot(); }, 800);
+function getConfig(){ try{ return JSON.parse(localStorage.getItem(CFG_KEY)||'null'); }catch{ return null; } }
+
+function saveConfig(){
+  const url=document.getElementById('cfg-url').value.trim();
+  const key=document.getElementById('cfg-key').value.trim();
+  const st=document.getElementById('cfg-status');
+  if(!url||!key){ st.textContent='Complete ambos campos.'; st.className='cfg-status err'; return; }
+  st.textContent='Conectando…'; st.className='cfg-status';
+  try{
+    const client=supabase.createClient(url,key);
+    client.from('materias').select('id').limit(1).then(({error})=>{
+      if(error){ st.textContent='Error: '+error.message; st.className='cfg-status err'; return; }
+      localStorage.setItem(CFG_KEY,JSON.stringify({url,key}));
+      sb=client; st.textContent='✓ Conexión exitosa.'; st.className='cfg-status ok';
+      setTimeout(()=>{ document.getElementById('cfg-screen').classList.add('hidden'); boot(); },800);
     });
-  } catch(e) { st.textContent = 'URL inválida.'; st.className='cfg-status err'; }
+  }catch(e){ st.textContent='URL inválida.'; st.className='cfg-status err'; }
 }
+
+// ══════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════
+let dbErrors={}, dbSessions=[], dbMaterias=[], dbPreguntasCache={};
+let selectedMats=new Set();
+let mode='all';
+let questions=[], current=0, answers=[], answered=[];
+let timer=null, timeLeft=1800, totalQ=20, examStartTime=0;
+const MODELAB={adapt:'Modo adaptativo',all:'Modo aleatorio',wrong:'Solo errores'};
 
 // ══════════════════════════════════════════════════
 // BOOT
 // ══════════════════════════════════════════════════
-async function boot() {
+async function boot(){
   await loadDBState();
-  document.getElementById('start-screen').classList.add('active');
+  showScreen('home-screen');
+}
+
+async function loadDBState(){
+  // Load materias
+  const {data:mats}=await sb.from('materias').select('*').eq('activa',true).order('id');
+  dbMaterias=mats||[];
+
+  // Load errors
+  const {data:errs}=await sb.from('errores').select('*');
+  dbErrors={};
+  (errs||[]).forEach(r=>{ dbErrors[r.pregunta_id]={fallos:r.fallos,memorizada:r.memorizada,materia:r.materia}; });
+
+  // Load sessions
+  const {data:ses}=await sb.from('sesiones').select('*').order('fecha',{ascending:false}).limit(20);
+  dbSessions=ses||[];
+
+  // Clear question cache on reload
+  dbPreguntasCache={};
+
+  renderHome();
 }
 
 // ══════════════════════════════════════════════════
-// DB STATE — errores y memorizadas desde Supabase
+// HOME
 // ══════════════════════════════════════════════════
-let dbErrors = {};   // { id: {fallos, memorizada} }
-let dbSessions = []; // últimas sesiones
+function renderHome(){
+  // Stats
+  const active=Object.values(dbErrors).filter(e=>e.fallos>0&&!e.memorizada);
+  const mem=Object.values(dbErrors).filter(e=>e.memorizada);
+  const totalQ2=dbMaterias.reduce((a,m)=>a+m.total_preguntas,0);
+  document.getElementById('sc-total').textContent=totalQ2;
+  document.getElementById('sc-err').textContent=active.length;
+  document.getElementById('sc-err-lbl').textContent=mem.length>0?`Errores (${mem.length} mem.)`:'Errores activos';
+  document.getElementById('sc-exams').textContent=dbSessions.length;
+  const avg=dbSessions.length?Math.round(dbSessions.reduce((a,s)=>a+s.porcentaje,0)/dbSessions.length)+'%':'—';
+  document.getElementById('sc-avg').textContent=avg;
 
-async function loadDBState() {
-  if (!sb) return;
-  const { data: errData } = await sb.from('errores').select('*');
-  dbErrors = {};
-  (errData || []).forEach(r => { dbErrors[r.pregunta_id] = { fallos: r.fallos, memorizada: r.memorizada }; });
+  // Materias grid
+  const grid=document.getElementById('materias-grid');
+  grid.innerHTML=dbMaterias.map(m=>{
+    const errCount=Object.values(dbErrors).filter(e=>e.materia===m.id&&e.fallos>0&&!e.memorizada).length;
+    const isSel=selectedMats.has(m.id);
+    return `<div class="mat-card${isSel?' selected':''}" onclick="toggleMat('${m.id}')" style="${isSel?`border-color:${m.color};`:''}">
+      <div class="mat-dot" style="background:${m.color}"></div>
+      <div class="mat-info">
+        <span class="mat-name" style="${isSel?`color:${m.color}`:''}">${m.nombre}</span>
+        <span class="mat-count">${m.total_preguntas} pregs${errCount>0?` · ⚠ ${errCount} errores`:''}</span>
+      </div>
+      <span class="mat-check">✓</span>
+    </div>`;
+  }).join('');
 
-  const { data: sesData } = await sb.from('sesiones').select('*').order('fecha', {ascending:false}).limit(20);
-  dbSessions = sesData || [];
-
-  updateStartScreen();
-}
-
-function updateStartScreen() {
-  const active = Object.values(dbErrors).filter(e => e.fallos > 0 && !e.memorizada);
-  const mem    = Object.values(dbErrors).filter(e => e.memorizada);
-  document.getElementById('sc-err').textContent = active.length;
-  document.getElementById('sc-err-lbl').textContent =
-    mem.length > 0 ? `Errores (${mem.length} mem.)` : 'Errores activos';
-  document.getElementById('sc-exams').textContent = dbSessions.length;
-  const avg = dbSessions.length
-    ? Math.round(dbSessions.reduce((a,s)=>a+s.porcentaje,0)/dbSessions.length) + '%'
-    : '—';
-  document.getElementById('sc-avg').textContent = avg;
+  document.getElementById('btn-iniciar').disabled=selectedMats.size===0;
 
   // Adaptive bar
-  const top = Object.entries(dbErrors)
-    .filter(([,v]) => v.fallos > 0 && !v.memorizada)
-    .sort(([,a],[,b]) => b.fallos - a.fallos)
-    .slice(0,5);
-  const bar = document.getElementById('adaptive-bar');
-  if (top.length > 0) {
-    const items = document.getElementById('ab-items');
-    items.innerHTML = top.map(([id, v]) => {
-      const q = BANCO.find(x=>x.id===id);
-      if (!q) return '';
-      return `<div class="ab-item"><span class="q-tag ${q.m}" style="margin-right:5px">${q.m.toUpperCase()}</span><strong>×${v.fallos}</strong> ${q.q.substring(0,55)}…</div>`;
+  const top=Object.entries(dbErrors)
+    .filter(([,v])=>v.fallos>0&&!v.memorizada)
+    .sort(([,a],[,b])=>b.fallos-a.fallos).slice(0,5);
+  const bar=document.getElementById('adaptive-bar');
+  if(top.length>0){
+    document.getElementById('ab-items').innerHTML=top.map(([id,v])=>{
+      const mat=dbMaterias.find(m=>m.id===v.materia);
+      return `<div class="ab-item"><span style="font-size:.7rem;color:${mat?.color||'#fff'}">${mat?.nombre||v.materia}</span> <strong>×${v.fallos}</strong></div>`;
     }).join('');
     bar.classList.add('show');
   } else { bar.classList.remove('show'); }
+
+  // Manager filters — add materia buttons dynamically
+  const mf=document.getElementById('mgr-filters');
+  const base=`<button class="mgr-filter active" id="mf-all" onclick="setMgrF('all')">Todas</button>
+    <button class="mgr-filter" id="mf-errors" onclick="setMgrF('errors')">Solo errores</button>
+    <button class="mgr-filter" id="mf-mem" onclick="setMgrF('mem')">Memorizadas</button>`;
+  const matBtns=dbMaterias.map(m=>`<button class="mgr-filter" id="mf-${m.id}" onclick="setMgrF('${m.id}')">${m.nombre}</button>`).join('');
+  mf.innerHTML=base+matBtns;
 }
 
-async function upsertError(id, materia, wrong) {
-  if (!sb) return;
-  const cur = dbErrors[id] || { fallos: 0, memorizada: false };
-  if (wrong) {
-    cur.fallos++;
-    dbErrors[id] = cur;
-    await sb.from('errores').upsert({
-      pregunta_id: id, materia, fallos: cur.fallos,
-      memorizada: cur.memorizada, ultima_vez: new Date().toISOString()
-    });
-  }
-  // Correct answers do NOT auto-remove from errors — only manual "Memorizada" does
-  // But we keep local dbErrors in sync if entry already exists
-  if (!wrong && dbErrors[id]) {
-    dbErrors[id] = cur; // keep reference fresh, no DB write needed
-  }
+function toggleMat(id){
+  if(selectedMats.has(id)) selectedMats.delete(id);
+  else selectedMats.add(id);
+  renderHome();
 }
 
-async function setMemorized(id, val) {
-  if (!sb) return;
-  const cur = dbErrors[id] || { fallos: 0, memorizada: false };
-  cur.memorizada = val;
-  if (val) cur.fallos = 0;
-  dbErrors[id] = cur;
-  await sb.from('errores').upsert({ pregunta_id: id, materia: (BANCO.find(x=>x.id===id)||{}).m||'', fallos: cur.fallos, memorizada: val, ultima_vez: new Date().toISOString() });
+function goConfig(){
+  showScreen('config-screen');
+  updateModeHint();
 }
-
-async function saveSession(data) {
-  if (!sb) return;
-  const { data: ses } = await sb.from('sesiones').insert({
-    modo: data.modo, total: data.total, correctas: data.correctas,
-    incorrectas: data.incorrectas, porcentaje: data.porcentaje, tiempo_seg: data.tiempo
-  }).select().single();
-  if (!ses) return;
-  // Save individual answers
-  const rows = data.detalles.map(d => ({
-    sesion_id: ses.id, pregunta_id: d.id, materia: d.m, correcta: d.correcta
-  }));
-  if (rows.length) await sb.from('respuestas').insert(rows);
+function goHome(){
+  clearInterval(timer);
+  showScreen('home-screen');
+  document.getElementById('review-section').classList.remove('show');
+  document.getElementById('weak-section').style.display='none';
+  document.getElementById('exam-header').style.display='none';
+  document.getElementById('prog-wrap').style.display='none';
+  document.getElementById('manager-overlay').classList.remove('show');
+  renderHome();
 }
 
 // ══════════════════════════════════════════════════
-// EXAM STATE
+// MODE
 // ══════════════════════════════════════════════════
-let mode='all', questions=[], current=0, answers=[], answered=[], aiCache={};
-let timer=null, timeLeft=1800, totalQ=20, examStartTime=0;
-
-function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
-
-const MATNAME={log:'LOGÍSTICA',adm:'ACT. ADMIN.',seg:'SEGURIDAD',ops:'OPERACIONES MIL.',man:'MANIOBRA'};
-const MODELAB={adapt:'Modo adaptativo',all:'Modo aleatorio',wrong:'Solo errores'};
-
-function showConfig(){
-  document.getElementById('start-screen').classList.remove('active');
-  document.getElementById('config-screen').classList.add('active');
-}
-function backToHome(){
-  document.getElementById('config-screen').classList.remove('active');
-  document.getElementById('start-screen').classList.add('active');
-}
-
 function setMode(m){
   mode=m;
   document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('mode-'+m).classList.add('active');
-  const hints={adapt:'Prioriza preguntas con mayor número de fallos previos.',all:'Preguntas al azar del banco completo (418).',wrong:'Solo preguntas que ha fallado en sesiones anteriores.'};
-  document.getElementById('mode-hint').textContent=hints[m];
+  updateModeHint();
+}
+function updateModeHint(){
+  const hints={
+    adapt:'Prioriza preguntas con mayor número de fallos previos.',
+    all:'Preguntas al azar de las materias seleccionadas.',
+    wrong:'Solo preguntas que ha fallado en sesiones anteriores.'
+  };
+  document.getElementById('mode-hint').textContent=hints[mode];
 }
 
-function buildPool(){
+// ══════════════════════════════════════════════════
+// LOAD PREGUNTAS FROM SUPABASE
+// ══════════════════════════════════════════════════
+async function loadPreguntas(matIds){
+  // Check cache first
+  const needed=matIds.filter(id=>!dbPreguntasCache[id]);
+  if(needed.length>0){
+    const {data}=await sb.from('preguntas')
+      .select('id,materia_id,pregunta,opciones,respuesta_correcta')
+      .in('materia_id',needed)
+      .eq('activa',true);
+    (data||[]).forEach(q=>{
+      if(!dbPreguntasCache[q.materia_id]) dbPreguntasCache[q.materia_id]=[];
+      dbPreguntasCache[q.materia_id].push(q);
+    });
+  }
+  return matIds.flatMap(id=>dbPreguntasCache[id]||[]);
+}
+
+// ══════════════════════════════════════════════════
+// BUILD POOL
+// ══════════════════════════════════════════════════
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+
+function buildPool(rawPreguntas){
   const qty=parseInt(document.getElementById('qty-sel').value);
   const activeIds=Object.keys(dbErrors).filter(id=>dbErrors[id].fallos>0&&!dbErrors[id].memorizada);
   const memIds=new Set(Object.keys(dbErrors).filter(id=>dbErrors[id].memorizada));
+
+  // Normalize: map DB row to internal format
+  const norm=q=>({sub:q.subtema||null,
+    id: q.id,
+    m: q.materia_id,
+    q: q.pregunta,
+    opts: Array.isArray(q.opciones)?q.opciones:JSON.parse(q.opciones),
+    ans: q.respuesta_correcta
+  });
+
   let pool;
   if(mode==='wrong'){
-    if(!activeIds.length){alert('No tiene errores activos registrados. Realice un examen primero.');return null;}
-    pool=shuffle(BANCO.filter(q=>activeIds.includes(q.id)));
+    const wrongPregs=rawPreguntas.filter(q=>activeIds.includes(q.id));
+    if(!wrongPregs.length){ alert('No tiene errores activos en las materias seleccionadas.'); return null; }
+    pool=shuffle(wrongPregs.map(norm));
   } else if(mode==='adapt'){
-    const wrong=BANCO.filter(q=>activeIds.includes(q.id)).sort((a,b)=>(dbErrors[b.id]?.fallos||0)-(dbErrors[a.id]?.fallos||0));
-    const other=shuffle(BANCO.filter(q=>!activeIds.includes(q.id)&&!memIds.has(q.id)));
-    const nW=Math.min(Math.ceil(qty*.7),wrong.length), nO=Math.min(qty-nW,other.length);
+    const wrong=rawPreguntas.filter(q=>activeIds.includes(q.id))
+      .sort((a,b)=>(dbErrors[b.id]?.fallos||0)-(dbErrors[a.id]?.fallos||0))
+      .map(norm);
+    const other=shuffle(rawPreguntas.filter(q=>!activeIds.includes(q.id)&&!memIds.has(q.id)).map(norm));
+    const nW=Math.min(Math.ceil(qty*.7),wrong.length);
+    const nO=Math.min(qty-nW,other.length);
     pool=shuffle([...wrong.slice(0,nW),...other.slice(0,nO)]);
   } else {
-    pool=shuffle(BANCO.filter(q=>!memIds.has(q.id)));
+    pool=shuffle(rawPreguntas.filter(q=>!memIds.has(q.id)).map(norm));
   }
   return pool.slice(0,Math.min(qty,pool.length));
 }
 
-function startExam(){
-  const raw=buildPool(); if(!raw) return;
+// ══════════════════════════════════════════════════
+// EXAM
+// ══════════════════════════════════════════════════
+async function startExam(){
+  const matIds=[...selectedMats];
+  if(!matIds.length){ alert('Seleccione al menos una materia.'); return; }
+
+  // Show loading
+  document.getElementById('btn-next') && (document.getElementById('btn-next').textContent='Cargando…');
+
+  const rawPreguntas=await loadPreguntas(matIds);
+  const raw=buildPool(rawPreguntas);
+  if(!raw||!raw.length){ document.getElementById('btn-next') && (document.getElementById('btn-next').textContent='SIGUIENTE →'); return; }
+
+  // Shuffle options
   questions=raw.map(o=>{
     const items=o.opts.map((t,i)=>({text:t,oi:i})); shuffle(items);
     return{id:o.id,m:o.m,q:o.q,opts:items.map(x=>x.text),ans:items.findIndex(x=>x.oi===o.ans)};
   });
-  totalQ=questions.length; answers=new Array(totalQ).fill(-1); answered=new Array(totalQ).fill(false);
-  aiCache={}; current=0; timeLeft=1800; examStartTime=Date.now();
-  document.getElementById('start-screen').classList.remove('active');
-  document.getElementById('config-screen').classList.remove('active');
+
+  totalQ=questions.length;
+  answers=new Array(totalQ).fill(-1);
+  answered=new Array(totalQ).fill(false);
+  current=0; timeLeft=1800; examStartTime=Date.now();
+
+  showScreen('exam-screen');
   document.getElementById('exam-header').style.display='block';
   document.getElementById('prog-wrap').style.display='block';
-  document.getElementById('exam-screen').classList.add('active');
   document.getElementById('hdr-total').textContent=totalQ;
   document.getElementById('hdr-mode-lbl').textContent=MODELAB[mode];
   renderQ(); startTimer();
@@ -1096,105 +663,142 @@ function startExam(){
 function renderQ(){
   const q=questions[current];
   const eInfo=dbErrors[q.id]||{fallos:0,memorizada:false};
+  const mat=dbMaterias.find(m=>m.id===q.m);
+
   document.getElementById('q-num').textContent=`PREGUNTA ${current+1} DE ${totalQ}`;
   document.getElementById('hdr-q').textContent=current+1;
   document.getElementById('prog-fill').style.width=(current/totalQ*100)+'%';
-  const tm=document.getElementById('q-tag-mat'); tm.textContent=MATNAME[q.m]; tm.className='q-tag '+q.m;
+
+  const tm=document.getElementById('q-tag-mat');
+  tm.textContent=mat?.nombre||q.m;
+  tm.style.color=mat?.color||'#fff';
+  tm.style.borderColor=(mat?.color||'#fff').replace(')',', .4)').replace('rgb','rgba');
+  tm.style.background=(mat?.color||'#fff').replace(')',', .07)').replace('rgb','rgba');
+
   document.getElementById('q-tag-dif').style.display=eInfo.fallos>=2?'inline-flex':'none';
   document.getElementById('q-text').textContent=q.q;
+
   const c=document.getElementById('opts'); c.innerHTML='';
   const L=['A','B','C','D'];
   q.opts.forEach((o,i)=>{
     const b=document.createElement('button'); b.className='opt-btn';
     b.innerHTML=`<span class="ol">${L[i]}</span><span>${o}</span>`;
     b.onclick=()=>selectAnswer(i);
-    if(answered[current]){b.disabled=true; if(i===q.ans)b.classList.add('correct'); else if(i===answers[current])b.classList.add('wrong');}
+    if(answered[current]){
+      b.disabled=true;
+      if(i===q.ans) b.classList.add('correct');
+      else if(i===answers[current]) b.classList.add('wrong');
+    }
     c.appendChild(b);
   });
-  const ab=document.getElementById('ai-box'), bm=document.getElementById('btn-mem');
-  if(answered[current]&&answers[current]!==q.ans){
-    ab.classList.add('show');
+
+  // Feedback box
+  const fb=document.getElementById('feedback-box');
+  const bm=document.getElementById('btn-mem');
+  if(answered[current]){
+    const isWrong=answers[current]!==q.ans;
+    fb.className='feedback-box '+(isWrong?'show-wrong':'show-ok');
+    document.getElementById('fb-label').textContent=isWrong?'✗ INCORRECTO — La respuesta correcta es:':'✓ CORRECTO';
+    document.getElementById('fb-label').className='fb-label '+(isWrong?'wrong-lbl':'ok-lbl');
+    document.getElementById('fb-answer').textContent=isWrong?q.opts[q.ans]:'';
+    bm.style.display=isWrong?'inline-flex':'none';
     bm.textContent=eInfo.memorizada?'★ Memorizada':'☆ Marcar como memorizada';
     bm.className='btn-mem'+(eInfo.memorizada?' done':'');
-    document.getElementById('ai-text').innerHTML=aiCache[q.id]||'<span style="color:var(--dim);font-style:italic">Consultando concepto clave…</span>';
-    if(!aiCache[q.id]) fetchAI(q);
-  } else { ab.classList.remove('show'); }
+  } else { fb.className='feedback-box'; }
+
   document.getElementById('btn-prev').disabled=current===0;
   const bn=document.getElementById('btn-next');
-  if(current===totalQ-1){bn.textContent='FINALIZAR ✓';bn.onclick=()=>{if(!answered[current]&&answers[current]!==-1)selectAnswer(answers[current]);setTimeout(finishExam,350);};}
-  else{bn.textContent='SIGUIENTE →';bn.onclick=nextQ;}
+  if(current===totalQ-1){
+    bn.textContent='FINALIZAR ✓';
+    bn.onclick=()=>{ if(!answered[current]&&answers[current]!==-1) selectAnswer(answers[current]); setTimeout(finishExam,350); };
+  } else { bn.textContent='SIGUIENTE →'; bn.onclick=nextQ; }
 }
 
 async function selectAnswer(idx){
-  if(answered[current])return;
+  if(answered[current]) return;
   answers[current]=idx; answered[current]=true;
   const q=questions[current];
-  await upsertError(q.id, q.m, idx!==q.ans);
+  const isWrong=idx!==q.ans;
+  await upsertError(q.id,q.m,isWrong);
   renderQ();
 }
-function prevQ(){if(current>0){current--;renderQ();}}
-function nextQ(){if(current<totalQ-1){current++;renderQ();}}
+function prevQ(){ if(current>0){ current--; renderQ(); } }
+function nextQ(){ if(current<totalQ-1){ current++; renderQ(); } }
 
 function startTimer(){
   clearInterval(timer);
   timer=setInterval(()=>{
     timeLeft--;
-    const m=Math.floor(timeLeft/60).toString().padStart(2,'0');
+    const m2=Math.floor(timeLeft/60).toString().padStart(2,'0');
     const s=(timeLeft%60).toString().padStart(2,'0');
-    const el=document.getElementById('timer'); el.textContent=`${m}:${s}`; el.className=timeLeft<=120?'warn':'';
-    if(timeLeft<=0){clearInterval(timer);finishExam();}
+    const el=document.getElementById('timer');
+    el.textContent=`${m2}:${s}`; el.className=timeLeft<=120?'warn':'';
+    if(timeLeft<=0){ clearInterval(timer); finishExam(); }
   },1000);
 }
 
+// ══════════════════════════════════════════════════
+// FINISH
+// ══════════════════════════════════════════════════
 async function finishExam(){
   clearInterval(timer);
   const elapsed=Math.round((Date.now()-examStartTime)/1000);
   let correct=0;
-  const detalles=questions.map((q,i)=>{const ok=answers[i]===q.ans; if(ok)correct++; return{id:q.id,m:q.m,correcta:ok};});
-  const wrong=totalQ-correct, pct=totalQ>0?Math.round(correct/totalQ*100):0, pass=pct>=70;
+  const detalles=questions.map((q,i)=>{ const ok=answers[i]===q.ans; if(ok) correct++; return{id:q.id,m:q.m,sub:q.sub||null,correcta:ok}; });
+  const wrong=totalQ-correct;
+  const pct=totalQ>0?Math.round(correct/totalQ*100):0;
+  const pass=pct>=70;
+
   await saveSession({modo:mode,total:totalQ,correctas:correct,incorrectas:wrong,porcentaje:pct,tiempo:elapsed,detalles});
   await loadDBState();
 
-  document.getElementById('exam-screen').classList.remove('active');
   document.getElementById('exam-header').style.display='none';
   document.getElementById('prog-wrap').style.display='none';
   document.getElementById('res-c').textContent=correct;
   document.getElementById('res-w').textContent=wrong;
   document.getElementById('res-p').textContent=pct+'%';
-  const ring=document.getElementById('res-ring'); ring.textContent=pct+'%'; ring.className='result-ring '+(pass?'pass':'fail');
+  const ring=document.getElementById('res-ring');
+  ring.textContent=pct+'%'; ring.className='result-ring '+(pass?'pass':'fail');
   document.getElementById('res-title').textContent=pass?'APROBADO':'REPROBADO';
   document.getElementById('res-verdict').textContent=pass?'Calificación satisfactoria.':'Refuerce los temas fallados.';
 
   const wrongQs=questions.filter((q,i)=>answers[i]!==q.ans);
   if(wrongQs.length){
-    const ws=document.getElementById('weak-section'), wl=document.getElementById('weak-list');
-    wl.innerHTML=wrongQs.slice(0,6).map(q=>`<div class="weak-item">[${MATNAME[q.m]}] ${q.q.substring(0,75)}… <span style="color:var(--correct-light)"> → ${q.opts[q.ans]}</span></div>`).join('');
+    const wl=document.getElementById('weak-list');
+    wl.innerHTML=wrongQs.slice(0,6).map(q=>{
+      const mat=dbMaterias.find(m=>m.id===q.m);
+      return `<div class="weak-item">[${mat?.nombre||q.m}] ${q.q.substring(0,70)}… <span style="color:var(--correct-light)"> → ${q.opts[q.ans]}</span></div>`;
+    }).join('');
     if(wrongQs.length>6) wl.innerHTML+=`<div class="weak-item" style="color:var(--dim)">…y ${wrongQs.length-6} más registradas.</div>`;
-    ws.style.display='block';
+    document.getElementById('weak-section').style.display='block';
   }
+
   const hasErr=Object.values(dbErrors).some(e=>e.fallos>0&&!e.memorizada);
   document.getElementById('btn-replay').style.display=hasErr?'inline-block':'none';
-  document.getElementById('results-screen').classList.add('active');
+  showScreen('results-screen');
 }
 
-function replayWrong(){mode='wrong'; document.getElementById('results-screen').classList.remove('active'); document.getElementById('review-section').classList.remove('show'); startExam();}
+function replayWrong(){ mode='wrong'; showScreen('config-screen'); updateModeHint(); startExam(); }
 
 // ══════════════════════════════════════════════════
-// AI
+// DB OPS
 // ══════════════════════════════════════════════════
-async function fetchAI(q){
-  const mats={
-    log:'Manual de Logística Militar (SEDENA)',
-    adm:'Actividades Administrativas Militares (SEDENA)',
-    seg:'Manual de Operaciones Militares — La Seguridad (SEDENA)',
-    ops:'Manual de Operaciones Militares (SEDENA)',
-    man:'Manual de Operaciones Militares — Maniobra (SEDENA)'
-  };
-  try{
-    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:150,messages:[{role:'user',content:`Eres asesor de exámenes militares del Ejército Mexicano. El candidato falló esta pregunta del ${mats[q.m]}:\n\nPregunta: "${q.q}"\nRespuesta correcta: "${q.opts[q.ans]}"\n\nExplica en máximo 2 líneas el concepto doctrinal clave. Sin saludos ni preámbulos.`}]})});
-    const d=await r.json(); const t=d.content?.[0]?.text||'Consulte el manual de referencia.';
-    aiCache[q.id]=t; if(questions[current]?.id===q.id) document.getElementById('ai-text').textContent=t;
-  } catch{ aiCache[q.id]='Consulte el manual de referencia.'; }
+async function upsertError(id,materia,wrong){
+  if(!sb) return;
+  const cur=dbErrors[id]||{fallos:0,memorizada:false};
+  if(wrong){
+    cur.fallos++;
+    dbErrors[id]={...cur,materia};
+    await sb.from('errores').upsert({pregunta_id:id,materia,fallos:cur.fallos,memorizada:cur.memorizada||false,ultima_vez:new Date().toISOString()});
+  }
+}
+
+async function setMemorized(id,val){
+  if(!sb) return;
+  const cur=dbErrors[id]||{fallos:0,memorizada:false,materia:''};
+  cur.memorizada=val; if(val) cur.fallos=0;
+  dbErrors[id]=cur;
+  await sb.from('errores').upsert({pregunta_id:id,materia:cur.materia||'',fallos:cur.fallos,memorizada:val,ultima_vez:new Date().toISOString()});
 }
 
 async function markCurrentMem(){
@@ -1202,28 +806,41 @@ async function markCurrentMem(){
   const b=document.getElementById('btn-mem'); b.textContent='★ Memorizada'; b.className='btn-mem done';
 }
 
+async function saveSession(data){
+  if(!sb) return;
+  const {data:ses}=await sb.from('sesiones').insert({
+    modo:data.modo,total:data.total,correctas:data.correctas,
+    incorrectas:data.incorrectas,porcentaje:data.porcentaje,tiempo_seg:data.tiempo
+  }).select().single();
+  if(!ses) return;
+  const rows=data.detalles.map(d=>({sesion_id:ses.id,pregunta_id:d.id,materia:d.m,subtema:d.sub||null,correcta:d.correcta}));
+  if(rows.length) await sb.from('respuestas').insert(rows);
+}
+
 // ══════════════════════════════════════════════════
 // STATS
 // ══════════════════════════════════════════════════
 async function showStats(){
-  document.getElementById('start-screen').classList.remove('active');
-  document.getElementById('stats-screen').classList.add('active');
+  showScreen('stats-screen');
   const sc=document.getElementById('stats-content');
   sc.innerHTML='<div class="loading-msg">Cargando estadísticas…</div>';
-
-  // Fetch per-materia accuracy
-  const {data:resp}=await sb.from('respuestas').select('materia,correcta');
-  const byMat={log:{c:0,t:0},adm:{c:0,t:0},seg:{c:0,t:0},ops:{c:0,t:0},man:{c:0,t:0}};
-  (resp||[]).forEach(r=>{if(byMat[r.materia]){byMat[r.materia].t++;if(r.correcta)byMat[r.materia].c++;}});
-
+  const {data:resp}=await sb.from('respuestas').select('materia,subtema,correcta');
+  const byMat={};
+  dbMaterias.forEach(m=>{ byMat[m.id]={c:0,t:0}; });
+  (resp||[]).forEach(r=>{ if(byMat[r.materia]){ byMat[r.materia].t++; if(r.correcta) byMat[r.materia].c++; } });
+  const bySubtema={};
+  (resp||[]).filter(r=>r.materia==='ops').forEach(r=>{
+    if(!r.subtema) return;
+    if(!bySubtema[r.subtema]) bySubtema[r.subtema]={c:0,t:0};
+    bySubtema[r.subtema].t++;
+    if(r.correcta) bySubtema[r.subtema].c++;
+  });
+  const pct=(m)=>byMat[m]?.t?Math.round(byMat[m].c/byMat[m].t*100):0;
   const total=dbSessions.length;
   const avg=total?Math.round(dbSessions.reduce((a,s)=>a+s.porcentaje,0)/total):0;
   const best=total?Math.max(...dbSessions.map(s=>s.porcentaje)):0;
   const activeErr=Object.values(dbErrors).filter(e=>e.fallos>0&&!e.memorizada).length;
   const memCount=Object.values(dbErrors).filter(e=>e.memorizada).length;
-
-  const pct=(m)=>byMat[m].t?Math.round(byMat[m].c/byMat[m].t*100):0;
-
   sc.innerHTML=`
   <div class="stats-grid">
     <div class="stats-card"><span class="scv">${total}</span><span class="scl">Exámenes</span></div>
@@ -1234,27 +851,34 @@ async function showStats(){
   </div>
   <div class="mat-bar-wrap">
     <div class="mat-bar-title">Precisión por materia</div>
-    ${['log','adm','seg','ops','man'].map(m=>`
+  <div class="mat-bar-title" style="margin-top:18px">Precisión por sub-tema (Operaciones)</div>
+  ${Object.entries(bySubtema).filter(([,v])=>v.t>0).sort(([,a],[,b])=>b.t-a.t).map(([sub,v])=>{
+    const p2=Math.round(v.c/v.t*100);
+    return `<div class="mat-row"><div class="mat-label" style="font-size:.75rem;min-width:160px">${sub}</div><div class="mat-track"><div class="mat-fill" style="width:${p2}%;background:#c060ff"></div></div><div class="mat-pct">${p2}%</div></div>`;
+  }).join('')}
+  </div>
+  <div class="mat-bar-wrap">
+    <div class="mat-bar-title">Precisión por materia</div>
+    ${dbMaterias.map(m=>`
     <div class="mat-row">
-      <div class="mat-label">${MATNAME[m]}</div>
-      <div class="mat-track"><div class="mat-fill ${m}" style="width:${pct(m)}%"></div></div>
-      <div class="mat-pct">${pct(m)}%</div>
+      <div class="mat-label" style="color:${m.color}">${m.nombre}</div>
+      <div class="mat-track"><div class="mat-fill" style="width:${pct(m.id)}%;background:${m.color}"></div></div>
+      <div class="mat-pct">${pct(m.id)}%</div>
     </div>`).join('')}
   </div>
   <div class="stats-title" style="margin-top:24px">Últimas sesiones</div>
-  <div class="session-list">
-    ${dbSessions.slice(0,10).map(s=>{
-      const d=new Date(s.fecha); const ds=d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'2-digit'});
-      const ts=d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
-      const pass=s.porcentaje>=70;
-      return `<div class="session-item">
-        <div class="si-date">${ds} ${ts}</div>
-        <div class="si-mode">${MODELAB[s.modo]||s.modo}</div>
-        <div class="si-pct ${pass?'pass':'fail'}">${s.porcentaje}%</div>
-        <div class="si-detail">${s.correctas}/${s.total} · ${Math.floor(s.tiempo_seg/60)}m${s.tiempo_seg%60}s</div>
-      </div>`;
-    }).join('')}
-  </div>`;
+  ${dbSessions.slice(0,10).map(s=>{
+    const d=new Date(s.fecha);
+    const ds=d.toLocaleDateString('es-MX',{day:'2-digit',month:'short',year:'2-digit'});
+    const ts=d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+    const pass=s.porcentaje>=70;
+    return `<div class="session-item">
+      <div class="si-date">${ds} ${ts}</div>
+      <div class="si-mode">${MODELAB[s.modo]||s.modo}</div>
+      <div class="si-pct ${pass?'pass':'fail'}">${s.porcentaje}%</div>
+      <div class="si-detail">${s.correctas}/${s.total} · ${Math.floor(s.tiempo_seg/60)}m${s.tiempo_seg%60}s</div>
+    </div>`;
+  }).join('')}`;
 }
 
 // ══════════════════════════════════════════════════
@@ -1262,79 +886,93 @@ async function showStats(){
 // ══════════════════════════════════════════════════
 let mgrF='all';
 function openManager(){ mgrF='all'; document.querySelectorAll('.mgr-filter').forEach(b=>b.classList.remove('active')); document.getElementById('mf-all').classList.add('active'); renderMgr(); document.getElementById('manager-overlay').classList.add('show'); }
-function closeManager(){ document.getElementById('manager-overlay').classList.remove('show'); updateStartScreen(); }
-function setMgrF(f){ mgrF=f; document.querySelectorAll('.mgr-filter').forEach(b=>b.classList.remove('active')); document.getElementById('mf-'+f).classList.add('active'); renderMgr(); }
+function closeManager(){ document.getElementById('manager-overlay').classList.remove('show'); }
+function setMgrF(f){ mgrF=f; document.querySelectorAll('.mgr-filter').forEach(b=>b.classList.remove('active')); document.getElementById('mf-'+f)?.classList.add('active'); renderMgr(); }
 
-function renderMgr(){
-  const allIds=new Set([...Object.keys(dbErrors).filter(id=>dbErrors[id].fallos>0||dbErrors[id].memorizada)]);
-  let items=[...allIds].map(id=>{const q=BANCO.find(x=>x.id===id); if(!q)return null; return{id,q,fallos:dbErrors[id]?.fallos||0,mem:dbErrors[id]?.memorizada||false};}).filter(Boolean);
+async function renderMgr(){
+  const body=document.getElementById('mgr-body');
+  body.innerHTML='<div class="loading-msg">Cargando…</div>';
+
+  // Need question text — fetch from DB if not cached
+  const allMats=dbMaterias.map(m=>m.id);
+  const allPregs=await loadPreguntas(allMats);
+  const pregMap={};
+  allPregs.forEach(p=>{ pregMap[p.id]=p; });
+
+  const allIds=new Set(Object.keys(dbErrors).filter(id=>dbErrors[id].fallos>0||dbErrors[id].memorizada));
+  let items=[...allIds].map(id=>{
+    const p=pregMap[id]; if(!p) return null;
+    return{id,p,fallos:dbErrors[id]?.fallos||0,mem:dbErrors[id]?.memorizada||false,mat:dbErrors[id]?.materia||p.materia_id};
+  }).filter(Boolean);
+
   if(mgrF==='errors') items=items.filter(x=>x.fallos>0&&!x.mem);
   else if(mgrF==='mem') items=items.filter(x=>x.mem);
-  else if(['log','adm','seg','ops','man'].includes(mgrF)) items=items.filter(x=>x.q.m===mgrF);
+  else if(mgrF!=='all') items=items.filter(x=>x.mat===mgrF);
   items.sort((a,b)=>{ if(a.mem&&!b.mem)return 1; if(!a.mem&&b.mem)return -1; return b.fallos-a.fallos; });
+
   document.getElementById('mgr-count').textContent=`${items.filter(x=>!x.mem).length} errores · ${items.filter(x=>x.mem).length} memorizadas`;
-  const body=document.getElementById('mgr-body');
   if(!items.length){ body.innerHTML='<div class="mgr-empty">No hay preguntas en esta categoría.</div>'; return; }
-  body.innerHTML=items.map(it=>`
-  <div class="mgr-item">
-    <div class="mgr-item-left">
-      <div class="mgr-item-meta">
-        <span class="q-tag ${it.q.m}">${MATNAME[it.q.m]}</span>
-        ${it.fallos>0&&!it.mem?`<span class="err-badge">× ${it.fallos} fallo${it.fallos>1?'s':''}</span>`:''}
-        ${it.mem?`<span class="mem-badge">★ Memorizada</span>`:''}
+
+  const opts=p=>Array.isArray(p.opciones)?p.opciones:JSON.parse(p.opciones);
+  body.innerHTML=items.map(it=>{
+    const mat=dbMaterias.find(m=>m.id===it.mat);
+    const correcta=opts(it.p)[it.p.respuesta_correcta];
+    return `<div class="mgr-item">
+      <div class="mgr-item-left">
+        <div class="mgr-item-meta">
+          <span class="q-tag" style="color:${mat?.color||'#fff'};border-color:${mat?.color||'#fff'}44;background:${mat?.color||'#fff'}11">${mat?.nombre||it.mat}</span>
+          ${it.fallos>0&&!it.mem?`<span class="err-badge">× ${it.fallos} fallo${it.fallos>1?'s':''}</span>`:''}
+          ${it.mem?`<span class="mem-badge">★ Memorizada</span>`:''}
+        </div>
+        <div class="mgr-item-q">${it.p.pregunta}</div>
+        <div class="mgr-item-ans">→ ${correcta}</div>
       </div>
-      <div class="mgr-item-q">${it.q.q}</div>
-      <div class="mgr-item-ans">→ ${it.q.opts[it.q.ans]}</div>
-    </div>
-    <div class="mgr-item-right">
-      ${it.mem
-        ?`<button class="btn-mem-mgr unmark" onclick="mgrUnmark('${it.id}')">↩ Reactivar</button>`
-        :`<button class="btn-mem-mgr mark" onclick="mgrMark('${it.id}')">★ Memorizar</button>`}
-    </div>
-  </div>`).join('');
+      <div class="mgr-item-right">
+        ${it.mem
+          ?`<button class="btn-mem-mgr unmark" onclick="mgrUnmark('${it.id}')">↩ Reactivar</button>`
+          :`<button class="btn-mem-mgr mark" onclick="mgrMark('${it.id}')">★ Memorizar</button>`}
+      </div>
+    </div>`;
+  }).join('');
 }
 
 async function mgrMark(id){ await setMemorized(id,true); renderMgr(); }
 async function mgrUnmark(id){ await setMemorized(id,false); renderMgr(); }
 async function clearAllErrors(){
-  if(!confirm('¿Borrar todos los errores? Las memorizadas no se verán afectadas.'))return;
-  const memIds=Object.keys(dbErrors).filter(id=>dbErrors[id].memorizada);
-  // Delete non-memorized
+  if(!confirm('¿Borrar todos los errores? Las memorizadas no se verán afectadas.')) return;
   const toDelete=Object.keys(dbErrors).filter(id=>!dbErrors[id].memorizada);
   if(toDelete.length) await sb.from('errores').delete().in('pregunta_id',toDelete);
   toDelete.forEach(id=>delete dbErrors[id]);
-  renderMgr(); updateStartScreen();
+  renderMgr(); renderHome();
 }
 
 // ══════════════════════════════════════════════════
 // REVIEW
 // ══════════════════════════════════════════════════
 function showReview(){
-  const rs=document.getElementById('review-section'); rs.classList.add('show');
+  document.getElementById('review-section').classList.add('show');
   const rc=document.getElementById('rev-container'); rc.innerHTML='';
   const L=['A','B','C','D'];
   questions.forEach((q,i)=>{
     const ok=answers[i]===q.ans;
+    const mat=dbMaterias.find(m=>m.id===q.m);
     const div=document.createElement('div'); div.className='rev-item '+(ok?'ok':'bad');
-    let h=`<div class="rq"><strong>${i+1}. [${MATNAME[q.m]}]</strong> ${q.q}</div>`;
+    let h=`<div class="rq"><strong>${i+1}. [${mat?.nombre||q.m}]</strong> ${q.q}</div>`;
     h+=`<div class="rl2">${ok?'✓ CORRECTO':'✗ INCORRECTO'}</div>`;
     h+=`<div class="ra">Tu respuesta: ${answers[i]>=0?L[answers[i]]+'. '+q.opts[answers[i]]:'Sin responder'}</div>`;
     if(!ok) h+=`<div class="rc">Correcta: ${L[q.ans]}. ${q.opts[q.ans]}</div>`;
     div.innerHTML=h; rc.appendChild(div);
   });
-  rs.scrollIntoView({behavior:'smooth'});
+  document.getElementById('review-section').scrollIntoView({behavior:'smooth'});
 }
 
-function resetExam(){
-  clearInterval(timer);
-  ['results-screen','exam-screen','stats-screen','config-screen'].forEach(id=>document.getElementById(id).classList.remove('active'));
-  document.getElementById('review-section').classList.remove('show');
-  document.getElementById('exam-header').style.display='none';
-  document.getElementById('prog-wrap').style.display='none';
-  document.getElementById('weak-section').style.display='none';
-  document.getElementById('manager-overlay').classList.remove('show');
-  document.getElementById('start-screen').classList.add('active');
-  updateStartScreen();
+// ══════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════
+function showScreen(id){
+  ['home-screen','config-screen','exam-screen','results-screen','stats-screen']
+    .forEach(s=>document.getElementById(s).classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
 // ══════════════════════════════════════════════════
